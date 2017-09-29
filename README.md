@@ -4,6 +4,8 @@
 
 The class is broken up into 7 weeks. Each week has an assignment, lecture slides, some reading, and sometimes optional related material from the [Real World OCaml](https://realworldocaml.org/) book.
 
+Note that not all assignments and notes have been posted as of the start of the course. We'll have to add them in as we go.
+
 Week | Assignment | Lecture | Reading | RWO Chapter |
 ---- | --- | ---- | --- | --- |
 1    | [Easy as Pi][1] | [OCaml Intro][lec1.0], [Type Checking Basics][lec1.1], [Let, Tuples, Unit][lec1.2], [Induction, Lists and Nats][lec1.3] | [Functional Basics][8], [Type Checking][9], [Type-directed programming][10], [Thinking Inductively][11] | [1][rwo1], [2][rwo2], [3][rwo3]
@@ -83,7 +85,7 @@ git clone git@github.com:cos-326/cos-326-fall-2017.git
 
 ### Create a Branch
 
-Create a new branch off of `master` whose name is the same as your GitHub username. Then, push the branch to the remote (GitHub) repository. If you don't have permission to push to this repository, let me know and I'll grant them.
+Create a new branch off of `master` whose name is the same as your GitHub username. Then, push the branch to the remote (GitHub) repository. If you don't have permission to push to this repository, we'll add you to the [organization](https://github.com/cos-326/).
 
 ```bash
 cd cos-326-fall-2017
