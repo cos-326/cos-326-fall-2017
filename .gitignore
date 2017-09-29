@@ -1,2 +1,5 @@
 **/_build
 **/*.d.byte
+**/*.cmi
+**/*.cmo
+**/test

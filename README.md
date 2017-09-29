@@ -69,11 +69,14 @@ Install OCaml & the package manager
 brew install ocaml opam
 ```
 
-Install Merlin for editor support
+Install Merlin for editor support, and OUnit for testing
 
 ```bash
 opam install merlin
+opam install ounit
 ```
+
+_If there's a build failure, try restarting your terminal._
 
 For full install instructions see [here](http://www.cs.princeton.edu/courses/archive/fall17/cos326/resources.php).
 
@@ -93,10 +96,12 @@ git checkout -b laser
 git push origin laser
 ```
 
-## Running homework files
+## Running tests
+
+To run tests for an assignment, you'll have to cd into the assignment directory, compile the tests, then run them.
 
 ```bash
 cd a1
-ocamlbuild a1.d.byte
-./a1.d.byte
+ocamlfind ocamlc -o test -package oUnit -linkpkg -g a1.ml test.ml
+./test
 ```
