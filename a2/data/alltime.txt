@@ -1,0 +1,200 @@
+Lethal Weapon 3|WB|273.0718|1992
+Harry Potter and the Half-Blood Prince|WB|316.8889|2009
+The Sixth Sense|BV|450.8446|1999
+Air Force One|Sony|294.9771|1997
+The Best Years of Our Lives|RKO|430.65|1946
+Star Wars: Episode I - The Phantom Menace|Fox|707.6215|1999
+Fatal Attraction|Par.|310.7003|1987
+Mission: Impossible|Par.|320.6081|1996
+Sleeping Beauty|Dis.|569.0535|1959
+National Lampoon's Animal House|Uni.|468.9408|1978
+The Hunger Games|LGF|373.605139|1999
+What's Up Doc?|WB|303.9882|1972
+Finding Nemo|BV|441.1224|2003
+Funny Girl|Col.|313.5089|1968
+Mrs. Doubtfire|Fox|412.5187|1993
+Platoon|Orion|277.4639|1986
+Up|BV|307.5137|2009
+Harry Potter and the Chamber of Secrets|WB|351.6913|2002
+Pretty Woman|BV|330.2414|1990
+Who Framed Roger Rabbit|BV|298.0589|1988
+The Sting|Uni.|697.9886|1973
+The Exorcist|WB|865.9915|1973
+Cast Away|Fox|328.0315|2000
+Lawrence of Arabia|Col.|433.6532|1962
+Heaven Can Wait (1978)|Par.|273.1809|1978
+Jaws|Uni.|1002.8571|1975
+There's Something About Mary|Fox|293.4576|1998
+West Side Story|MGM|438.2473|1961
+Rush Hour 2|NL|312.8739|2001
+Harry Potter and the Prisoner of Azkaban|WB|314.6387|2004
+The Caine Mutiny|Col.|347.5561|1954
+Star Wars|Fox|1394.6764|1977
+Thunderball|UA|585.684|1965
+Transformers: Revenge of the Fallen|P/DW|422.0443|2009
+Snow White and the Seven Dwarfs|Dis.|853.47|1937
+Twister|WB|428.208|1996
+Night at the Museum|Fox|290.0357|2006
+Butch Cassidy and the Sundance Kid|Fox|552.468|1969
+Fantasia|Dis.|650.2304|1941
+X-Men: The Last Stand|Fox|280.1615|2006
+The Lion King|BV|697.6613|1994
+Indiana Jones and the Temple of Doom|Par.|419.162|1984
+Beverly Hills Cop|Par.|525.7846|1984
+The Jungle Book|Dis.|576.9137|1967
+Pinocchio|Dis.|527.7681|1940
+Meet the Fockers|Uni.|345.8748|2004
+M.A.S.H.|Fox|420.3474|1970
+Harry Potter and the Order of the Phoenix|WB|332.3251|2007
+Toy Story 2|BV|374.56|1999
+Harry Potter and the Deathly Hallows Part 2|WB|375.7327|2011
+Shrek 2|DW|556.3288|2004
+Shrek the Third|P/DW|367.2816|2007
+The Love Bug|Dis.|282.674|1969
+Return of the Jedi|Fox|736.4852|1983
+Cars|BV|291.7816|2006
+Close Encounters of the Third Kind|Col.|435.1565|1977
+Monsters Inc.|BV|353.0399|2001
+Superman|WB|449.1141|1978
+Indiana Jones and the Last Crusade|Par.|386.9311|1989
+Batman Returns|WB|307.2222|1992
+X2: X-Men United|Fox|279.1138|2003
+Gone with the Wind|MGM|1582.0094|1939
+Toy Story|BV|343.489|1995
+Grease|Par.|602.6688|1978
+The Lord of the Rings: The Two Towers|NL|451.989|2002
+Shrek|DW|370.2857|2001
+Rear Window|Par.|394.2776|1954
+Beauty and the Beast|BV|355.7414|1991
+Bruce Almighty|Uni.|315.3156|2003
+The Chronicles of Narnia: The Lion the Witch and the Wardrobe|BV|353.7298|2005
+Austin Powers in Goldmember|NL|287.47|2002
+Raiders of the Lost Ark|Par.|690.1507|1981
+The Greatest Show on Earth|Par.|469.8|1952
+Signs|BV|307.1994|2002
+Patton|Fox|311.9359|1970
+Rocky III|UA|332.8788|1982
+Batman Forever|WB|331.256|1995
+Independence Day|Fox|542.3753|1996
+Ben-Hur|MGM|767.34|1959
+One Flew Over the Cuckoo's Nest|UA|420.3563|1975
+Star Wars: Episode II - Attack of the Clones|Fox|418.6581|2002
+101 Dalmatians|Dis.|782.3521|1961
+The Fugitive|WB|347.631|1993
+Dances with Wolves|Orion|342.1655|1990
+How the Grinch Stole Christmas|Uni.|376.6764|2000
+Harry Potter and the Goblet of Fire|WB|353.7224|2005
+Earthquake|Uni.|330.0476|1974
+Pirates of the Caribbean: At World's End|BV|352.1456|2007
+2001: A Space Odyssey|MGM|339.3249|1968
+House of Wax|WB|395.6649|1953
+The Passion of the Christ|NM|467.4889|2004
+The Bridge on the River Kwai|Col.|425.952|1957
+Back to the Future|Uni.|462.3666|1985
+Batman|WB|492.9347|1989
+Forrest Gump|Par.|615.0121|1994
+Iron Man|Par.|347.2273|2008
+Young Frankenstein|Fox|357.4181|1974
+Liar Liar|Uni.|309.4652|1997
+The Sound of Music|Fox|1115.1124|1965
+Sergeant York|WB|376.8046|1941
+The Robe|Fox|512.5091|1953
+Alice in Wonderland (2010)|BV|329.1467|2010
+The Graduate|AVCO|670.0395|1967
+My Big Fat Greek Wedding|IFC|324.3145|2002
+The Twilight Saga: New Moon|Sum.|304.6659|2009
+Titanic|Par.|1061.565|1997
+Robin Hood: Prince of Thieves|WB|307.7951|1991
+Indiana Jones and the Kingdom of the Crystal Skull|Par.|345.8081|2008
+Apollo 13|Uni.|312.0861|1995
+The Ten Commandments|Par.|1025.73|1956
+Terminator 2: Judgment Day|TriS|380.9794|1991
+Doctor Zhivago|MGM|971.9806|1965
+Stir Crazy|Col.|294.8621|1980
+Kramer Vs. Kramer|Col.|336.8485|1979
+Spider-Man|Sony|544.0656|2002
+Rocky IV|UA|277.0826|1985
+War of the Worlds|Par.|286.1802|2005
+Porky's|Fox|295.3646|1982
+Rocky|UA|430.963|1976
+The Lord of the Rings: The Return of the King|NL|482.6388|2003
+Avatar|Fox|761.5088|2009
+Men in Black|Sony|427.6486|1997
+Tootsie|Col.|445.5579|1982
+The Matrix Reloaded|WB|365.6291|2003
+The Twilight Saga: Eclipse|Sum.|295.9954|2010
+True Lies|Fox|274.0171|1994
+Home Alone|Fox|530.3588|1990
+The Firm|Par.|299.4849|1993
+Gremlins|WB|356.1253|1984
+Blazing Saddles|WB|495.0714|1974
+Love Story|Par.|548.0855|1970
+Saving Private Ryan|DW|358.1996|1998
+Austin Powers: The Spy Who Shagged Me|NL|317.5775|1999
+It's a Mad Mad Mad Mad World|MGM|421.8445|1963
+Inception|WB|288.1599|2010
+The Four Horsemen of the Apocalypse|MPC|359.5408|1921
+Jurassic Park|Uni.|674.9917|1993
+Beverly Hills Cop II|Par.|307.7231|1987
+The Hangover|WB|291.009|2009
+Bambi|RKO|498.8685|1942
+Harry Potter and the Sorcerer's Stone|WB|437.7986|2001
+I Am Legend|WB|287.5488|2007
+Swiss Family Robinson|Dis.|421.3166|1960
+Transformers: Dark of the Moon|P/DW|346.5577|2011
+Spider-Man 2|Sony|471.043|2004
+Ghostbusters|Col.|553.8207|1984
+Mission: Impossible II|Par.|312.9238|2000
+Lady and the Tramp|Dis.|436.4041|1955
+The Towering Inferno|Fox|480.5714|1974
+Iron Man 2|Par.|307.7174|2010
+Star Wars: Episode III - Revenge of the Sith|Fox|464.5115|2005
+Lethal Weapon 2|WB|290.4279|1989
+9 to 5|Fox|300.656|1980
+The Dark Knight|WB|581.6287|2008
+Cleopatra (1963)|Fox|526.0465|1963
+The Incredibles|BV|329.0945|2004
+The Bells of St. Mary's|RKO|491.2941|1945
+Psycho|Uni.|334.0801|1960
+Armageddon|BV|336.5367|1998
+Guess Who's Coming to Dinner|Col.|338.7023|1967
+Saturday Night Fever|Par.|317.9351|1977
+American Graffiti|Uni.|514.5429|1973
+Peter Pan|Dis.|357.2322|1953
+On Golden Pond|Uni.|317.7753|1981
+The Lord of the Rings: The Fellowship of the Ring|NL|429.0784|2001
+The Poseidon Adventure|Fox|429.8824|1972
+Airport|Uni.|517.6514|1970
+Superman II|WB|304.7101|1981
+Rain Man|MGM|338.974|1988
+The Godfather|Par.|617.9637|1972
+The Empire Strikes Back|Fox|768.7544|1980
+Crocodile Dundee|Par.|361.7652|1986
+Goldfinger|UA|519.129|1964
+Around the World in 80 Days|UA|505.9385|1956
+Pirates of the Caribbean: The Curse of the Black Pearl|BV|396.5809|2003
+Ghost|Par.|402.9727|1990
+My Fair Lady|WB|469.8|1964
+Smokey and the Bandit|Uni.|445.0018|1977
+You Only Live Twice|UA|281.1282|1967
+The Rocky Horror Picture Show|Fox|431.1936|1975
+Pearl Harbor|BV|274.6622|2001
+The Lost World: Jurassic Park|Uni.|390.7949|1997
+Spider-Man 3|Sony|382.9989|2007
+The Mummy Returns|Uni.|279.4726|2001
+Top Gun|Par.|373.1105|1986
+Duel in the Sun|Selz.|399.4898|1946
+Aladdin|BV|410.6236|1992
+The Twilight Saga: Breaking Dawn Part 1|Sum.|281.2871|2011
+Every Which Way But Loose|WB|285.0805|1978
+Pirates of the Caribbean: Dead Man's Chest|BV|506.0401|2006
+Rambo: First Blood Part II|TriS|331.7614|1985
+Mary Poppins|Dis.|612.1636|1964
+An Officer and a Gentleman|Par.|341.8332|1982
+Three Men and a Baby|BV|326.5406|1987
+A Star Is Born (1976)|WB|294.0845|1976
+E.T.: The Extra-Terrestrial|Uni.|1110.7194|1982
+Home Alone 2: Lost in New York|Fox|327.6823|1992
+Toy Story 3|BV|408.7407|2010
+Harry Potter and the Deathly Hallows Part 1|WB|289.6253|2010
+Transformers|P/DW|363.3281|2007

@@ -1,0 +1,200 @@
+Coraline|Focus|75.286229|2009
+The Game Plan|BV|90.648202|2007
+Gremlins|WB|153.083102|1984
+Heaven Can Wait (1978)|Par.|81.640278|1978
+Cheaper by the Dozen|Fox|138.614544|2003
+Harry Potter and the Chamber of Secrets|WB|261.988482|2002
+Spy Kids 2: The Island of Lost Dreams|Dim.|85.846429|2002
+Cats & Dogs|WB|93.385515|2001
+Alvin and the Chipmunks|Fox|217.326974|2007
+Shark Tale|DW|160.861908|2004
+You've Got Mail|WB|115.821495|1998
+Are We There Yet?|SonR|82.674398|2005
+Paul Blart: Mall Cop|Sony|146.336178|2009
+Percy Jackson & The Olympians: The Lightning Thief|Fox|88.768303|2010
+Smokey and the Bandit|Uni.|126.737428|1977
+The Jewel of the Nile|Fox|75.9732|1985
+The Poseidon Adventure|Fox|84.563118|1972
+Superman II|WB|108.185706|1981
+Evan Almighty|Uni.|100.462298|2007
+Bridge to Terabithia|BV|82.272442|2007
+The Incredibles|BV|261.441092|2004
+Return of the Jedi|Fox|309.306177|1983
+Dead Poets Society|BV|95.860116|1989
+The Chronicles of Narnia: Prince Caspian|BV|141.62149|2008
+Garfield: The Movie|Fox|75.369589|2004
+Harry Potter and the Sorcerer's Stone|WB|317.57555|2001
+While You Were Sleeping|BV|81.057016|1995
+Lilo & Stitch|BV|145.794338|2002
+Back to the Future Part III|Uni.|87.727583|1990
+Father of the Bride|BV|89.32578|1991
+A League of Their Own|Sony|107.533928|1992
+Star Wars|Fox|460.998007|1977
+National Treasure: Book of Secrets|BV|219.964115|2007
+Fantastic Four: Rise of the Silver Surfer|Fox|131.921738|2007
+Harry Potter and the Half-Blood Prince|WB|301.959197|2009
+Teenage Mutant Ninja Turtles|NL|135.265915|1990
+Footloose|Par.|80.035402|1984
+Dr. Seuss' The Lorax|Uni.|208.5682|2012
+Harry Potter and the Prisoner of Azkaban|WB|249.541069|2004
+Father of the Bride Part II|BV|76.594107|1995
+How the Grinch Stole Christmas|Uni.|260.044825|2000
+Rocky IV|UA|127.873716|1985
+Madagascar|DW|193.595521|2005
+How to Train Your Dragon|P/DW|217.581231|2010
+Ice Age: Dawn of the Dinosaurs|Fox|196.573705|2009
+The First Wives Club|Par.|105.489203|1996
+Robots|Fox|128.200012|2005
+The Cat in the Hat|Uni.|101.149285|2003
+The Towering Inferno|Fox|116.|1974
+Rocky|UA|117.235147|1976
+Kung Fu Panda|P/DW|215.434591|2008
+American Graffiti|Uni.|115.|1973
+The Adventures of Tintin|Par.|77.591831|2011
+Shrek|DW|267.665011|2001
+Moonstruck|MGM|80.640528|1987
+The Smurfs|Sony|142.614158|2011
+Crocodile Dundee II|Par.|109.30621|1988
+Runaway Bride|Par.|152.257509|1999
+G-Force|BV|119.43677|2009
+Scooby-Doo 2: Monsters Unleashed|WB|84.216833|2004
+Star Trek III: The Search for Spock|Par.|76.471046|1984
+Star Wars: Episode I - The Phantom Menace|Fox|474.525402|1999
+The Graduate|AVCO|104.917303|1967
+Ghostbusters|Col.|238.632124|1984
+Scooby-Doo|WB|153.294164|2002
+The Karate Kid Part II|Col.|115.103979|1986
+The Hunt for Red October|Par.|122.012643|1990
+Freaky Friday|BV|110.230332|2003
+Space Jam|WB|90.418342|1996
+Bedtime Stories|BV|110.101975|2008
+Teenage Mutant Ninja Turtles II|NL|78.656813|1991
+Jaws|Uni.|260.|1975
+Kung Fu Panda 2|P/DW|165.249063|2011
+Atlantis: The Lost Empire|BV|84.056472|2001
+Young Frankenstein|Fox|86.273333|1974
+The Prince of Egypt|DW|101.413188|1998
+Jumanji|Sony|100.475249|1995
+Monsters Vs. Aliens|P/DW|198.351526|2009
+The Empire Strikes Back|Fox|290.475067|1980
+The Flintstones|Uni.|130.531208|1994
+Enchanted|BV|127.807262|2007
+Up|BV|293.004164|2009
+Hop|Uni.|108.085305|2011
+Phenomenon|BV|104.636382|1996
+Back to the Future Part II|Uni.|118.450002|1989
+Star Trek IV: The Voyage Home|Par.|109.713132|1986
+Casper|Uni.|100.328194|1995
+Terms of Endearment|Par.|108.423489|1983
+Daddy Day Care|SonR|104.297061|2003
+Rango|Par.|123.477607|2011
+Who Framed Roger Rabbit|BV|156.45237|1988
+Close Encounters of the Third Kind|Col.|132.088635|1977
+Over the Hedge|P/DW|155.01934|2006
+Apollo 13|Uni.|173.837933|1995
+My Big Fat Greek Wedding|IFC|241.438208|2002
+Driving Miss Daisy|WB|106.593296|1989
+Ghostbusters II|Col.|112.494738|1989
+The SpongeBob SquarePants Movie|Par.|85.417988|2004
+Shrek 2|DW|441.226247|2004
+Lemony Snicket's A Series of Unfortunate Events|Par.|118.634549|2004
+Night at the Museum: Battle of the Smithsonian|Fox|177.243721|2009
+Yogi Bear|WB|100.246011|2010
+Night at the Museum|Fox|250.863268|2006
+Beverly Hills Chihuahua|BV|94.514402|2008
+Airplane!|Par.|83.453539|1980
+Alice in Wonderland (2010)|BV|334.19111|2010
+Every Which Way But Loose|WB|85.196485|1978
+George of the Jungle|BV|105.263257|1997
+Out of Africa|Uni.|87.071205|1985
+Shrek the Third|P/DW|322.719944|2007
+Hairspray (2007)|NL|118.871849|2007
+Star Wars: Episode II - Attack of the Clones|Fox|310.67674|2002
+Eight Below|BV|81.612565|2006
+Journey 2: The Mysterious Island|WB|101.962448|2012
+Tangled|BV|200.821936|2010
+The Haunted Mansion|BV|75.847266|2003
+Hooper|WB|78.|1978
+Jaws 2|Uni.|81.766007|1978
+Sister Act|BV|139.60515|1992
+Elf|NL|173.398518|2003
+Home Alone|Fox|285.761243|1990
+Superman|WB|134.218018|1978
+Puss in Boots|P/DW|149.260504|2011
+Big|Fox|114.968774|1988
+The Pink Panther (2006)|Sony|82.226474|2006
+We Bought a Zoo|Fox|75.592881|2011
+Happy Feet|WB|198.000317|2006
+Mr. Holland's Opus|BV|82.569971|1995
+Spy Kids 3D: Game Over|Dim.|111.761982|2003
+Ice Age|Fox|176.387405|2002
+Charlie and the Chocolate Factory|WB|206.459076|2005
+Spy Kids|Mira.|112.719001|2001
+Antz|DW|90.757863|1998
+The Last Airbender|Par.|131.772187|2010
+WarGames|MGM|79.567667|1983
+Dr. Dolittle 2|Fox|112.952899|2001
+Despicable Me|Uni.|251.513985|2010
+Rocky II|UA|85.18216|1979
+Zookeeper|Sony|80.360843|2011
+The Karate Kid|Sony|176.591618|2010
+The Santa Clause|BV|144.833357|1994
+Star Trek II: The Wrath of Khan|Par.|78.912963|1982
+Honey I Shrunk the Kids|BV|130.724172|1989
+Kramer Vs. Kramer|Col.|106.26|1979
+Tron Legacy|BV|172.062763|2010
+Back to the Future|Uni.|210.609762|1985
+The Muppets|BV|88.631237|2011
+Marley and Me|Fox|143.153751|2008
+National Treasure|BV|173.008894|2004
+Open Season|Sony|85.105259|2006
+The Sting|Uni.|156.|1973
+Nacho Libre|Par.|80.197993|2006
+Cheaper by the Dozen 2|Fox|82.571173|2005
+Alvin and the Chipmunks: The Squeakquel|Fox|219.614612|2009
+Ice Age: The Meltdown|Fox|195.330621|2006
+Inspector Gadget|BV|97.403112|1999
+Home Alone 2: Lost in New York|Fox|173.585516|1992
+Maverick|WB|101.631272|1994
+Journey to the Center of the Earth|WB (NL)|101.70437|2008
+9 to 5|Fox|103.2905|1980
+Flubber|BV|92.977226|1997
+Indiana Jones and the Temple of Doom|Par.|179.870271|1984
+Twins|Uni.|111.938388|1988
+The Karate Kid|Col.|90.815558|1984
+Dinosaur|BV|137.748063|2000
+A Christmas Carol (2009)|BV|137.855863|2009
+Madagascar: Escape 2 Africa|P/DW|180.01095|2008
+Steel Magnolias|TriS|83.759091|1989
+Dick Tracy|BV|103.738726|1990
+Raiders of the Lost Ark|Par.|242.374454|1981
+The Chronicles of Narnia: The Lion the Witch and the Wardrobe|BV|291.710957|2005
+The Pacifier|BV|113.086868|2005
+Grease|Par.|188.75569|1978
+Top Gun|Par.|176.786701|1986
+Cloudy with a Chance of Meatballs|Sony|124.870275|2009
+The Truman Show|Par.|125.618201|1998
+Three Men and a Baby|BV|167.78096|1987
+Megamind|P/DW|148.415853|2010
+Poltergeist|MGM|76.60628|1982
+Stuart Little|Sony|140.035367|1999
+Star Trek: Generations|Par.|75.671125|1994
+Hook|TriS|119.654823|1991
+On Golden Pond|Uni.|119.285432|1981
+Romancing the Stone|Fox|76.572238|1984
+Remember the Titans|BV|115.654751|2000
+Rocky III|UA|125.049125|1982
+Sleepless in Seattle|TriS|126.680884|1993
+Where the Wild Things Are|WB|77.233467|2009
+Free Willy|WB|77.698625|1993
+Tootsie|Col.|177.2|1982
+Contact|WB|100.920329|1997
+Shrek Forever After|P/DW|238.736787|2010
+The Chronicles of Narnia: The Voyage of the Dawn Treader|Fox|104.38695|2010
+Michael|NL|95.318203|1996
+Snow Dogs|BV|81.17256|2002
+E.T.: The Extra-Terrestrial|Uni.|435.110554|1982
+Arthur|WB|95.461682|1981
+Bee Movie|P/DW|126.631277|2007
+Earthquake|Uni.|79.666653|1974
+Bolt|BV|114.053579|2008
