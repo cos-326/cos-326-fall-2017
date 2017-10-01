@@ -3,3 +3,4 @@
 **/*.cmi
 **/*.cmo
 **/test
+**/oUnit-suite*
