@@ -6,6 +6,7 @@ eval `opam config env`
 
 opam install merlin
 opam install ounit
+opam install utop
 
 echo 'WARNING: You must run this command before interacting with OCaml in this shell:'
 echo ''
