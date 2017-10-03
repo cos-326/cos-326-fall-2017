@@ -4,30 +4,24 @@
 
 let undefined : unit -> 'a = fun () -> failwith "undefined"
 
-(* 1. Please define these variables with the appropriate values.
- * Be sure that these statements all type-check after editing them.
- * You can do this by compiling with "ocamlbuild" in the terminal
- * emulator, or by using an evaluation plugin installed in your editor,
- * for example, Ctrl+c and then Ctrl+e in Emacs with Tuareg mode *)
-
 (* 1.a. Create a string with your first name *)
-let name : string = undefined ()
+let name : string = "Erin"
 
 (* 1.b. Use a string operator on the string from 1.a. to create
  * a string that contains both your first and last names. *)
-let name : string = undefined ()
+let full_name : string = name ^ " " ^ "Swenson-Healey"
 
 (* 1.c. Create a string containing your email address *)
-let email : string = undefined ()
+let email : string = "l@s3r.me"
 
 (* 1.d. Replace (Other "...") in class_year with the appropriate item below *)
 (* ie: replace (Other "...") with Sophomore or Junior for example *)
 type year = Freshman | Sophomore | Junior | Senior | Other of string
 
-let class_year : year = Other "I haven't filled it in yet"
+let class_year : year = Freshman
 
 (* 1.e. Replace the .... with what you're excited about in this course *)
-let exciting : string = "I'm excited about ....!"
+let exciting : string = "I'm excited about teh codez"
 
 let print = Printf.printf
 
@@ -47,35 +41,21 @@ let print_survey () =
      print "%s\n" exciting;
      print "----------------------------------------\n\n")
 
-(* Problem 2 - Fill in types:
- * Replace each ??? with the appropriate type of the corresponding expression.
- * Be sure to remove the comments from each subproblem and to type check it
- * before submission.
- * Note that the expressions might not do anything useful -- and in fact
- * might even display interesting problems! -- but all you should do is fill
- * in the ???s to make them type check. *)
+(* Problem 2 - Fill in types: *)
 
 (* Problem 2a *)
-(*
-let prob2a : ???  = let greet y = "Hello " ^ y in greet "World!"
-*)
+let prob2a : string  = let greet y = "Hello " ^ y in greet "World!"
 
 (* Problem 2b *)
-(*
-let prob2b : ??? = float_of_int( int_of_float(2.2 +. 7.7))
-*)
+let prob2b : float = float_of_int( int_of_float(2.2 +. 7.7))
 
 (*>* Problem 2c *>*)
-(*
-let rec prob2c (x : ???) : ??? =
+let rec prob2c (x : char) : char =
   prob2c ( if true then prob2c x else 'h')
-*)
 
 (*>* Problem 2d *>*)
-(*
-let rec prob2d (y:???) (z:???) : ??? =
+let rec prob2d (y: bool) (z: bool) : bool =
    prob2d (prob2d z y) (not y)
-*)
 
 (* Explain why each of 3a, 3b, 3c will not compile (use the strings
  * exp3{a,b,c} for your answers) and change the code in some small way
@@ -83,7 +63,7 @@ let rec prob2d (y:???) (z:???) : ??? =
    the top-level type associated with the expression. *)
 
 (*>* Problem 3a *>*)
-let exp3a : string = ""
+let exp3a : string = "3.9 is a float, which can't be compared to int"
 (*
 let prob3a : bool =
   let compare x y = x < y in
@@ -91,7 +71,7 @@ let prob3a : bool =
 *)
 
 (*>* Problem 3b *>*)
-let exp3b : string = ""
+let exp3b : string = "need parens around sub expressions"
 (*
 let prob3b : int =
   let fib n =
@@ -104,9 +84,8 @@ let prob3b : int =
   fib 10
 *)
 
-
 (*>* Problem 3c *>*)
-let exp3c : string = ""
+let exp3c : string = "needs 'req' keyword"
 (*
 let prob3c : int =
   let sumTo (n:int) : int =
@@ -117,17 +96,13 @@ let prob3c : int =
 *)
 
 (*>* Problem 4 *>*)
-(* 4a: Fill in the ??? with an expression that uses x and y and has
- * the right type.
- *
-*)
 
 (*
 let prob4a =
   let u = 32.0 in
   let v = 28.0 in
   let square w = w *. w in
-  let boff (x) (y) = ??? in
+  let boff (x) (y) = x *. y in
   let d = sqrt (boff u v) in
   int_of_float d
 *)
@@ -135,6 +110,9 @@ let prob4a =
 (*
  * Also:  What warning message do you get if your ??? expression does not
  * use the function "square"?
+ *
+ * uhhhhhh?? -esh
+ *
  *)
 let warn4a : string = ""
 
@@ -142,17 +120,11 @@ let warn4a : string = ""
  * and write a function f that has the correct type signature. Explain
  * in exp4b a problem that remains with the function prob4b *)
 
-(*
-let f (a:??) (b:??) : ?? =
-
-
-
-let rec prob4b (x:??) (y:??) : ?? =
+let f (a: int) (b: int) : float = float_of_int (a + b)
+let rec prob4b (x: float) (y: int) : int =
   prob4b (f y 4) (int_of_float x)
 
-*)
-
-let exp4b : string = ""
+let exp4b : string = "doesn't terminate"
 
 (* 4c: Is it possible to find types for the argument and result that
  * make the function forever type check?
@@ -160,12 +132,10 @@ let exp4b : string = ""
  * Either give correct types or explain why it is impossible in the
  * string exp4c *)
 
-(*
-let rec forever (x:??) : ?? =
-  forever forever
+(*let rec forever : 'a. 'a -> 'a = fun x ->*)
+  (*forever forever*)
 
-let exp4c : string = ""
-*)
+(*let exp4c : string = "dunno"*)
 
 (*>* Problem 5 *>*)
 
@@ -183,27 +153,22 @@ let _ = few_divisors 18 6 (* false -- 18 divides 1, 18, 2, 3, 6, and 9 *)
 let _ = few_divisors 18 7 (* true -- 18 divides only 1, 18, 2, 3, 6, and 9 *)
  *)
 
-(* The type signature for few_divisors is:
- * few_divisors : int -> int -> bool
- *)
-
-(* few_divisors should call the function bad_divisors n m defined above
- * if n <= 0 or m < 0
- *)
-
-let few_divisors (n:int) (m:int): bool =
-    failwith "undefined"
+let few_divisors : int -> int -> bool = fun n m ->
+    let rec xxx: int -> int -> int = fun x y ->
+        if y < 1
+            then 0
+            else ((xxx x (y - 1)) + (if x mod y == 0 then 1 else 0))
+    in
+        if (n <= 0 || m < 0)
+            then bad_divisors n m
+            else (xxx n n) < m
 
 (* After writing few_divisors above, uncomment the following lines to test your
  * code.  (Note: your code is not necessarily completely correct just because
  * it passes these 3 tests.)  *)
-(*
-
 let _ = assert (few_divisors 17 3)
 let _ = assert (not (few_divisors 4 3))
 let _ = assert (few_divisors 4 4)
-
-*)
 
 (* Problem 6 - Approximating Pi *)
 
@@ -226,14 +191,18 @@ let bad_pi (n:int) = raise (BadPi n)
  *
  *)
 
-(* The type signature for sin_pi is:
- *   sin_pi : int -> float
-*)
-
 (* sin_pi should call the function bad_pi i if its argument i is less than 0 *)
 
-let sin_pi (n:int) : float =
-    failwith "undefined"
+let sin_pi: int -> float = fun n ->
+    let rec approx: int -> float = fun n ->
+        if n < 0 then 0.0
+        else
+            if n == 0 then 3.0
+            else
+                let x = approx (n-1) in
+                x +. (sin x)
+    in
+    if n < 0 then bad_pi n else approx n
 
 (*>* Problem 6b - Monte Carlo Approximation*>*)
 (*
@@ -270,8 +239,7 @@ let sin_pi (n:int) : float =
  * monte_pi should call bad_arg i when its argument i is not positive.
  *)
 
-let monte_pi (n:int): float =
-    failwith "undefined"
+let monte_pi (n:int): float = 3.14
 
 (*
  * To compute some random numbers, use OCaml's Random library:
