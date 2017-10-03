@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if ! [ -x "$(command -v brew)" ]; then
+    echo 'Error: Homebrew is not installed.' >&2
+    exit 1
+fi
+
+brew install ocaml opam
+
 opam switch 4.05.0
 
 eval `opam config env`
