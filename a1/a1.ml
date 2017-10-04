@@ -303,22 +303,23 @@ let _ = Random.init 17
 exception BadArg of int
 let bad_arg (n:int) = raise (BadArg n)
 
-let random_to_1 = Random.float 1.
+let random_to_1 () = Random.float 1.
 let in_circle (x: float) (y: float): bool = 
   (x *. x) +. (y *. y) <= 1.
 
-let rec percentage_in (n: int) (in_count: int) (out_count: int): float =
+let rec points_in_circle (n: int) (points_in: int): int =
   match n with
-  | 0 -> (float_of_int in_count) /. (float_of_int out_count)
+  | 0 -> points_in
   | n ->
-    let x = random_to_1 in
-    let y = random_to_1 in
+    let x = random_to_1 () in
+    let y = random_to_1 () in
+
     match in_circle x y with
-    | true  -> percentage_in (n - 1) (in_count + 1) out_count
-    | false -> percentage_in (n - 1) in_count (out_count + 1)
+    | true  -> points_in_circle (n - 1) (points_in + 1)
+    | false -> points_in_circle (n - 1) points_in
 
 let monte_pi (n: int): float =
-  (percentage_in n 0 0) *. 4.
+  (float_of_int (points_in_circle n 0)) /. (float_of_int n) *. 4.
 
 (*************)
 (* Problem 7 *)
