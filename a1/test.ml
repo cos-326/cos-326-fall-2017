@@ -30,17 +30,21 @@ let suite =
         assert_bool "bad divisors" (A1.few_divisors 18 7)
       );
 
-    "sin_pi 0 rounds"  >:: (fun _ -> 
+    "sin_pi round 0"  >:: (fun _ -> 
         assert_equal (A1.sin_pi 0) 3.
       );
 
-    "sin_pi 1 round"  >:: (fun _ -> 
-        assert_equal (int_of_float ((A1.sin_pi 1) *. 1000.)) 3141
+    "sin_pi round 1"  >:: (fun _ -> 
+        assert_bool "wrong pi" (cmp_float ~epsilon:0.001 (A1.sin_pi 1) 3.141)
+      );
+
+    "sin_pi round 2"  >:: (fun _ -> 
+        assert_bool "wrong pi" (cmp_float ~epsilon:0.0000000001 (A1.sin_pi 2) 3.1415926535)
       );
 
     "monte_pi"  >:: (fun test_ctxt -> 
-        let _ = logf test_ctxt `Info "monte_pi: %F" (A1.monte_pi 10000) in
-        assert_equal (int_of_float ((A1.monte_pi 10000) *. 10.)) 31
+        Printf.printf "\nmonte_pi answer: %F\n" (A1.monte_pi 10000);
+        assert_bool "wrong Pi" (cmp_float ~epsilon:0.1 (A1.monte_pi 10000) 3.1)
       );
   ]
 

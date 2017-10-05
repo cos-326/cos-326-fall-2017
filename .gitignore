@@ -2,5 +2,7 @@
 **/*.d.byte
 **/*.cmi
 **/*.cmo
+**/*.o
+**/*.cmx
 **/test
 **/oUnit-suite*
