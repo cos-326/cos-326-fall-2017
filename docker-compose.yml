@@ -1,0 +1,11 @@
+version: "3"
+services:
+  ocaml:
+    build:
+      context: .
+    volumes:
+      - .:/cos-326
+    working_dir: /cos-326
+    
+
+
