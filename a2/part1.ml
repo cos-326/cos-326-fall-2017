@@ -14,30 +14,25 @@
    (Do not change the left-hand-side.)
 *)
 
-(*
-let exp1a : string = ""
-let prob1a : int list = [1, 2, 3]
-*)
+let exp1a : string = "Lists are delimited with ;"
+let prob1a : int list = [1; 2; 3]
 
 (* Problem 1b - Give your explanation in exp1b and then fix the type
    of variable prob1b to match the type of the expression on the
    right-hand-side of the assignment. (Do not change the
    right-hand-side.)
- *)
-(*
-let exp1b : string = ""
-let prob1b : string * int list = [("COS", 326); ("COS", 441)]
 *)
+let exp1b : string = "list was modifying int, not the whole tuple"
+let prob1b : (string * int) list = [("COS", 326); ("COS", 441)]
 
 (* Problem 1c - Give your explanation in exp1c and then fix the
    right-hand-side of the expression to match the variable prob1c's
    listed type. 
    (Do not change the left-hand-side.)  
 *)
-(*
-let exp1c : string = ""
-let prob1c : float list = [2.0; 3.0] :: [4.0; 5.0]
-*)
+let exp1c : string = ":: cons a single value to the head, not a list"
+let prob1c : float list = 2.0 :: 3.0 :: [4.0; 5.0]
+
 
 (*************)
 (* PROBLEM 2 *)
@@ -66,12 +61,11 @@ let prob1c : float list = [2.0; 3.0] :: [4.0; 5.0]
  *   let f (x: int) (y: int) : int = x + y
  *   let f (x: int) (y: int) : int = 
  *         String.length  ((string_of_int x) ^ (string_of_int y))
- *)
+*)
 
 (*>* Problem 2a *>*)
-(*  
-let prob2a : (float * (string * int) option list) list = 
-*)
+let prob2a : (float * (string * int) option list) list = [(1., [Some ("foo", 2)])]
+
 
 (*>* Problem 2b *>*)
 (* a student is a (name, age option) pair *)
@@ -117,7 +111,7 @@ let rec zardoz f ls acc =
     let ans = f (hd) (acc) in
     let ans = zardoz f tl ans in
     ans
-  
+
 (* Rewrite the code above so that it does the same thing
  * but style-wise is far superior.  
  * Be sure to provide types for the function's arguments and to 
@@ -221,14 +215,14 @@ let look_and_say (xs: int list) : int list =
 (*************)
 (* PROBLEM 5 *)
 (*************)
-          
+
 (* Write a function that flattens a list of lists in to a single
  * list with all of the elements in the same order they appeared in 
  * the original list of lists. eg:
  *
  * flatten [[1;2;3]; []; [4]; [5;6]] = [1;2;3;4;5;6] 
  * flatten [[]; ['e';'d']; ['a';'b';'c']] = ['e';'d';'a';'b';'c'] 
- *)
+*)
 
 let rec flatten (xss:'a list list) : 'a list =
   failwith "flatten unimplemented"
@@ -242,7 +236,7 @@ let rec flatten (xss:'a list list) : 'a list =
    The ordering of the permutations does not matter in your solution.
    We will accept either [[]] or [] as the result for perm [].
    NB: test this on small inputs - perm is ~n! which is approximately ~n^n.
- *)
+*)
 
 let perm (items:'a list) : 'a list list =
   failwith "perm unimplemented"
