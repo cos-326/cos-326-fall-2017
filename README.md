@@ -105,3 +105,25 @@ cd a1
 ocamlfind ocamlc -o test -package oUnit -linkpkg -g a1.ml test.ml
 ./test
 ```
+
+## Docker
+
+There is a minimal `Dockerfile`` and `docker-compose.yml` which creates an Ocaml/Opam development environment and
+installs `utop`.
+
+NOTE: this installs the latest maintained 'ocaml/opam' image, which as of now is version `4.04.2`.
+
+Quickstart:
+```
+docker-compose build
+```
+This will download the base image and install `utop`.
+
+```
+./scripts/dtop
+```
+
+This will start `utop` interactively.
+
+This script exists as a convenience and example (examine it to see how one might run a shell or the `ocaml` toplevel as
+well).
