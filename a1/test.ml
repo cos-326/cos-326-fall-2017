@@ -42,12 +42,16 @@ let suite =
         assert_bool "wrong pi" (cmp_float ~epsilon:0.0000000001 (A1.sin_pi 2) 3.1415926535)
       );
 
+    "sin_pi round 3"  >:: (fun _ -> 
+        assert_bool "wrong pi" (cmp_float ~epsilon:0.000000000000001 (A1.sin_pi 3) 3.141592653589793)
+      );
+
     "monte_pi"  >:: (fun test_ctxt -> 
         Printf.printf "\nmonte_pi answer: %F\n" (A1.monte_pi 10000);
         assert_bool "wrong Pi" (cmp_float ~epsilon:0.1 (A1.monte_pi 10000) 3.1)
       );
   ]
 
-let () = 
+let () =
   run_test_tt_main suite
 ;;
