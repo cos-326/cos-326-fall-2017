@@ -6,3 +6,5 @@
 **/*.cmx
 **/test
 **/oUnit-*
+**/*.cache
+**/*.log
