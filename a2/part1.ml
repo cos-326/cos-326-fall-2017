@@ -71,30 +71,24 @@ let prob2a : (float * (string * int) option list) list = [(1., [Some ("foo", 2)]
 (* a student is a (name, age option) pair *)
 
 type student = string * int option
-(*
-let prob2b : (student list option * int) list = 
-*)
 
+let prob2b : (student list option * int) list = 
+  [(Some [("Jane", Some 90); ("Bob", None)], 1)]
 
 (*>* Problem 2c *>*)
-(*
 let prob2c : (int * int -> int) * (float -> float -> unit) * bool  = 
+  (fun (x, y) -> x), (fun x y -> ()), true
 
-*)
 
 (*>* Problem 2d *>*)
 (* Fill in a valid function call to foo to make prob2d typecheck *)
 
-(*
 let prob2d =
   let rec foo bar =
     match bar with
     | (a, (b, c)) :: xs -> if a then (b + c + (foo xs)) else foo xs
     | _ -> 0
-  in 
-
-
-*)
+  in foo [(true, (2, 3))]
 
 (*************)
 (* PROBLEM 3 *)
@@ -120,8 +114,10 @@ let rec zardoz f ls acc =
  * to check that your function is doing the same thing as zardoz.  
  * Use the COS 326 style guide. *)
 
-let rec myzardoz f ls acc =
-  failwith "myzardoz unimplemented"
+let rec myzardoz (f: 'a -> 'b -> 'b) (ls: 'a list) (acc: 'b): 'b =
+  match ls with
+  | [] -> acc
+  | hd :: tl -> myzardoz f tl (f hd acc)
 
 (*************)
 (* PROBLEM 4 *)
