@@ -6,54 +6,124 @@ The class is broken up into 7 weeks. Each week has an assignment, lecture slides
 
 Note that not all assignments and notes have been posted as of the start of the course. We'll have to add them in as we go.
 
-Week | Assignment | Lecture | Reading | RWO Chapter |
----- | ---------- | ------- | ------- | ----------- |
-1    | [Easy as Pi][1] | [OCaml Intro][lec1.0], [Type Checking Basics][lec1.1], [Let, Tuples, Unit][lec1.2], [Induction, Lists and Nats][lec1.3] | [Functional Basics][8], [Type Checking][9], [Type-directed programming][10], [Thinking Inductively][11] | [1][rwo1], [2][rwo2], [3][rwo3]
-2    | [Boxoffice Trivia][2] | [Inductive programming with the Naturals; Poly-HO][lec2.0], [More Data][lec2.1] | [Polymorphism and Higher-order Programming][12] | [6][rwo6] |
-3    | [Map and Caml-Mathica][3] | [Datatype Design][lec3.1], [Implementing OCaml in OCaml][lec3.2], [OCaml Interpreters, Part 2][lec3.3] | [Equational Reasoning][13] | [7][rwo7] |
-4    | [Interpreter and Program Correctness][4] |  | [Equational Reasoning about Natural Numbers and Trees][14] |  |
-5    | [Moogle][5] |  |  | [4][rwo4], [8][rwo8], [9][rwo9] |
-6    | [Lazy Programming][6] |  | [Using threads and futures][15], [Parallel Complexity Models][16], [Parallel Scheduling][17], [Parallel Sequences][18] |  |
-7    | [Data-Parallel Programming][7] |  |  |  |
-
-[1]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/ass/a1.php
-[2]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/ass/a2.php
-[3]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/ass/a3.php
-[4]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/ass/a4.php
-[5]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/ass/a5.php
-[6]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/ass/a6.php
-[7]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/ass/a7.php
-
-[lec1.0]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/01-intro.pdf
-[lec1.1]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/02a-simple-type-checking.pdf
-[lec1.2]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/02-let-tuples.pdf
-[lec1.3]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/03-inductive-thinking.pdf
-[lec2.0]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/04-poly-ho.pdf
-[lec2.1]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/05-more-data.pdf
-[lec3.1]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/06-data-design.pdf
-[lec3.3]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/06a-ocaml-interpreter.pdf
-[lec3.3]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/07-ocaml-interpreter2.pdf
-
-[rwo1]: https://realworldocaml.org/v1/en/html/a-guided-tour.html
-[rwo2]: https://realworldocaml.org/v1/en/html/variables-and-functions.html
-[rwo3]: https://realworldocaml.org/v1/en/html/lists-and-patterns.html
-[rwo6]: https://realworldocaml.org/v1/en/html/variants.html
-[rwo7]: https://realworldocaml.org/v1/en/html/error-handling.html
-[rwo8]: https://realworldocaml.org/v1/en/html/imperative-programming-1.html
-[rwo4]: https://realworldocaml.org/v1/en/html/files-modules-and-programs.html
-[rwo9]: https://realworldocaml.org/v1/en/html/functors.html
-
-[8]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/basics.php
-[9]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/type-check.php
-[10]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/intro.php
-[11]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/recursion.php
-[12]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/polymorphism.php
-[13]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/reasoning.php
-[14]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/reasoning-data.php
-[15]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/parallel.php
-[16]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/parallel-complexity.php
-[17]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/parallel-schedules.php
-[18]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/parallel-sequences.php
+<table>
+  <thead>
+    <tr>
+      <th>Week</th>
+      <th>Assignment</th>
+      <th>Lecture</th>
+      <th>Reading</th>
+      <th>RWO Chapter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/ass/a1.php">Easy as Pi</a>
+      </td>
+      <td>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/01-intro.pdf">OCaml Intro</a>,
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/02a-simple-type-checking.pdf">Type Checking Basics</a>,
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/02-let-tuples.pdf">Let, Tuples, Unit</a>,
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/03-inductive-thinking.pdf">Induction, Lists and Nats</a>
+      </td>
+      <td>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/basics.php">Functional Basics</a>,
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/type-check.php">Type Checking</a>,
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/intro.php">Type-directed programming</a>,
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/recursion.php">Thinking Inductively</a>
+      </td>
+      <td>
+        <a href="https://realworldocaml.org/v1/en/html/a-guided-tour.html">1</a>,
+        <a href="https://realworldocaml.org/v1/en/html/variables-and-functions.html">2</a>,
+        <a href="https://realworldocaml.org/v1/en/html/lists-and-patterns.html">3</a>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/ass/a2.php">Boxoffice Trivia</a>
+      </td>
+      <td>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/04-poly-ho.pdf">Inductive programming with the Naturals; Poly-HO</a>,
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/05-more-data.pdf">More Data</a>
+      </td>
+      <td>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/polymorphism.php">Polymorphism and Higher-order Programming</a>
+      </td>
+      <td>
+        <a href="https://realworldocaml.org/v1/en/html/variants.html">6</a>
+      </td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/ass/a3.php">Map and Caml-Mathica</a>
+      </td>
+      <td>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/06-data-design.pdf">Datatype Design</a>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/06a-ocaml-interpreter.pdf">
+          Implementing OCaml in OCaml
+        </a>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/06a-ocaml-interpreter.pdf">OCaml Interpreters, Part 2</a>
+      </td>
+      <td>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/reasoning.php">Equational Reasoning</a>
+      </td>
+      <td>
+        <a href="https://realworldocaml.org/v1/en/html/error-handling.html">7</a>
+      </td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/ass/a4.php">Interpreter and Program Correctness</a>
+      </td>
+      <td></td>
+      <td>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/reasoning-data.php">Equational Reasoning about Natural Numbers and Trees</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/ass/a5.php">Moogle</a>
+      </td>
+      <td></td>
+      <td></td>
+      <td>
+        <a href="https://realworldocaml.org/v1/en/html/files-modules-and-programs.html">4</a>,
+        <a href="https://realworldocaml.org/v1/en/html/imperative-programming-1.html">8</a>,
+        <a href="https://realworldocaml.org/v1/en/html/functors.html">9</a>
+      </td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/ass/a6.php">Lazy Programming</a>
+      </td>
+      <td></td>
+      <td>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/parallel.php">Using threads and futures</a>,
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/parallel-complexity.php">Parallel Complexity Models</a>,
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/parallel-schedules.php">Parallel Scheduling</a>,
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/parallel-sequences.php">Parallel Sequences</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>
+        <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/ass/a7.php">Data-Parallel Programming</a>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
 
 ## More Links
 
@@ -117,12 +187,14 @@ installs `utop`.
 NOTE: this installs the latest maintained 'ocaml/opam' image, which as of now is version `4.04.2`.
 
 Quickstart:
-```
+
+```bash
 docker-compose build
 ```
+
 This will download the base image and install `utop`.
 
-```
+```bash
 ./scripts/dtop
 ```
 
