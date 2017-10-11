@@ -25,6 +25,16 @@ let debug s = print_string s; flush_all()
 (* you may add "rec" after any of the let declarations below that you
  * wish if you find doing so useful. *)
 
+let ( % ) f g x = f (g x)
+let flip f x y = f y x
+let equals x y = x = y
+(* :: isn't a real function, so (::) doesn't work :-\ *)
+let reverse xs = List.fold_left (fun acc x -> x::acc ) [] xs
+
+let get_name   ((name,   _, _, _): movie): string = name
+let get_studio ((_, studio, _, _): movie): string = studio
+let get_gross  ((_, _, gross,  _): movie): float  = gross
+let get_year   ((_, _, _, year  ): movie): int    = year
 
 (* find the average gross of the movies in the list                  *)
 (* return 0.0 if the list is empty                                   *)
@@ -32,8 +42,12 @@ let debug s = print_string s; flush_all()
 (* hint: if you don't know what those functions do,                  *)
 (*       type them in to ocaml toplevel                              *)
 (* hint: recall the difference between +. and + also 0. and 0        *)
+
+let sum_floats = List.fold_left (+.) 0.
+let sum_gross: (movie list -> float) = sum_floats % (List.map get_gross)
+
 let average (movies : movie list) : float = 
-  failwith "average unimplemented"
+  (sum_gross movies) /. (float_of_int (List.length movies))
 
 (* return a list containing only the movies from the given decade *)
 (* call bad_arg if n is not 20, 30, ..., 90, 00, 10               *)
@@ -41,23 +55,44 @@ let average (movies : movie list) : float =
 (*   differently from 0).                                         *)
 (* Note: movies from any years outside the range 1920-2019 will   *)
 (* always be discarded but should not raise an error condition    *)
-let decade (n:int) (ms:movie list) : movie list =  
-  failwith "decade unimplemented"
+let last_two: (int -> int) = flip (mod) 100
+let last_one:   (int -> int) = flip (mod) 10
+let get_decade_start (n: int): int = (last_two n) - (last_one n)
 
+let bad_decade (n: int): bool = n < 0 || 90 < n
+let bad_year   (n: int): bool = (n mod 10) != 0
+let bad_decade_input (n: int): bool = bad_decade n || bad_year n
+
+let decade (n:int) (ms:movie list) : movie list =
+  if bad_decade_input n then
+    bad_arg (string_of_int n)
+  else
+    List.filter (equals n % get_decade_start % get_year) ms
 
 (* return the first n items from the list *)
 (* if there are fewer than n items, return all of them *)
 (* call bad_arg if n is negative *)
-let take (n:int) (l:'a list)  : 'a list =
-  failwith "take unimplemented"
-
+let rec take (n:int) (l:'a list)  : 'a list =
+  match l with
+  | [] -> []
+  | hd::tl ->
+    match n with
+    | 0 -> []
+    | n when n < 0 -> bad_arg (string_of_int n)
+    | n -> hd :: take (n - 1) tl
 
 (* return everything but the first n items from the list *)
 (* if there are fewer than n items, return the empty list *)
 (* call bad_arg if n is negative *)
-let drop (n:int) (l:'a list)  : 'a list =
-  failwith "drop unimplemented"
 
+let rec drop (n:int) (l:'a list)  : 'a list =
+  match l with
+  | [] -> []
+  | hd::tl ->
+    match n with
+    | 0 -> l
+    | n when n < 0 -> bad_arg (string_of_int n)
+    | n -> drop (n - 1) tl
 
 (* return a list [x1; x2; ...; xn] with the same elements as the input l
    and where:
@@ -72,7 +107,7 @@ type 'a less = 'a -> 'a -> bool
 let selection_sort (leq:'a less) (l:'a list) : 'a list =
   failwith "selection_sort unimplemented"
 
- 
+
 (* ASIDE:  Why does this assignment ask you to implement selection sort?
    Insertion sort is almost always preferable to selection sort,
    if you have to implement a quadratic-time sorting algorithm.
