@@ -7,10 +7,10 @@ The class is broken up into 7 weeks. Each week has an assignment, lecture slides
 Note that not all assignments and notes have been posted as of the start of the course. We'll have to add them in as we go.
 
 Week | Assignment | Lecture | Reading | RWO Chapter |
----- | --- | ---- | --- | --- |
+---- | ---------- | ------- | ------- | ----------- |
 1    | [Easy as Pi][1] | [OCaml Intro][lec1.0], [Type Checking Basics][lec1.1], [Let, Tuples, Unit][lec1.2], [Induction, Lists and Nats][lec1.3] | [Functional Basics][8], [Type Checking][9], [Type-directed programming][10], [Thinking Inductively][11] | [1][rwo1], [2][rwo2], [3][rwo3]
 2    | [Boxoffice Trivia][2] | [Inductive programming with the Naturals; Poly-HO][lec2.0], [More Data][lec2.1] | [Polymorphism and Higher-order Programming][12] | [6][rwo6] |
-3    | [Map and Caml-Mathica][3] | | [Equational Reasoning][13] | [7][rwo7] |
+3    | [Map and Caml-Mathica][3] | [Datatype Design][lec3.1], [Implementing OCaml in OCaml][lec3.2], [OCaml Interpreters, Part 2][lec3.3] | [Equational Reasoning][13] | [7][rwo7] |
 4    | [Interpreter and Program Correctness][4] |  | [Equational Reasoning about Natural Numbers and Trees][14] |  |
 5    | [Moogle][5] |  |  | [4][rwo4], [8][rwo8], [9][rwo9] |
 6    | [Lazy Programming][6] |  | [Using threads and futures][15], [Parallel Complexity Models][16], [Parallel Scheduling][17], [Parallel Sequences][18] |  |
@@ -30,6 +30,9 @@ Week | Assignment | Lecture | Reading | RWO Chapter |
 [lec1.3]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/03-inductive-thinking.pdf
 [lec2.0]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/04-poly-ho.pdf
 [lec2.1]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/05-more-data.pdf
+[lec3.1]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/06-data-design.pdf
+[lec3.3]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/06a-ocaml-interpreter.pdf
+[lec3.3]: http://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/07-ocaml-interpreter2.pdf
 
 [rwo1]: https://realworldocaml.org/v1/en/html/a-guided-tour.html
 [rwo2]: https://realworldocaml.org/v1/en/html/variables-and-functions.html
