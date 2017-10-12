@@ -256,3 +256,6 @@ let rec flatten (xss:'a list list) : 'a list =
    let perm (items:'a list) : 'a list list =
    let length = (List.length items) in
    [] *)
+
+let perm (items:'a list) : 'a list list =
+  []

@@ -28,6 +28,7 @@ let debug s = print_string s; flush_all()
 let ( % ) f g x = f (g x)
 let flip f x y = f y x
 let equals x y = x = y
+let reverse xs = List.fold_left (fun acc x -> x::acc ) [] xs
 
 let get_name   ((name,   _, _, _): movie): string = name
 let get_studio ((_, studio, _, _): movie): string = studio
@@ -104,20 +105,24 @@ let rec drop (n:int) (l:'a list)  : 'a list =
 (* hint: define an auxiliary function "select" *)
 type 'a less = 'a -> 'a -> bool
 
+let rec select (leq:'a less) (l:'a list) (lowest: 'a): 'a =
+  match l with
+  | [] -> lowest
+  | hd::tl when leq hd lowest -> select leq tl hd
+  | hd::tl -> select leq tl lowest
+
+let rec remove (lowest: 'a) (acc: 'a list) (l: 'a list): 'a list =
+  match l with
+  | [] -> acc
+  | hd::tl when hd = lowest -> remove lowest acc tl
+  | hd::tl -> remove lowest (hd::acc) tl
 
 let rec selection_sort (leq:'a less) (l:'a list) : 'a list =
-  let rec select (leq:'a less) (l:'a list) (acc:'a list) (lowest: 'a): 'a list =
-    match l with
-    | [] -> 
-      lowest::(selection_sort leq acc)
-    | hd::tl when leq hd lowest -> select leq tl (lowest::acc) hd
-    | hd::tl -> select leq tl (hd::acc) lowest
-  in
-
   match l with
   | [] -> []
-  | hd::tl -> select leq tl [] hd
-
+  | hd::_ -> 
+    let lowest = (select leq l hd) in
+    lowest :: (selection_sort leq % (remove lowest []) @@ l)
 
 (* ASIDE:  Why does this assignment ask you to implement selection sort?
    Insertion sort is almost always preferable to selection sort,
@@ -133,27 +138,51 @@ let rec selection_sort (leq:'a less) (l:'a list) : 'a list =
    Even Barack Obama knows that. https://www.youtube.com/watch?v=k4RRi_ntQc8
 *)
 
-(* return list of movies sorted by gross (largest gross first) *)
-let sort_by_gross (movies : movie list) : movie list = 
-  failwith "sort_by_gross unimplemented"
+let compare_field (getter: ('a -> 'b)) (comparator: ('b -> 'b -> bool)) (x: 'a) (y: 'a) =
+  comparator (getter x) (getter y)
 
+(* return list of movies sorted by gross (largest gross first) *)
+let compare_gross = compare_field get_gross (>)
+
+let sort_by_gross: (movie list -> movie list) =
+  selection_sort compare_gross 
 
 (* return list of movies sorted by year produced (largest year first) *)
-let sort_by_year (movies : movie list) : movie list = 
-  failwith "sort_by_year unimplemented"
+let compare_year = compare_field get_year (>)
 
+let sort_by_year: (movie list -> movie list) =
+  selection_sort compare_year
 
 (* sort list of (studio, gross in millions) by gross in millions 
  * with the largest gross first *)
-let sort_by_studio (studio_grosses : studio_gross list) : studio_gross list = 
-  failwith "sort_by_studio unimplemented"
+let get_studio_gross ((_, gross): studio_gross): float = gross
+let compare_studio_gross = compare_field get_studio_gross (>)
 
+let sort_by_studio: (studio_gross list -> studio_gross list) =
+  selection_sort compare_studio_gross
 
 (* given list of movies,
  * return list of pairs (studio_name, total gross revenue for that studio)  *)
-let by_studio (movies:movie list) : studio_gross list =
-  failwith "by_studio unimplemented"
+let rec add_to_studio (others: studio_gross list) (studios: studio_gross list) (studio: studio_gross) : studio_gross * studio_gross list =
+  let (name, gross) = studio in
+  match studios with
+  | [] -> (studio, others)
+  | (hd_name, hd_gross)::tl when hd_name = name ->
+    add_to_studio others tl (name, gross +. hd_gross)
+  | hd::tl -> add_to_studio (hd::others) tl studio
 
+let rec merge_studios (studios: studio_gross list): studio_gross list =
+  match studios with
+  | [] -> []
+  | hd::tl -> 
+    let (full_studio, others) = add_to_studio [] tl hd in
+    full_studio :: merge_studios others
+
+let to_studio = function
+    (_, studio, gross, _) -> (studio, gross)
+
+let by_studio: (movie list -> studio_gross list) =
+  reverse % merge_studios % List.map to_studio
 
 (***********)
 (* Testing *)
