@@ -15,3 +15,9 @@ part1.d.byte:  part1.ml
 
 clean:
 	ocamlbuild -clean
+
+test: build
+	./test
+
+build: clean
+	ocamlfind ocamlopt -o test -package oUnit -linkpkg -g part1.ml query.ml test.ml

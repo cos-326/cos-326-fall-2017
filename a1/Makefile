@@ -2,7 +2,7 @@
 all: test
 
 clean:
-	find . -type f \( -iname \*.o -o -iname \*.cmx \) | xargs rm
+	ocamlbuild -clean
 
 test: build
 	./test

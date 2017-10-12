@@ -113,10 +113,10 @@ let rec zardoz f ls acc =
   else if (((List.length ls) = 0) = true) then acc
   else
     let hd = List.hd(ls) in
-        let tl = List.tl(ls) in
-      let ans = f (hd) (acc) in
+    let tl = List.tl(ls) in
+    let ans = f (hd) (acc) in
     let ans = zardoz f tl ans in
-        ans
+    ans
   
 (* Rewrite the code above so that it does the same thing
  * but style-wise is far superior.  
@@ -126,10 +126,8 @@ let rec zardoz f ls acc =
  * to check that your function is doing the same thing as zardoz.  
  * Use the COS 326 style guide. *)
 
-(*
 let rec myzardoz f ls acc =
-
-*)
+  failwith "myzardoz unimplemented"
 
 (*************)
 (* PROBLEM 4 *)
@@ -217,11 +215,8 @@ are not:
 
 *)
 
-(*  
 let look_and_say (xs: int list) : int list = 
-
-
-*)
+  failwith "look_and_say unimplemented"
 
 (*************)
 (* PROBLEM 5 *)
@@ -235,12 +230,9 @@ let look_and_say (xs: int list) : int list =
  * flatten [[]; ['e';'d']; ['a';'b';'c']] = ['e';'d';'a';'b';'c'] 
  *)
 
-(*
 let rec flatten (xss:'a list list) : 'a list =
+  failwith "flatten unimplemented"
 
-
-*)
-  
 (*************************************)
 (* PROBLEM 6 -- Warning: Challenging!*)
 (*************************************)
@@ -252,8 +244,5 @@ let rec flatten (xss:'a list list) : 'a list =
    NB: test this on small inputs - perm is ~n! which is approximately ~n^n.
  *)
 
-(*
 let perm (items:'a list) : 'a list list =
-
-
-*)
+  failwith "perm unimplemented"
