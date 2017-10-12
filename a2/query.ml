@@ -100,10 +100,23 @@ let rec drop (n:int) (l:'a list)  : 'a list =
      leq x2 x1
      are all true
 *)
+
 (* hint: define an auxiliary function "select" *)
 type 'a less = 'a -> 'a -> bool
-let selection_sort (leq:'a less) (l:'a list) : 'a list =
-  failwith "selection_sort unimplemented"
+
+
+let rec selection_sort (leq:'a less) (l:'a list) : 'a list =
+  let rec select (leq:'a less) (l:'a list) (acc:'a list) (lowest: 'a): 'a list =
+    match l with
+    | [] -> 
+      lowest::(selection_sort leq acc)
+    | hd::tl when leq hd lowest -> select leq tl (lowest::acc) hd
+    | hd::tl -> select leq tl (hd::acc) lowest
+  in
+
+  match l with
+  | [] -> []
+  | hd::tl -> select leq tl [] hd
 
 
 (* ASIDE:  Why does this assignment ask you to implement selection sort?
