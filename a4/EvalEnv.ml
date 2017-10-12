@@ -14,21 +14,21 @@ open EvalUtil
 *) 
 let rec is_value (e:exp) : bool = 
   match e with
-      Constant _ -> true  
-    | Pair (e1, e2) -> is_value e1 && is_value e2
-    | EmptyList -> true
-    | Cons (e1, e2) -> is_value e1 && is_value e2
-    | Closure _ -> true
-    | _ -> false
+    Constant _ -> true  
+  | Pair (e1, e2) -> is_value e1 && is_value e2
+  | EmptyList -> true
+  | Cons (e1, e2) -> is_value e1 && is_value e2
+  | Closure _ -> true
+  | _ -> false
 
 (* evaluation; use eval_loop to recursively evaluate subexpressions *)
 let eval_body (env:env) (eval_loop:env -> exp -> exp) (e:exp) : exp = 
   match e with
-    | Var x -> 
-      (match lookup_env env x with 
-  	  None -> raise (UnboundVariable x)
-	| Some v -> v)
-    | _ -> failwith "unimplemented"
+  | Var x -> 
+    (match lookup_env env x with 
+       None -> raise (UnboundVariable x)
+     | Some v -> v)
+  | _ -> failwith "unimplemented"
 
 (* evaluate closed, top-level expression e *)
 
@@ -43,11 +43,11 @@ let debug_eval e =
     if is_value e then e  (* don't print values *)
     else 
       begin
-	Printf.printf "Evaluating %s\n" (string_of_exp e); 
-	let v = eval_body env loop e in 
-	Printf.printf 
-	  "%s evaluated to %s\n" (string_of_exp e) (string_of_exp v); 
-	v
+        Printf.printf "Evaluating %s\n" (string_of_exp e); 
+        let v = eval_body env loop e in 
+        Printf.printf 
+          "%s evaluated to %s\n" (string_of_exp e) (string_of_exp v); 
+        v
       end
   in
   loop empty_env e

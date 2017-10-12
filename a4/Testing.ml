@@ -4,7 +4,7 @@
    functions for the purpose of testing our evaluators.
 
    You will have to construct some additional functions yourself.
- *)
+*)
 
 open Syntax
 open Printing
@@ -28,10 +28,10 @@ let four = Constant (Int 4)
 let clo =  
   Let ("z", two,
        App (Let ("x", three, 
-		 Rec ("f", "y", 
-		      Op (Var "x", Plus, Op (Var "y", Plus, Var "z")))
+                 Rec ("f", "y", 
+                      Op (Var "x", Plus, Op (Var "y", Plus, Var "z")))
                 ),
-	    Let ("x", four, Op (Var "x", Plus, Var "z"))
+            Let ("x", four, Op (Var "x", Plus, Var "z"))
            )
       )
 
@@ -42,7 +42,7 @@ let fact =
            one,
            Op (Var "n", Times, 
                App (Var "fact", 
-                        Op (Var "n", Minus, one)))))
+                    Op (Var "n", Minus, one)))))
 
 (* fact 4 *)
 let fact4 = App (fact, four)
@@ -60,8 +60,8 @@ let p1 = Pair (one, two)
 let swap = 
   Rec ("swap", "p",
        Let ("x", Fst (Var "p"),
-       Let ("y", Snd (Var "p"),
-       Pair(Var "y", Var "x"))))
+            Let ("y", Snd (Var "p"),
+                 Pair(Var "y", Var "x"))))
 
 (* use swap to swap the elements of p1 *)
 let swap_p1 = App (swap, p1)
@@ -75,8 +75,8 @@ let swap_p1 = App (swap, p1)
 *)
 let rec listify (l:exp list) : exp =
   match l with
-      [] -> EmptyList
-    | hd::tl -> Cons(hd,listify tl)
+    [] -> EmptyList
+  | hd::tl -> Cons(hd,listify tl)
 
 (* a list of 4 numbers *)
 let list4 = listify [one;two;three;four] 
@@ -88,9 +88,9 @@ let list4 = listify [one;two;three;four]
 let sumlist = 
   Rec ("sumlist", "l", 
        Match (Var "l",
-           zero,
-           "hd", "tl", Op (Var "hd", Plus, 
-			   App (Var "sumlist", Var "tl"))))
+              zero,
+              "hd", "tl", Op (Var "hd", Plus, 
+                              App (Var "sumlist", Var "tl"))))
 
 let sl4 = App (sumlist, list4)
 
@@ -102,14 +102,14 @@ let sl4 = App (sumlist, list4)
  * Closure (env,f,x,e)
  *
  * Define recursive functions using the Rec(f,x,body) form
- *)
+*)
 
 (* Replace the constant "one" below with your implementation of 
    the function map : ('a -> 'b) -> 'a list -> 'b list 
    Note: do not implement this as map: (('a -> 'b)*'a list) -> 'b list
- *)
+*)
 let map = one
-    
+
 (* Replace the constant "one" below with your implementation of 
    the function plus1 that adds one to an integer *)
 let plus1 = one
@@ -127,9 +127,9 @@ let incr_all = one
  * where each element of the list is the sum of the elements of the 
  * pairs.  Examples:
 
-  sum_pairs [] == []
-  sum_pairs [(1,2); (3,4)] == [3; 7]
- *)
+   sum_pairs [] == []
+   sum_pairs [(1,2); (3,4)] == [3; 7]
+*)
 
 let sum_pairs = one
 
@@ -151,5 +151,5 @@ let run_tests eval tests =
   List.iter (run_test eval) tests
 
 
-    
-      
+
+

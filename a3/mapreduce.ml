@@ -15,7 +15,7 @@ Comments/Problems/Thoughts on this part of the assignment:
 (* This part of the assignment uses the following functions 
  * If you forget how they work, look them up:
  * http://caml.inria.fr/pub/docs/manual-ocaml/libref/List.html
- *)
+*)
 
 let map : ('a -> 'b) -> 'a list -> 'b list = List.map;;
 
@@ -29,8 +29,8 @@ let foldl : ('b -> 'a -> 'b) -> 'b -> 'a list -> 'b = List.fold_left;;
  * only its args are ordered differently *)
 let rec reduce (f:'a -> 'b -> 'b) (u:'b) (xs:'a list) : 'b =
   match xs with
-    | [] -> u
-    | hd::tl -> f hd (reduce f u tl) ;;
+  | [] -> u
+  | hd::tl -> f hd (reduce f u tl) ;;
 
 (***********************************************)
 (******            1.1 WARM UP            ******)
@@ -68,7 +68,7 @@ let rec reduce (f:'a -> 'b -> 'b) (u:'b) (xs:'a list) : 'b =
  * list operator @.  (You are allowed to recode those functions
  * yourself using map, filter, fold if you find it necessary.)
  * 
- *)
+*)
 
 (*>* Problem 1.1.a *>*)
 
@@ -122,7 +122,7 @@ let super_sum (nlists:int list list) : int =
  * are acceptable if you find them useful -- and very little to no
  * credit will be given for doing them with explicit recursion. 
  *
- *)
+*)
 
 
 (*>* Problem 1.2.a *>*)
@@ -147,7 +147,7 @@ let super_sum (nlists:int list list) : int =
  * (When consecutive duplicates are not exactly syntactically equal, as
  * above, it does not matter which of the duplicates are discarded.)
  * 
- *)
+*)
 
 let consec_dedupe (eq:'a -> 'a -> bool) (xs:'a list) : 'a list =
   failwith "Not implemented"
@@ -177,7 +177,7 @@ let prefixes (xs: 'a list) : 'a list list =
  *
  * In the last assignment you wrote this function with recursion. Now, 
  * do it without explicit recursion.
- *)
+*)
 
 let flatten (xss:'a list list) : 'a list =
   failwith "Not implemented"
