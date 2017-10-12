@@ -28,8 +28,6 @@ let debug s = print_string s; flush_all()
 let ( % ) f g x = f (g x)
 let flip f x y = f y x
 let equals x y = x = y
-(* :: isn't a real function, so (::) doesn't work :-\ *)
-let reverse xs = List.fold_left (fun acc x -> x::acc ) [] xs
 
 let get_name   ((name,   _, _, _): movie): string = name
 let get_studio ((_, studio, _, _): movie): string = studio

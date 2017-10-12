@@ -205,8 +205,19 @@ are not:
 
 *)
 
+(* :: isn't a real function, so (::) doesn't work :-\ *)
+let reverse xs = List.fold_left (fun acc x -> x::acc ) [] xs
+
+let rec look_and_say' (xs: int list) (acc: int list) (current: int) (count: int) : int list = 
+  match xs with
+  | [] -> (current::count::acc)
+  | hd::tl when hd = current -> look_and_say' tl acc current (count + 1)
+  | hd::tl -> look_and_say' tl (current::count::acc) hd 1
+
 let look_and_say (xs: int list) : int list = 
-  failwith "look_and_say unimplemented"
+  match xs with
+  | [] -> [] 
+  | hd::tl -> reverse (look_and_say' tl [] hd 1)
 
 (*************)
 (* PROBLEM 5 *)
@@ -221,7 +232,9 @@ let look_and_say (xs: int list) : int list =
 *)
 
 let rec flatten (xss:'a list list) : 'a list =
-  failwith "flatten unimplemented"
+  match xss with 
+  | [] -> []
+  | hd::tl -> hd @ (flatten tl)
 
 (*************************************)
 (* PROBLEM 6 -- Warning: Challenging!*)
@@ -234,5 +247,12 @@ let rec flatten (xss:'a list list) : 'a list =
    NB: test this on small inputs - perm is ~n! which is approximately ~n^n.
 *)
 
-let perm (items:'a list) : 'a list list =
-  failwith "perm unimplemented"
+(* List.fold_left cycle [] items
+
+   let cycle (items:'a list) (acc:'a list list) (items:'a list) : 'a list list =
+   match cycles with
+   0 -> 
+
+   let perm (items:'a list) : 'a list list =
+   let length = (List.length items) in
+   [] *)
