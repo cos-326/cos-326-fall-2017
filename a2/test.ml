@@ -57,27 +57,27 @@ let print_int_list_list = print_string % string_of_int_list_list
 let suite =
   "A2" >::: [
     "zardoz" >:: (fun _ -> 
-        skip_if true "skip";
+
         assert_equal 7 (Part1.zardoz (+) [1;2;3] 1)
       );
 
     "myzardoz" >:: (fun _ -> 
-        skip_if true "skip";
+
         assert_equal 7 (Part1.myzardoz (+) [1;2;3] 1)
       );
 
     "look_and_say" >:: (fun _ -> 
-        skip_if true "skip";
+
         assert_equal (Part1.look_and_say [1; 1; 1; 3; 2; 2; 4]) [3; 1; 1; 3; 2; 2; 1; 4]
       );
 
     "flatten: integers" >:: (fun _ -> 
-        skip_if true "skip";
+
         assert_equal (Part1.flatten [[1;2;3]; []; [4]; [5;6]]) [1;2;3;4;5;6]
       );
 
     "flatten: characters" >:: (fun _ -> 
-        skip_if true "skip";
+
         assert_equal (Part1.flatten [[]; ['e';'d']; ['a';'b';'c']]) ['e';'d';'a';'b';'c'] 
       );
 
@@ -163,7 +163,6 @@ let suite =
       );
 
     "average 4" >:: (fun _ -> 
-        skip_if true "skip";
         assert_bool "bad average" (cmp_float ~epsilon:0.01 416.63 (Query.average data4) )
       );
 
@@ -173,7 +172,6 @@ let suite =
       );
 
     "decade: good" >:: (fun _ -> 
-        skip_if true "skip";
         assert_set_equal [
           ("The Hunger Games","LGF",374.32,2012);
           ("Harry Potter and the Deathly Hallows Part 2","WB",381.01,2011);
@@ -181,63 +179,57 @@ let suite =
       );
 
     "decade: bad decade" >:: (fun _ -> 
-        skip_if true "skip";
         assert_raises (Query.Bad_arg "100") (fun () -> (Query.decade 100 data4))
       );
 
     "decade: bad year" >:: (fun _ -> 
-        skip_if true "skip";
         assert_raises (Query.Bad_arg "17") (fun () -> (Query.decade 17 data4))
       );
 
     "take: empty list returns an empty list" >:: (fun _ -> 
-        skip_if true "skip";
         assert_equal (Query.take 5 []) []
       );
 
     "take: negative n throws an error" >:: (fun _ ->
-        skip_if true "skip";
         assert_raises (Query.Bad_arg "-1") (fun () -> (Query.take (-1) [1]))
       );
 
     "take: large n returns the list" >:: (fun _ -> 
-        skip_if true "skip";
         assert_equal (Query.take 5 [1; 2]) [1; 2]
       );
 
     "take: small n returns start of the list" >:: (fun _ -> 
-        skip_if true "skip";
         assert_equal (Query.take 2 [1; 2; 3; 4]) [1; 2]
       );
 
     "drop: empty list returns an empty list" >:: (fun _ -> 
-        skip_if true "skip";
+
         assert_equal (Query.drop 5 []) []
       );
 
     "drop: negative n throws an error" >:: (fun _ -> 
-        skip_if true "skip";
+
         assert_raises (Query.Bad_arg "-1") (fun () -> (Query.drop (-1) [1]))
       );
 
     "drop: large n returns []" >:: (fun _ -> 
-        skip_if true "skip";
+
         assert_equal (Query.drop 5 [1; 2]) []
       );
 
     "drop: small n returns end of the list" >:: (fun _ -> 
-        skip_if true "skip";
+
         assert_equal (Query.drop 2 [1; 2; 3; 4]) [3; 4]
       );
 
     "selection_sort" >:: (fun _ -> 
-        skip_if true "skip";
+
         assert_equal (Query.selection_sort (<=) [11; 25; 12; 22; 64])
           [11; 12; 22; 25; 64]
       );
 
     "sort_by_gross" >:: (fun _ -> 
-        skip_if true "skip";
+
         assert_equal (Query.sort_by_gross data4) [
           ("The Dark Knight","WB",533.34,2008);
           ("Harry Potter and the Deathly Hallows Part 2","WB",381.01,2011);
@@ -247,7 +239,7 @@ let suite =
       );
 
     "sort_by_year" >:: (fun _ -> 
-        skip_if true "skip";
+
         assert_equal (Query.sort_by_year data4) [
           ("The Hunger Games","LGF",374.32,2012);
           ("Harry Potter and the Deathly Hallows Part 2","WB",381.01,2011);
@@ -257,7 +249,6 @@ let suite =
       );
 
     "sort_by_studio" >:: (fun _ -> 
-        skip_if true "skip";
         assert_equal (Query.sort_by_studio (Query.by_studio data4)) [
           ("WB", 914.35);
           ("NL", 377.85);
@@ -266,7 +257,6 @@ let suite =
       );
 
     "by_studio" >:: (fun _ -> 
-        skip_if true "skip";
         assert_equal (Query.by_studio data4) [
           ("LGF", 374.32);
           ("WB", 914.35);
