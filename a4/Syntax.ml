@@ -32,16 +32,16 @@ type exp =
   | EmptyList
   (* Note 1: this permits type-heterogeneity, unlike OCaml, e.g.:
      Cons (Constant (Int 1), Cons (Constant (Bool true), EmptyList)) 
-    
+
      Note 2: this also doesn't enforce that a list should end in a 
      Cons with EmptyList as the second argument, but we will only 
      ever use well-defined lists of this structure.
   *)
   | Cons of exp * exp
   (*   Match (e1, e2, hd, tl, e3) is a match statement with the form:
-   match e1 with 
-   | [] -> e2 
-   | hd::tl -> e3 
+       match e1 with 
+       | [] -> e2 
+       | hd::tl -> e3 
   *)                  
   | Match of exp * exp * variable * variable * exp  
 
@@ -65,7 +65,7 @@ and env = (variable * exp) list
 (*****************************)
 (* Manipulating environments *)
 (*****************************)
- 
+
 (* empty environment *)
 let empty_env : env = []
 
