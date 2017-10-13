@@ -205,8 +205,13 @@ are not:
 
 *)
 
+let rec reduce (f: ('b -> 'a -> 'b)) (acc: 'b) (xs: 'a list): 'b =
+  match xs with
+  | [] -> acc
+  | hd::tl -> reduce f (f acc hd) tl
+
 (* :: isn't a real function, so (::) doesn't work :-\ *)
-let reverse xs = List.fold_left (fun acc x -> x::acc ) [] xs
+let reverse xs = reduce (fun acc x -> x::acc ) [] xs
 
 let rec look_and_say' (xs: int list) (acc: int list) (current: int) (count: int) : int list = 
   match xs with

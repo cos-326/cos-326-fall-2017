@@ -22,13 +22,37 @@ let debug s = print_string s; flush_all()
 
 (* *** DO NOT CHANGE DEFINITIONS ABOVE THIS LINE! *** *)
 
+let rec map (f: ('a -> 'b)) (xs: 'a list): 'b list =
+  match xs with
+  | [] -> []
+  | hd::tl -> (f hd)::(map f tl)
+
+let rec reduce (f: ('b -> 'a -> 'b)) (acc: 'b) (xs: 'a list): 'b =
+  match xs with
+  | [] -> acc
+  | hd::tl -> reduce f (f acc hd) tl
+
+let reverse xs = reduce (fun acc x -> x::acc ) [] xs
+
+let length: 'a list -> int =
+  reduce (fun acc _ -> acc + 1) 0
+
+let do_filter f acc x =
+  if f x then
+    x::acc
+  else
+    acc
+
+let rec filter (f: ('a -> bool)) (xs: 'a list): 'a list = 
+  reverse (reduce (do_filter f) [] xs)
+
 (* you may add "rec" after any of the let declarations below that you
  * wish if you find doing so useful. *)
 
 let ( % ) f g x = f (g x)
 let flip f x y = f y x
 let equals x y = x = y
-let reverse xs = List.fold_left (fun acc x -> x::acc ) [] xs
+let reverse xs = reduce (fun acc x -> x::acc ) [] xs
 
 let get_name   ((name,   _, _, _): movie): string = name
 let get_studio ((_, studio, _, _): movie): string = studio
@@ -42,11 +66,11 @@ let get_year   ((_, _, _, year  ): movie): int    = year
 (*       type them in to ocaml toplevel                              *)
 (* hint: recall the difference between +. and + also 0. and 0        *)
 
-let sum_floats = List.fold_left (+.) 0.
-let sum_gross: (movie list -> float) = sum_floats % (List.map get_gross)
+let sum_floats = reduce (+.) 0.
+let sum_gross: (movie list -> float) = sum_floats % (map get_gross)
 
 let average (movies : movie list) : float = 
-  (sum_gross movies) /. (float_of_int (List.length movies))
+  (sum_gross movies) /. (float_of_int (length movies))
 
 (* return a list containing only the movies from the given decade *)
 (* call bad_arg if n is not 20, 30, ..., 90, 00, 10               *)
@@ -66,7 +90,7 @@ let decade (n:int) (ms:movie list) : movie list =
   if bad_decade_input n then
     bad_arg (string_of_int n)
   else
-    List.filter (equals n % get_decade_start % get_year) ms
+    filter (equals n % get_decade_start % get_year) ms
 
 (* return the first n items from the list *)
 (* if there are fewer than n items, return all of them *)
@@ -182,7 +206,7 @@ let to_studio = function
     (_, studio, gross, _) -> (studio, gross)
 
 let by_studio: (movie list -> studio_gross list) =
-  reverse % merge_studios % List.map to_studio
+  reverse % merge_studios % map to_studio
 
 (***********)
 (* Testing *)
