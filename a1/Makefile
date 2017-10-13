@@ -5,7 +5,8 @@ clean:
 	ocamlbuild -clean
 
 test: build
-	./test
+	-./test.d.byte
+	rm test.d.byte
 
 build: clean
-	ocamlfind ocamlopt -o test -package oUnit -linkpkg -g a1.ml test.ml
+	ocamlbuild -use-ocamlfind -pkgs 'oUnit' test.d.byte
