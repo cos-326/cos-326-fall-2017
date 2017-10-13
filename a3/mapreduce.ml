@@ -70,15 +70,22 @@ let rec reduce (f:'a -> 'b -> 'b) (u:'b) (xs:'a list) : 'b =
  * 
 *)
 
+let ( % ) f g x = f (g x)
+let equals x y = x = y
+let reverse xs = foldl (fun acc x -> x::acc ) [] xs
+
+let length (x: 'a list): int =
+  reduce (fun _ acc -> acc + 1) 0 x
+
 (*>* Problem 1.1.a *>*)
 
 (*  negate_all : Flips the sign of each element in a list *)
 let negate_all: int list -> int list =
   map (( * ) (-1))
+;;
 
 (* Unit test example.  Uncomment after writing negate_all *)
-(* assert ((negate_all [1; -2; 0]) = [-1; 2; 0]);; *)
-
+assert ((negate_all [1; -2; 0]) = [-1; 2; 0]);;
 
 (*>* Problem 1.1.b *>*)
 
@@ -86,17 +93,19 @@ let negate_all: int list -> int list =
  *             Returns a one-dimensional list of ints, each int equal to the
  *             sum of the corresponding row in the input.
  *   Example : sum_rows [[1;2]; [3;4]] = [3; 7] *)
-let sum_rows (rows:int list list) : int list =
-  failwith "Not implemented"
-;;
 
+let sum = reduce (+) 0
+
+let sum_rows: int list list -> int list =
+  map sum
+;;
 
 (*>* Problem 1.1.c *>*)
 
 (*  num_occurs : Returns the number of times a given number appears in a list.
  *     Example : num_occurs 4 [1;3;4;5;4] = 2 *)
 let num_occurs (n:int) (nums:int list) : int =
-  failwith "Not implemented"
+  length % filter (equals n) @@ nums
 ;;
 
 
@@ -104,8 +113,8 @@ let num_occurs (n:int) (nums:int list) : int =
 
 (*  super_sum : Sums all of the numbers in a list of int lists
  *    Example : super_sum [[1;2;3];[];[5]] = 11 *)
-let super_sum (nlists:int list list) : int =
-  failwith "Not implemented"
+let super_sum: int list list -> int =
+  sum % map sum
 ;;
 
 
@@ -148,8 +157,15 @@ let super_sum (nlists:int list list) : int =
  * 
 *)
 
+let rec consec_dedupe' (eq:'a -> 'a -> bool) (x:'a) (acc: 'a list) : 'a list =
+  match acc with
+  | [] -> [x]
+  | last::_ ->
+    if eq x last then acc
+    else x::acc
+
 let consec_dedupe (eq:'a -> 'a -> bool) (xs:'a list) : 'a list =
-  failwith "Not implemented"
+  reduce (consec_dedupe' eq) [] xs
 ;;
 
 (*>* Problem 1.2.b *>*)
@@ -162,10 +178,19 @@ let consec_dedupe (eq:'a -> 'a -> bool) (xs:'a list) : 'a list =
  * There are no non-empty prefixes of an empty list.
 *)
 
-let prefixes (xs: 'a list) : 'a list list =
-  failwith "Not implemented"
-;;
+let take_next (n: int) (acc: 'a list) (x: 'a)  =
+  if (length acc) < n then x::acc
+  else acc
 
+let take (n: int) (xs: 'a list) = 
+  reverse (foldl (take_next n) [] xs)
+
+let get_prefix (list: 'a list) _ (acc: 'a list list) =
+  (take ((length acc) + 1) list) :: acc
+
+let prefixes (xs: 'a list) : 'a list list =
+  reverse (reduce (get_prefix xs) [] xs)
+;;
 
 (*>* Problem 1.2.c *>*)
 (* flatten : write a function that flattens a list of lists in to a single
@@ -179,5 +204,5 @@ let prefixes (xs: 'a list) : 'a list list =
 *)
 
 let flatten (xss:'a list list) : 'a list =
-  failwith "Not implemented"
+  reduce (@) [] xss
 ;;
