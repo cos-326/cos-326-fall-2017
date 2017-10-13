@@ -32,7 +32,7 @@ let debug s = print_string s; flush_all()
 (* hint: if you don't know what those functions do,                  *)
 (*       type them in to ocaml toplevel                              *)
 (* hint: recall the difference between +. and + also 0. and 0        *)
-let average (movies : movie list) : float = 
+let average (movies : movie list) : float =
   failwith "average unimplemented"
 
 (* return a list containing only the movies from the given decade *)
@@ -41,23 +41,23 @@ let average (movies : movie list) : float =
 (*   differently from 0).                                         *)
 (* Note: movies from any years outside the range 1920-2019 will   *)
 (* always be discarded but should not raise an error condition    *)
-let decade (n:int) (ms:movie list) : movie list =  
+let decade (n:int) (ms:movie list) : movie list =
   failwith "decade unimplemented"
 
 
 (* return the first n items from the list *)
 (* if there are fewer than n items, return all of them *)
 (* call bad_arg if n is negative *)
-let take (n:int) (l:'a list)  : 'a list =
-  failwith "take unimplemented"
-
+let rec take (n:int) (l:'a list) : 'a list = if n < 1 then [] else match l with
+  | [] -> []
+  | x :: xs -> x :: take (n-1) xs
 
 (* return everything but the first n items from the list *)
 (* if there are fewer than n items, return the empty list *)
 (* call bad_arg if n is negative *)
-let drop (n:int) (l:'a list)  : 'a list =
-  failwith "drop unimplemented"
-
+let rec drop (n:int) (l:'a list) : 'a list = if n < 1 then l else match l with
+  | [] -> []
+  | x :: xs -> drop (n-1) xs
 
 (* return a list [x1; x2; ...; xn] with the same elements as the input l
    and where:
@@ -69,10 +69,25 @@ let drop (n:int) (l:'a list)  : 'a list =
 *)
 (* hint: define an auxiliary function "select" *)
 type 'a less = 'a -> 'a -> bool
-let selection_sort (leq:'a less) (l:'a list) : 'a list =
-  failwith "selection_sort unimplemented"
 
- 
+
+let selection_sort (leq:'a less) (l:'a list) : 'a list =
+  let rec dumb (to_check: 'a list) (checked: 'a list): ('a list * 'a list) = match to_check with
+    | [] -> ([], checked)
+    | x :: [] -> ([x], checked)
+    | x :: y :: ys ->
+      if (leq x y) then (dumb (x :: ys) (y :: checked))
+      else (dumb (y :: ys) (x :: checked))
+  in
+
+  let rec aux (unsorted: 'a list) (sorted: 'a list): 'a list = match unsorted with
+    | [] -> sorted
+    | _ -> let (ys, zs) = dumb unsorted [] in
+      aux zs (sorted @ ys)
+  in
+
+  aux l []
+
 (* ASIDE:  Why does this assignment ask you to implement selection sort?
    Insertion sort is almost always preferable to selection sort,
    if you have to implement a quadratic-time sorting algorithm.
@@ -88,26 +103,24 @@ let selection_sort (leq:'a less) (l:'a list) : 'a list =
 *)
 
 (* return list of movies sorted by gross (largest gross first) *)
-let sort_by_gross (movies : movie list) : movie list = 
-  failwith "sort_by_gross unimplemented"
-
+let sort_by_gross (movies : movie list) : movie list =
+  let gross = fun m -> match m with (a, b, c, d) -> c in
+  selection_sort (fun m1 m2 -> (gross m1) > (gross m2)) movies
 
 (* return list of movies sorted by year produced (largest year first) *)
-let sort_by_year (movies : movie list) : movie list = 
-  failwith "sort_by_year unimplemented"
+let sort_by_year (movies : movie list) : movie list =
+  let year = fun m -> match m with (a, b, c, d) -> d in
+  selection_sort (fun m1 m2 -> (year m1) > (year m2)) movies
 
-
-(* sort list of (studio, gross in millions) by gross in millions 
+(* sort list of (studio, gross in millions) by gross in millions
  * with the largest gross first *)
-let sort_by_studio (studio_grosses : studio_gross list) : studio_gross list = 
-  failwith "sort_by_studio unimplemented"
-
+let sort_by_studio (studio_grosses : studio_gross list) : studio_gross list =
+  let gross = fun sg -> match sg with (s, g) -> g in
+  selection_sort (fun sg1 sg2 -> (gross sg1) > (gross sg2)) studio_grosses
 
 (* given list of movies,
  * return list of pairs (studio_name, total gross revenue for that studio)  *)
-let by_studio (movies:movie list) : studio_gross list =
-  failwith "by_studio unimplemented"
-
+let by_studio (movies:movie list) : studio_gross list = []
 
 (***********)
 (* Testing *)
@@ -142,13 +155,11 @@ let data4 : movie list = [
 (* Assertion Testing *)
 
 (* Uncomment the following when you are ready to test your take routine *)
-(*
 let _ = assert(take 0 data4 = [])
 let _ = assert(take 1 data1 = data1)
 let _ = assert(take 2 data4 = data2)
 let _ = assert(take 5 data2 = data2)
 let _ = assert(take 2 data2 = data2)
-*)
 
 (* Additional Testing Infrastructure *)
 
