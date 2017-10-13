@@ -2,7 +2,7 @@
 all: test
 
 clean:
-	find . -type f \( -iname \*.o -o -iname \*.cmx \) | xargs rm
+	find . -type f \( -iname \*.cache -o -iname \*.log -o -iname \*.cm\* -o -iname \*.o \) | xargs rm
 
 test: build
 	./test
