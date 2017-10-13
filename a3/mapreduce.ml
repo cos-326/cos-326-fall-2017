@@ -73,9 +73,8 @@ let rec reduce (f:'a -> 'b -> 'b) (u:'b) (xs:'a list) : 'b =
 (*>* Problem 1.1.a *>*)
 
 (*  negate_all : Flips the sign of each element in a list *)
-let negate_all (nums:int list) : int list =
-  failwith "Not implemented"
-;;
+let negate_all: int list -> int list =
+  map (( * ) (-1))
 
 (* Unit test example.  Uncomment after writing negate_all *)
 (* assert ((negate_all [1; -2; 0]) = [-1; 2; 0]);; *)
