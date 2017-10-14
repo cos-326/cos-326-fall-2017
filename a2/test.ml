@@ -1,20 +1,5 @@
 open OUnit2;;
 
-let print_int_list (xs: int list): unit = 
-  print_newline ();
-  List.iter print_int xs;
-  print_newline ()
-
-let print_studio ((name, gross): Query.studio_gross): unit = 
-  print_newline ();
-  print_string "===STUDIO===";
-  print_string name;
-  print_float gross;
-  print_string "===/STUDIO===";
-  print_newline ()
-
-let print_studio_list = List.iter print_studio 
-
 let data1 : Query.movie list = [
   ("The Lord of the Rings: The Return of the King","NL",377.85,2003)
 ]
