@@ -49,7 +49,17 @@ let suite =
         assert_equal (Part1.flatten [[]; ['e';'d']; ['a';'b';'c']]) ['e';'d';'a';'b';'c'] 
       );
 
-    "perm" >:: (fun _ -> 
+    "perm: 1" >:: (fun _ ->
+        skip_if true "skip";
+        assert_equal (Part1.perm [1]) [[1;]] 
+      );
+
+    "perm: 2" >:: (fun _ -> 
+        skip_if true "skip";
+        assert_equal (Part1.perm [1;2]) [[1;2]; [2;1]] 
+      );
+
+    "perm: 3" >:: (fun _ -> 
         skip_if true "skip";
         assert_equal (Part1.perm [1;2;3]) [[1;2;3]; [1;3;2]; [2;1;3]; [2;3;1]; [3;1;2]; [3;2;1]] 
       );
