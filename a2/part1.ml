@@ -205,13 +205,24 @@ are not:
 
 *)
 
+let rec map (f: ('a -> 'b)) (xs: 'a list): 'b list =
+  match xs with
+  | [] -> []
+  | hd::tl -> (f hd)::(map f tl)
+
 let rec reduce (f: ('b -> 'a -> 'b)) (acc: 'b) (xs: 'a list): 'b =
   match xs with
   | [] -> acc
   | hd::tl -> reduce f (f acc hd) tl
 
-(* :: isn't a real function, so (::) doesn't work :-\ *)
-let reverse xs = reduce (fun acc x -> x::acc ) [] xs
+let flip f x y = f y x
+let cons x xs = x::xs
+
+let reverse xs = reduce (flip cons) [] xs
+
+let ( % ) f g x = f (g x)
+let ( @@ ) f x = f x
+let ( |> ) x f = f x
 
 let rec look_and_say' (xs: int list) (acc: int list) (current: int) (count: int) : int list = 
   match xs with
@@ -262,5 +273,25 @@ let rec flatten (xss:'a list list) : 'a list =
    let length = (List.length items) in
    [] *)
 
-let perm (items:'a list) : 'a list list =
-  []
+let rec reject_first' (rejected: 'a) (acc: 'a list) (items: 'a list): 'a list =
+  match items with
+  | [] -> acc
+  | hd::tl when hd = rejected ->
+    (reverse acc) @ tl 
+  | hd::tl ->
+    reject_first' rejected (hd::acc) tl
+
+let reject_first (rejected: 'a) (items: 'a list): 'a list =
+  reject_first' rejected [] items
+
+let rec perm (items: 'a list): 'a list list =
+  match items with 
+  | [] -> []
+  | _ ->
+    let perm_one (rejected: 'a): 'a list list =
+      match reject_first rejected items with
+      | [] -> [[rejected]]
+      | tail -> map (cons rejected) (perm tail)
+    in
+
+    flatten % map perm_one @@ items
