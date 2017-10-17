@@ -2,7 +2,7 @@
 (*** YOUR NAME HERE ***)
 (*** YOUR LOGIN HERE ***)
 
-let undefined : unit -> 'a = fun () -> failwith "undefined"
+let undefined : unit -> string = fun () -> "undefined"
 
 (* 1. Please define these variables with the appropriate values.
  * Be sure that these statements all type-check after editing them.
@@ -34,18 +34,18 @@ let print = Printf.printf
 let print_survey () =
   let string_year =
     (match class_year with
-       | Freshman -> "2021"
-       | Sophomore -> "2020"
-       | Junior -> "2019"
-       | Senior -> "2018"
-       | Other s -> "Other: " ^ s
+     | Freshman -> "2021"
+     | Sophomore -> "2020"
+     | Junior -> "2019"
+     | Senior -> "2018"
+     | Other s -> "Other: " ^ s
     ) in
-    (print "----------------------------------------\n";
-     print "Name: %s\n" name;
-     print "Email: %s\n" email;
-     print "Year: %s\n" string_year;
-     print "%s\n" exciting;
-     print "----------------------------------------\n\n")
+  (print "----------------------------------------\n";
+   print "Name: %s\n" name;
+   print "Email: %s\n" email;
+   print "Year: %s\n" string_year;
+   print "%s\n" exciting;
+   print "----------------------------------------\n\n")
 
 (* Problem 2 - Fill in types:
  * Replace each ??? with the appropriate type of the corresponding expression.
@@ -185,14 +185,14 @@ let _ = few_divisors 18 7 (* true -- 18 divides only 1, 18, 2, 3, 6, and 9 *)
 
 (* The type signature for few_divisors is:
  * few_divisors : int -> int -> bool
- *)
+*)
 
 (* few_divisors should call the function bad_divisors n m defined above
  * if n <= 0 or m < 0
- *)
+*)
 
 let few_divisors (n:int) (m:int): bool =
-    failwith "undefined"
+  failwith "undefined"
 
 (* After writing few_divisors above, uncomment the following lines to test your
  * code.  (Note: your code is not necessarily completely correct just because
@@ -224,7 +224,7 @@ let bad_pi (n:int) = raise (BadPi n)
  * Approximation 2 accurately predicts these digits:  3.14159 26535
  * Approximation 3 accurately predicts these digits:  3.14159 26535 89793
  *
- *)
+*)
 
 (* The type signature for sin_pi is:
  *   sin_pi : int -> float
@@ -233,7 +233,7 @@ let bad_pi (n:int) = raise (BadPi n)
 (* sin_pi should call the function bad_pi i if its argument i is less than 0 *)
 
 let sin_pi (n:int) : float =
-    failwith "undefined"
+  failwith "undefined"
 
 (*>* Problem 6b - Monte Carlo Approximation*>*)
 (*
@@ -268,10 +268,10 @@ let sin_pi (n:int) : float =
 (* The type signature for monte_pi is:
  *   monte_pi : int -> float
  * monte_pi should call bad_arg i when its argument i is not positive.
- *)
+*)
 
 let monte_pi (n:int): float =
-    failwith "undefined"
+  failwith "undefined"
 
 (*
  * To compute some random numbers, use OCaml's Random library:
@@ -329,7 +329,7 @@ let bad_arg (n:int) = raise (BadArg n)
  * Your algorithm may not use trigonometric functions such as sin,
  * cos, arctan, etc.
  *
- *)
+*)
 
 (* 7a:  Explain your algorithm and your sources in the string exp7a: *)
 let exp7a : string = ""
@@ -345,3 +345,5 @@ let exp7a : string = ""
  *      Again, don't worry about "stack overflow" errors for large values
  *      of the input to custom_pi.
 *)
+
+let other_pi (n: int): float = 3.
