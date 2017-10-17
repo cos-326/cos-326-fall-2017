@@ -26,10 +26,17 @@ open ExpressionLibrary
 
 (* evaluate : evaluates an expression for a particular value of x. 
  *  Example : evaluate (parse "x*x + 3") 2.0 = 7.0 *)
+
+let operator_of_binop = function
+  | Add -> (+.)
+  | Sub -> (-.)
+  | Mul -> ( *. )
+
 let rec evaluate (e:expression) (x:float) : float =
-  failwith "Not implemented" 
-
-
+  match e with 
+  | Num n -> n
+  | Var -> x
+  | Binop (binop, e1, e2) -> (operator_of_binop binop) (evaluate e1 x) (evaluate e2 x)
 
 (*>* Problem 2.2 *>*)
 
@@ -75,7 +82,7 @@ let rec find_zero_exact (e:expression) : expression option =
  * Write code here to address the problem, and once finished, 
  * fill the variables below with your answers and uncomment them
 *)
-(*
-let e_order_of_growth : string  = 
-let iterations_for_56_bits : int = 
- *)
+              (*
+              let e_order_of_growth : string  = 
+              let iterations_for_56_bits : int = 
+             *)
