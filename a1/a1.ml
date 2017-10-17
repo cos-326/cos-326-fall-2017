@@ -11,23 +11,23 @@ let undefined : unit -> 'a = fun () -> failwith "undefined"
  * for example, Ctrl+c and then Ctrl+e in Emacs with Tuareg mode *)
 
 (* 1.a. Create a string with your first name *)
-let name : string = undefined ()
+let name : string = "Sarah"
 
 (* 1.b. Use a string operator on the string from 1.a. to create
  * a string that contains both your first and last names. *)
-let name : string = undefined ()
+let name : string = name ^ " Port"
 
 (* 1.c. Create a string containing your email address *)
-let email : string = undefined ()
+let email : string = "sarah@carbonfive.com"
 
 (* 1.d. Replace (Other "...") in class_year with the appropriate item below *)
 (* ie: replace (Other "...") with Sophomore or Junior for example *)
 type year = Freshman | Sophomore | Junior | Senior | Other of string
 
-let class_year : year = Other "I haven't filled it in yet"
+let class_year : year = Other "I graduated!"
 
 (* 1.e. Replace the .... with what you're excited about in this course *)
-let exciting : string = "I'm excited about ....!"
+let exciting : string = "I'm excited about learning about ocaml, emacs, and functional programming!"
 
 let print = Printf.printf
 
@@ -57,24 +57,35 @@ let print_survey () =
 
 (* Problem 2a *)
 (*
-let prob2a : ???  = let greet y = "Hello " ^ y in greet "World!"
+let prob2a : string  = let greet y = "Hello " ^ y in greet "World!"
 *)
 
 (* Problem 2b *)
 (*
-let prob2b : ??? = float_of_int( int_of_float(2.2 +. 7.7))
+let prob2b : float = float_of_int( int_of_float(2.2 +. 7.7))
 *)
 
 (*>* Problem 2c *>*)
 (*
 let rec prob2c (x : ???) : ??? =
   prob2c ( if true then prob2c x else 'h')
+
+prob2c will never return 'h' because true is always true.
+So prob2c will always return prob2c X
+So x could be literally any type.
+
+Does prob2c return a type string, because the theoretical terminating condition returns 'h':string
+or does prob2c return a function of whatever type prob2c is, because that terminating condition is never reached?
+
 *)
 
 (*>* Problem 2d *>*)
 (*
-let rec prob2d (y:???) (z:???) : ??? =
+let rec prob2d (y:bool) (z:bool) : ??? =
    prob2d (prob2d z y) (not y)
+
+y has to be a bool, because not is only an operator on bools.
+so z must also be a bool, since we're calling prob2d with variables of type ??? and bool.
 *)
 
 (* Explain why each of 3a, 3b, 3c will not compile (use the strings
@@ -83,21 +94,21 @@ let rec prob2d (y:???) (z:???) : ??? =
    the top-level type associated with the expression. *)
 
 (*>* Problem 3a *>*)
-let exp3a : string = ""
+let exp3a : string = "4 is type int, expects float"
 (*
 let prob3a : bool =
   let compare x y = x < y in
-  compare 3.9 4
+  compare 3.9 4.
 *)
 
 (*>* Problem 3b *>*)
-let exp3b : string = ""
+let exp3b : string = "aux expects 3 inputs of the same type, gets ints and functions."
 (*
 let prob3b : int =
   let fib n =
    let rec aux n y x =
     if n <= 0 then x
-    else aux n-1 x+y y
+    else aux (n-1) (x+y) y
    in
    aux n 1 0
   in
@@ -106,10 +117,10 @@ let prob3b : int =
 
 
 (*>* Problem 3c *>*)
-let exp3c : string = ""
+let exp3c : string = "haven't defined sumTo as recursive"
 (*
 let prob3c : int =
-  let sumTo (n:int) : int =
+  let rec sumTo (n:int) : int =
   if n <= 0 then 0
   else n + sumTo (n-1)
   in
@@ -120,6 +131,7 @@ let prob3c : int =
 (* 4a: Fill in the ??? with an expression that uses x and y and has
  * the right type.
  *
+ * HAHA IT'S 42
 *)
 
 (*
@@ -127,7 +139,7 @@ let prob4a =
   let u = 32.0 in
   let v = 28.0 in
   let square w = w *. w in
-  let boff (x) (y) = ??? in
+  let boff (x) (y) = (square x) +. (square y) in
   let d = sqrt (boff u v) in
   int_of_float d
 *)
@@ -135,24 +147,31 @@ let prob4a =
 (*
  * Also:  What warning message do you get if your ??? expression does not
  * use the function "square"?
- *)
-let warn4a : string = ""
+ *
+*)
+let warn4a : string = "unused variable square"
 
 (* 4b: Replace each ?? with the type of the corresponding expression,
  * and write a function f that has the correct type signature. Explain
  * in exp4b a problem that remains with the function prob4b *)
 
 (*
-let f (a:??) (b:??) : ?? =
+let f (a:int) (b:int) : float = float_of_int (a + b)
 
 
 
-let rec prob4b (x:??) (y:??) : ?? =
+let rec prob4b (x:float) (y:int) : ?? =
   prob4b (f y 4) (int_of_float x)
 
+
+  * because int_of_float x returns an int, y must be an int
+  * because int_of_float x takes a float, x must be a float
+  * since y and 4 in f y 4 are ints, a and b must be ints
+  * since f y 4 is being passed to prob4b which calls for a float there, f must return a float.
+  * float_of_int takes an int and returns a float.
 *)
 
-let exp4b : string = ""
+let exp4b : string = "this recursion doesn't terminate"
 
 (* 4c: Is it possible to find types for the argument and result that
  * make the function forever type check?
@@ -164,7 +183,7 @@ let exp4b : string = ""
 let rec forever (x:??) : ?? =
   forever forever
 
-let exp4c : string = ""
+let exp4c : string = "not possible, because there will always be another function argument in the chain when it's being called"
 *)
 
 (*>* Problem 5 *>*)
@@ -191,19 +210,26 @@ let _ = few_divisors 18 7 (* true -- 18 divides only 1, 18, 2, 3, 6, and 9 *)
  * if n <= 0 or m < 0
  *)
 
+let rec range (n:int): 'a list =
+  if n = 0 then []
+  else range (n-1) @ [n]
+
+let number_of_divisors (n:int): int =
+  List.length (List.filter (fun v -> (n mod v) = 0) (range n))
+
 let few_divisors (n:int) (m:int): bool =
-    failwith "undefined"
+  if (n <= 0 || m < 0) then bad_divisors n m
+  else if (number_of_divisors n) < m then true
+  else false
 
 (* After writing few_divisors above, uncomment the following lines to test your
  * code.  (Note: your code is not necessarily completely correct just because
  * it passes these 3 tests.)  *)
-(*
 
 let _ = assert (few_divisors 17 3)
 let _ = assert (not (few_divisors 4 3))
 let _ = assert (few_divisors 4 4)
 
-*)
 
 (* Problem 6 - Approximating Pi *)
 
@@ -232,8 +258,10 @@ let bad_pi (n:int) = raise (BadPi n)
 
 (* sin_pi should call the function bad_pi i if its argument i is less than 0 *)
 
-let sin_pi (n:int) : float =
-    failwith "undefined"
+let rec sin_pi (n:int) : float =
+  if n < 0 then bad_pi n
+  else if n = 0 then 3.
+  else (sin_pi (n-1)) +. (sin (sin_pi (n-1)))
 
 (*>* Problem 6b - Monte Carlo Approximation*>*)
 (*
@@ -269,9 +297,6 @@ let sin_pi (n:int) : float =
  *   monte_pi : int -> float
  * monte_pi should call bad_arg i when its argument i is not positive.
  *)
-
-let monte_pi (n:int): float =
-    failwith "undefined"
 
 (*
  * To compute some random numbers, use OCaml's Random library:
@@ -310,6 +335,16 @@ let monte_pi (n:int): float =
 let _ = Random.init 17
 exception BadArg of int
 let bad_arg (n:int) = raise (BadArg n)
+let is_unit_circle (x:float)(y:float):int = 
+  if x**2. +. y**2. <= 1. then 1
+  else 0
+let rec random_points (n:int): int =
+  if n = 0 then 0
+  else random_points (n-1) + is_unit_circle (Random.float 1.) (Random.float 1.)
+let monte_pi (n:int): float =
+  if n < 0 then bad_arg n
+  else 4. *. (float_of_int (random_points n)) /. (float_of_int n)
+let _ = print_float (monte_pi 5000)
 
 (*************)
 (* Problem 7 *)
