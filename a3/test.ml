@@ -55,12 +55,10 @@ let suite =
       );
 
     "evaluate: simple" >:: (fun _ -> 
-        skip_if true "skip";
         assert_equal (Expression.evaluate (ExpressionLibrary.parse "x*x + 3") 2.) 7.
       );
 
     "evaluate: complex" >:: (fun _ -> 
-        skip_if true "skip";
         assert_equal (Expression.evaluate (ExpressionLibrary.parse "x*x + (3 + x + (x * 2))") 2.) 13.
       );
 

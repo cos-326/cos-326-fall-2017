@@ -65,7 +65,6 @@ let suite =
 
     (* Feel free to change the argument to other_pi, depending on your formula *)
     "other_pi"  >:: (fun _ -> 
-        skip_if true "skip";
         Printf.printf "\nother_pi answer: %F\n" (A1.other_pi 9);
         assert_bool "wrong Pi" (cmp_float ~epsilon:0.1 (A1.other_pi 9) 3.1)
       );
