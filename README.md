@@ -136,18 +136,11 @@ Note that not all assignments and notes have been posted as of the start of the 
 
 ### Installing OCaml
 
-Install OCaml & the package manager
-
 ```bash
-brew install ocaml opam
+./scripts/install_deps.sh
 ```
 
-Install Merlin for editor support, and OUnit for testing
-
-```bash
-opam install merlin
-opam install ounit
-```
+or follow the Docker instructions below.
 
 _If there's a build failure, try restarting your terminal._
 
@@ -171,17 +164,20 @@ git push origin laser
 
 ## Running tests
 
-To run tests for an assignment, you'll have to cd into the assignment directory, compile the tests, then run them.
+To run tests for an assignment, you'll have to cd into the assignment directory, then run `make test`.
 
 ```bash
 cd a1
-ocamlfind ocamlc -o test -package oUnit -linkpkg -g a1.ml test.ml
-./test
+make test
 ```
+
+At first, all the tests for a homework will be skipped, and running them should show `SSSSSSS` in the terminal. As you go though the assignment, you can delete the `skip_if true "skip";` lines to un-skip the tests for the functions you have implemented. When all your tests are passing, you could see `.......` in the terminal.
+
+If you get any unexpected errors, try running `opam switch 4.05.0` to make sure you're on the correct version of ocaml.
 
 ## Docker
 
-There is a minimal `Dockerfile`` and `docker-compose.yml` which creates an Ocaml/Opam development environment and
+There is a minimal `Dockerfile` and `docker-compose.yml` which creates an Ocaml/Opam development environment and
 installs `utop`.
 
 NOTE: this installs the latest maintained 'ocaml/opam' image, which as of now is version `4.04.2`.
