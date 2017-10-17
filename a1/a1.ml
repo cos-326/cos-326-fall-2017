@@ -342,7 +342,12 @@ let monte_pi (n: int): float =
 *)
 
 (* 7a:  Explain your algorithm and your sources in the string exp7a: *)
-let exp7a : string = ""
+let exp7a : string = "
+  https://en.wikipedia.org/wiki/Vi%C3%A8te%27s_formula 
+  A derivation of Viète's approximation formula is:
+  (2**i) * sqrt(2 - (sqrt 2 + (sqrt 2 + (sqrt 2 + (sqrt 2 + ... (sqrt 2))))))
+  with i square root operations.
+"
 
 (* 7b:  Implement your algorithm here. *)
 (*      Your algorithm should take a positive integer parameter
@@ -356,4 +361,14 @@ let exp7a : string = ""
  *      of the input to custom_pi.
 *)
 
-let other_pi (n: int): float = 3.
+(* *)
+let rec other_pi' (i: int): float =
+  match i with
+  | 0 -> 0.
+  | _ -> sqrt (2. +. (other_pi' (i - 1)))
+
+let rec other_pi (i: int): float = 
+  match i with
+  | 0 -> 3.
+  | i when i < 0 -> bad_pi i
+  | i -> (2. ** (float_of_int i)) *. (sqrt (2. -. (other_pi' (i - 1))))
