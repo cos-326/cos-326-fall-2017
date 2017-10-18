@@ -67,10 +67,8 @@ let checkexp strs xval=
 
 
 (*>* Problem 2.3 *>*)
-let within (y: float) (epsilon:float) (g: float): bool =
-  y -. epsilon < g && g < y +. epsilon 
-
-let near_zero = within 0.
+let near_zero (epsilon:float) (g: float): bool =
+  (abs_float g) < epsilon
 
 let rec find_zero' (f: float -> float) (f': float -> float) (g:float) (epsilon:float) (lim:int): float option =
   if lim = 0 then None
