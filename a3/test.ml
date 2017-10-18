@@ -63,7 +63,6 @@ let suite =
       );
 
     "derivative: simple" >:: (fun _ -> 
-        skip_if true "skip";
         let f = (ExpressionLibrary.parse "x * x - 1") in
         let f' = Expression.derivative f in
 
@@ -73,7 +72,6 @@ let suite =
       );
 
     "find_zero: simple" >:: (fun _ -> 
-        skip_if true "skip";
         let f = (ExpressionLibrary.parse "x * x - 1") in
 
         match Expression.find_zero f 2. 0.01 50 with
@@ -84,13 +82,12 @@ let suite =
       );
 
     "find_zero: no zero" >:: (fun _ -> 
-        skip_if true "skip";
         let f = (ExpressionLibrary.parse "x * x + 1") in
         let output = Expression.find_zero f 2. 0.01 50 in
 
         match output with
         | Some x ->
-          (Printf.printf "\nfind_zero: Some %f" x);
+          (Printf.printf "\nfind_zero no zero: Some %f" x);
           assert_failure "find_zero should not have found a 0"
         | None ->
           assert_bool "not equal" true
