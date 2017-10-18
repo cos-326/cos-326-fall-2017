@@ -42,9 +42,16 @@ let rec evaluate (e:expression) (x:float) : float =
 
 (* See writeup for instructions.  *)
 let rec derivative (e:expression) : expression =
-  failwith "Not implemented"
-
-
+  match e with
+  | Num n -> Num 0.
+  | Var -> Num 1.
+  | Binop (Add, e1, e2) -> Binop (Add, (derivative e1), (derivative e2))
+  | Binop (Sub, e1, e2) -> Binop (Sub, (derivative e1), (derivative e2))
+  | Binop (Mul, e1, e2) -> 
+    Binop 
+      (Add,
+       Binop (Mul, (derivative e1), e2),
+       Binop (Mul, e1, (derivative e2)))
 
 (* A helpful function for testing. See the writeup. *)
 let checkexp strs xval=
@@ -60,13 +67,24 @@ let checkexp strs xval=
 
 
 (*>* Problem 2.3 *>*)
+let within (y: float) (epsilon:float) (g: float): bool =
+  y -. epsilon < g && g < y +. epsilon 
+
+let near_zero = within 0.
+
+let rec find_zero' (f: float -> float) (f': float -> float) (g:float) (epsilon:float) (lim:int): float option =
+  if lim = 0 then None
+  else
+    match f g with
+    | y when near_zero epsilon y ->
+      Some g
+    | y ->
+      find_zero' f f' (g -. (y /. (f' g))) epsilon (lim - 1)
 
 (* See writeup for instructions. *)
-let rec find_zero (e:expression) (g:float) (epsilon:float) (lim:int)
+let find_zero (e:expression) (g:float) (epsilon:float) (lim:int)
   : float option =
-  failwith "Not implemented" 
-
-
+  find_zero' (evaluate e) (evaluate (derivative e)) g epsilon lim
 
 (*>* Problem 2.4 *>*)
 
