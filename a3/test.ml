@@ -51,6 +51,43 @@ let suite =
         skip_if true "skip";
         assert_equal (Expression.evaluate (ExpressionLibrary.parse "x*x + (3 + x + (x * 2))") 2.) 13.
       );
+
+    "derivative: simple" >:: (fun _ -> 
+        skip_if true "skip";
+        let f = (ExpressionLibrary.parse "x * x - 1") in
+        let f' = Expression.derivative f in
+
+        let output = Expression.evaluate f' 2. in
+
+        Printf.printf "\nderivative: %f" output;
+        assert_equal output 4.
+      );
+
+    "find_zero: simple" >:: (fun _ -> 
+        skip_if true "skip";
+        let f = (ExpressionLibrary.parse "x * x - 1") in
+        let output = Expression.find_zero f 2. 0.01 50 in
+
+        match output with
+        | Some x ->
+          (Printf.printf "\nfind_zero: Some %f" x);
+          assert_bool "not equal" (cmp_float ~epsilon:0.001 x 1.)
+        | None ->
+          assert_failure "find_zero: None"
+      );
+
+    "find_zero: no zero" >:: (fun _ -> 
+        skip_if true "skip";
+        let f = (ExpressionLibrary.parse "x * x + 1") in
+        let output = Expression.find_zero f 2. 0.01 50 in
+
+        match output with
+        | Some x ->
+          (Printf.printf "\nfind_zero: Some %f" x);
+          assert_failure "find_zero should not have found a 0"
+        | None ->
+          assert_bool "not equal" true
+      );
   ]
 
 let () =
