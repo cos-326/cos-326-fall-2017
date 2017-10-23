@@ -82,7 +82,6 @@ let suite =
       );
 
     "perm: 0" >:: (fun _ ->
-        skip_if true "skip";
 
         let output = (Part1.perm []) in
         print_string "\nPerm 0:\n";
@@ -92,7 +91,6 @@ let suite =
       );
 
     "perm: 1" >:: (fun _ ->
-        skip_if true "skip";
 
         let output = (Part1.perm [1]) in
         print_string "\nPerm 1:\n";
@@ -102,7 +100,6 @@ let suite =
       );
 
     "perm: 2" >:: (fun _ -> 
-        skip_if true "skip";
 
         let output = (Part1.perm [1;2]) in
         print_string "\nPerm 2 (sorted):\n";
@@ -112,7 +109,6 @@ let suite =
       );
 
     "perm: 3" >:: (fun _ -> 
-        skip_if true "skip";
 
         let output = (Part1.perm [1;2;3]) in
         print_string "\nPerm 3 (sorted):\n";
@@ -122,7 +118,6 @@ let suite =
       );
 
     "perm: 4" >:: (fun _ ->
-        skip_if true "skip";
 
         let output = (Part1.perm [1;2;2;3]) in
         print_string "\nPerm 4 (sorted):\n";
