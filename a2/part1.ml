@@ -263,16 +263,6 @@ let rec flatten (xss:'a list list) : 'a list =
    NB: test this on small inputs - perm is ~n! which is approximately ~n^n.
 *)
 
-(* List.fold_left cycle [] items
-
-   let cycle (items:'a list) (acc:'a list list) (items:'a list) : 'a list list =
-   match cycles with
-   0 -> 
-
-   let perm (items:'a list) : 'a list list =
-   let length = (List.length items) in
-   [] *)
-
 let rec reject_first' (rejected: 'a) (acc: 'a list) (items: 'a list): 'a list =
   match items with
   | [] -> acc
