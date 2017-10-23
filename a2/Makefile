@@ -10,15 +10,15 @@ check: boxoffice
 topG:  boxoffice
 	./boxoffice -sort-gross < data/G.txt | ./boxoffice -take 1
 
-part1.d.byte:  part1.ml
-	ocamlbuild part1.d.byte
+part1.d.native:  part1.ml
+	ocamlbuild part1.native
 
 clean:
 	ocamlbuild -clean
 
 test: build
-	-./test.d.byte
-	rm test.d.byte
+	-./test.native
+	rm test.native
 
 build: clean
-	ocamlbuild -use-ocamlfind -pkgs 'oUnit' test.d.byte
+	ocamlbuild -use-ocamlfind -pkgs 'oUnit' test.native

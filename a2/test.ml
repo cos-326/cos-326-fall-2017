@@ -74,6 +74,13 @@ let suite =
                                                  [2; 3; 2; 1]; [3; 1; 2; 2]; [3; 2; 1; 2]; [3; 2; 2; 1]]
       );
 
+    (* Bonus test -- note this may take a long time, and you will get a stack overflow if your implementation
+       grows the stack (i.e. is not tail recursive). *)
+    "perm: 5" >:: (fun _ ->
+        skip_if true "skip";
+        assert_equal (List.length (Part1.perm [1;2;3;4;5;6;7;8;9;10])) 3628800
+      );
+
     "average 1" >:: (fun _ -> 
         skip_if true "skip";
         assert_bool "bad average" (cmp_float ~epsilon:0.01 377.85 (Query.average data1) )
