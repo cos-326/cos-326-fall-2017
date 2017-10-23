@@ -22,8 +22,37 @@ let data4 : Query.movie list = [
   ("Harry Potter and the Deathly Hallows Part 2","WB",381.01,2011)
 ]
 
+let sort = List.sort compare
+
 let assert_set_equal (a:'a list) (b:'a list) =
-  assert_equal (List.sort compare a) (List.sort compare b)
+  assert_equal (sort a) (sort b)
+
+let ( % ) f g x = f (g x)
+
+let join_strings joiner s1 s2 = 
+  s1 ^ joiner ^ s2
+
+let join (joiner: string) (xs: string list): string =
+  match xs with
+  | [] -> ""
+  | hd::tl -> 
+    List.fold_left (join_strings joiner) hd tl
+
+let surround_string front back s = 
+  front ^ s ^ back
+
+let surround_list = surround_string "[" "]"
+
+let string_of_int_list: int list -> string =
+  surround_list % join "; "  % List.map string_of_int
+
+let string_of_string_list: string list -> string =
+  surround_list % join "; " 
+
+let string_of_int_list_list: int list list -> string =
+  string_of_string_list % List.map string_of_int_list
+
+let print_int_list_list = print_string % string_of_int_list_list
 
 let suite =
   "A2" >::: [
@@ -52,26 +81,56 @@ let suite =
         assert_equal (Part1.flatten [[]; ['e';'d']; ['a';'b';'c']]) ['e';'d';'a';'b';'c'] 
       );
 
+    "perm: 0" >:: (fun _ ->
+        skip_if true "skip";
+
+        let output = (Part1.perm []) in
+        print_string "\nPerm 0:\n";
+        print_int_list_list output;
+    
+        assert_set_equal output [] 
+      );
+
     "perm: 1" >:: (fun _ ->
         skip_if true "skip";
-        assert_set_equal (Part1.perm [1]) [[1;]] 
+
+        let output = (Part1.perm [1]) in
+        print_string "\nPerm 1:\n";
+        print_int_list_list output;
+    
+        assert_set_equal output [[1;]] 
       );
 
     "perm: 2" >:: (fun _ -> 
         skip_if true "skip";
-        assert_set_equal (Part1.perm [1;2]) [[1;2]; [2;1]] 
+
+        let output = (Part1.perm [1;2]) in
+        print_string "\nPerm 2 (sorted):\n";
+        print_int_list_list (sort output);
+    
+        assert_set_equal output [[1;2]; [2;1]] 
       );
 
     "perm: 3" >:: (fun _ -> 
         skip_if true "skip";
-        assert_set_equal (Part1.perm [1;2;3]) [[1;2;3]; [1;3;2]; [2;1;3]; [2;3;1]; [3;1;2]; [3;2;1]] 
+
+        let output = (Part1.perm [1;2;3]) in
+        print_string "\nPerm 3 (sorted):\n";
+        print_int_list_list (sort output);
+    
+        assert_set_equal output [[1;2;3]; [1;3;2]; [2;1;3]; [2;3;1]; [3;1;2]; [3;2;1]] 
       );
 
     "perm: 4" >:: (fun _ ->
         skip_if true "skip";
-        assert_set_equal (Part1.perm [1;2;2;3]) [[1; 2; 2; 3]; [1; 2; 3; 2]; [1; 3; 2; 2]; [2; 1; 2; 3];
-                                                 [2; 1; 3; 2]; [2; 2; 1; 3]; [2; 2; 3; 1]; [2; 3; 1; 2];
-                                                 [2; 3; 2; 1]; [3; 1; 2; 2]; [3; 2; 1; 2]; [3; 2; 2; 1]]
+
+        let output = (Part1.perm [1;2;2;3]) in
+        print_string "\nPerm 4 (sorted):\n";
+        print_int_list_list (sort output);
+    
+        assert_set_equal output [[1; 2; 2; 3]; [1; 2; 3; 2]; [1; 3; 2; 2]; [2; 1; 2; 3];
+                                 [2; 1; 3; 2]; [2; 2; 1; 3]; [2; 2; 3; 1]; [2; 3; 1; 2];
+                                 [2; 3; 2; 1]; [3; 1; 2; 2]; [3; 2; 1; 2]; [3; 2; 2; 1]]
       );
 
     "average 1" >:: (fun _ -> 
