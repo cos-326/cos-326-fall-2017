@@ -22,6 +22,9 @@ let data4 : Query.movie list = [
   ("Harry Potter and the Deathly Hallows Part 2","WB",381.01,2011)
 ]
 
+let assert_set_equal (a:'a list) (b:'a list) =
+  assert_equal (List.sort compare a) (List.sort compare b)
+
 let suite =
   "A2" >::: [
     "zardoz" >:: (fun _ -> 
@@ -51,17 +54,24 @@ let suite =
 
     "perm: 1" >:: (fun _ ->
         skip_if true "skip";
-        assert_equal (Part1.perm [1]) [[1;]] 
+        assert_set_equal (Part1.perm [1]) [[1;]] 
       );
 
     "perm: 2" >:: (fun _ -> 
         skip_if true "skip";
-        assert_equal (Part1.perm [1;2]) [[1;2]; [2;1]] 
+        assert_set_equal (Part1.perm [1;2]) [[1;2]; [2;1]] 
       );
 
     "perm: 3" >:: (fun _ -> 
         skip_if true "skip";
-        assert_equal (Part1.perm [1;2;3]) [[1;2;3]; [1;3;2]; [2;1;3]; [2;3;1]; [3;1;2]; [3;2;1]] 
+        assert_set_equal (Part1.perm [1;2;3]) [[1;2;3]; [1;3;2]; [2;1;3]; [2;3;1]; [3;1;2]; [3;2;1]] 
+      );
+
+    "perm: 4" >:: (fun _ ->
+        skip_if true "skip";
+        assert_set_equal (Part1.perm [1;2;2;3]) [[1; 2; 2; 3]; [1; 2; 3; 2]; [1; 3; 2; 2]; [2; 1; 2; 3];
+                                                 [2; 1; 3; 2]; [2; 2; 1; 3]; [2; 2; 3; 1]; [2; 3; 1; 2];
+                                                 [2; 3; 2; 1]; [3; 1; 2; 2]; [3; 2; 1; 2]; [3; 2; 2; 1]]
       );
 
     "average 1" >:: (fun _ -> 
