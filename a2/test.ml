@@ -22,7 +22,7 @@ let data4 : Query.movie list = [
   ("Harry Potter and the Deathly Hallows Part 2","WB",381.01,2011)
 ]
 
-let sort = List.sort compare
+let sort (l:'a list) : ('a list ) = List.sort compare l
 
 let assert_set_equal (a:'a list) (b:'a list) =
   assert_equal (sort a) (sort b)
@@ -140,9 +140,19 @@ let suite =
         assert_equal (List.length (Part1.perm [1;2;3;4;5;6;7;8;9;10])) 3628800
       );
 
-    "average 1" >:: (fun _ -> 
+    "average 1" >:: (fun _ ->
         skip_if true "skip";
         assert_bool "bad average" (cmp_float ~epsilon:0.01 377.85 (Query.average data1) )
+      );
+
+    "average 2" >:: (fun _ ->
+        skip_if true "skip";
+        assert_bool "bad average" (cmp_float ~epsilon:0.01 374.32 (Query.average data2) )
+      ); 
+
+    "average 3" >:: (fun _ ->
+        skip_if true "skip";
+        assert_bool "bad average" (cmp_float ~epsilon:0.01 312.519489 (Query.average data3) )
       );
 
     "average 4" >:: (fun _ -> 
@@ -150,9 +160,14 @@ let suite =
         assert_bool "bad average" (cmp_float ~epsilon:0.01 416.63 (Query.average data4) )
       );
 
+    "average 5" >:: (fun _ -> 
+        skip_if true "skip";
+        assert_bool "average of empty list" (Query.average [] = 0.)
+      );
+
     "decade: good" >:: (fun _ -> 
         skip_if true "skip";
-        assert_equal [
+        assert_set_equal [
           ("The Hunger Games","LGF",374.32,2012);
           ("Harry Potter and the Deathly Hallows Part 2","WB",381.01,2011);
         ] (Query.decade 10 data4)
