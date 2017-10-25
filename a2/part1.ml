@@ -271,6 +271,18 @@ let rec reject_first' (rejected: 'a) (acc: 'a list) (items: 'a list): 'a list =
   | hd::tl ->
     reject_first' rejected (hd::acc) tl
 
+let rec contains (xs: 'a list) (x: 'a): bool =
+  match xs with
+  | [] -> false
+  | hd::tl when x = hd -> true
+  | _::tl -> contains tl x
+
+let remove_dupe clean x =
+  if contains clean x then clean else x::clean
+
+let dedupe (xs: 'a list): 'a list =
+  reverse % (reduce remove_dupe []) @@ xs
+
 let reject_first (rejected: 'a) (items: 'a list): 'a list =
   reject_first' rejected [] items
 
@@ -284,4 +296,4 @@ let rec perm (items: 'a list): 'a list list =
       | tail -> map (cons rejected) (perm tail)
     in
 
-    flatten % map perm_one @@ items
+    flatten % map perm_one @@ dedupe items
