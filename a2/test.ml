@@ -148,12 +148,10 @@ let suite =
       );
 
     "average 2" >:: (fun _ ->
-        skip_if true "skip";
         assert_bool "bad average" (cmp_float ~epsilon:0.01 374.32 (Query.average data2) )
       ); 
 
     "average 3" >:: (fun _ ->
-        skip_if true "skip";
         assert_bool "bad average" (cmp_float ~epsilon:0.01 312.519489 (Query.average data3) )
       );
 
@@ -162,7 +160,6 @@ let suite =
       );
 
     "average 5" >:: (fun _ -> 
-        skip_if true "skip";
         assert_bool "average of empty list" (Query.average [] = 0.)
       );
 

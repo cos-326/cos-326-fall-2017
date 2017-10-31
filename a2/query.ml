@@ -70,7 +70,9 @@ let sum_floats = reduce (+.) 0.
 let sum_gross: (movie list -> float) = sum_floats % (map get_gross)
 
 let average (movies : movie list) : float = 
-  (sum_gross movies) /. (float_of_int (length movies))
+  match (float_of_int (length movies)) with
+  | 0. -> 0.
+  | count -> (sum_gross movies) /. count
 
 (* return a list containing only the movies from the given decade *)
 (* call bad_arg if n is not 20, 30, ..., 90, 00, 10               *)
