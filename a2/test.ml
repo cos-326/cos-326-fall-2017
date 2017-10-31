@@ -87,7 +87,7 @@ let suite =
         let output = (Part1.perm []) in
         print_string "\nPerm 0:\n";
         print_int_list_list output;
-    
+
         assert_set_equal output [] 
       );
 
@@ -97,7 +97,7 @@ let suite =
         let output = (Part1.perm [1]) in
         print_string "\nPerm 1:\n";
         print_int_list_list output;
-    
+
         assert_set_equal output [[1;]] 
       );
 
@@ -107,7 +107,7 @@ let suite =
         let output = (Part1.perm [1;2]) in
         print_string "\nPerm 2 (sorted):\n";
         print_int_list_list (sort output);
-    
+
         assert_set_equal output [[1;2]; [2;1]] 
       );
 
@@ -117,7 +117,7 @@ let suite =
         let output = (Part1.perm [1;2;3]) in
         print_string "\nPerm 3 (sorted):\n";
         print_int_list_list (sort output);
-    
+
         assert_set_equal output [[1;2;3]; [1;3;2]; [2;1;3]; [2;3;1]; [3;1;2]; [3;2;1]] 
       );
 
@@ -127,7 +127,7 @@ let suite =
         let output = (Part1.perm [1;2;2;3]) in
         print_string "\nPerm 4 (sorted):\n";
         print_int_list_list (sort output);
-    
+
         assert_set_equal output [[1; 2; 2; 3]; [1; 2; 3; 2]; [1; 3; 2; 2]; [2; 1; 2; 3];
                                  [2; 1; 3; 2]; [2; 2; 1; 3]; [2; 2; 3; 1]; [2; 3; 1; 2];
                                  [2; 3; 2; 1]; [3; 1; 2; 2]; [3; 2; 1; 2]; [3; 2; 2; 1]]
@@ -138,6 +138,13 @@ let suite =
     "perm: 5" >:: (fun _ ->
         skip_if true "skip";
         assert_equal (List.length (Part1.perm [1;2;3;4;5;6;7;8;9;10])) 3628800
+      );
+
+    "perm: crazy" >:: (fun _ ->
+        skip_if true "skip";
+        let _ = (Part1.perm [1;2;3;4;5;6;7;8;9;10;11]) in
+
+        assert_string "perm didn't have a stack overflow!"
       );
 
     "average 1" >:: (fun _ ->
