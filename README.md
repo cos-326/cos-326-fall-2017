@@ -80,18 +80,51 @@ Note that not all assignments and notes have been posted as of the start of the 
       <td>
         <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/ass/a4.php">Interpreter and Program Correctness</a>
       </td>
-      <td></td>
+      <td>
+        <a href="https://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/08-proofs-about-programs.pdf">
+          Proofs about Programs
+        </a>
+        <a href="https://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/09-proofs-datatypes.pdf">
+          Proofs about Datatypes
+        </a>
+        <a href="https://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/09-space-model.pdf">
+          Space Model
+        </a>
+        <a href="https://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/10-cps.pdf">
+          Continuation-passing Style
+        </a>
+        <a href="https://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/11-more-cps.pdf">
+          More CPS and More Proofs
+        </a>
+        <a href="https://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/12-type-checking.pdf">
+          Type Checking
+        </a>
+      </td>
       <td>
         <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/notes/reasoning-data.php">Equational Reasoning about Natural Numbers and Trees</a>
       </td>
-      <td></td>
+      <td>
+      </td>
     </tr>
     <tr>
       <td>5</td>
       <td>
         <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos326/ass/a5.php">Moogle</a>
       </td>
-      <td></td>
+      <td>
+        <a href="https://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/12-modules.pdf">
+          Modules
+        </a>
+        <a href="https://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/14-modules2.pdf">
+          Representation Invariants and Abstraction Functions
+        </a>
+        <a href="https://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/15-refs.pdf">
+          Reference Types
+        </a>
+        <a href="https://www.cs.princeton.edu/courses/archive/fall17/cos326/lec/16-laziness.pdf">
+          Streams
+        </a>
+      </td>
       <td></td>
       <td>
         <a href="https://realworldocaml.org/v1/en/html/files-modules-and-programs.html">4</a>,
