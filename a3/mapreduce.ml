@@ -72,10 +72,10 @@ let rec reduce (f:'a -> 'b -> 'b) (u:'b) (xs:'a list) : 'b =
 
 (*>* Problem 1.1.a *>*)
 
+let negate (x:int) : int = x * -1
+
 (*  negate_all : Flips the sign of each element in a list *)
-let negate_all (nums:int list) : int list =
-  failwith "Not implemented"
-;;
+let negate_all (nums:int list) : int list = map negate nums
 
 (* Unit test example.  Uncomment after writing negate_all *)
 (* assert ((negate_all [1; -2; 0]) = [-1; 2; 0]);; *)
@@ -83,31 +83,30 @@ let negate_all (nums:int list) : int list =
 
 (*>* Problem 1.1.b *>*)
 
+let sum_all (nums:int list) : int = foldl (fun acc x -> acc + x) 0 nums
+
 (*  sum_rows : Takes a list of int lists (call an internal list a "row").
  *             Returns a one-dimensional list of ints, each int equal to the
  *             sum of the corresponding row in the input.
  *   Example : sum_rows [[1;2]; [3;4]] = [3; 7] *)
-let sum_rows (rows:int list list) : int list =
-  failwith "Not implemented"
-;;
+let sum_rows (rows:int list list) : int list = map sum_all rows
 
 
 (*>* Problem 1.1.c *>*)
 
+let const (r:'a) _ : 'a = r
+let matches (n:'a) (x:'a) : bool = x == n
+
 (*  num_occurs : Returns the number of times a given number appears in a list.
  *     Example : num_occurs 4 [1;3;4;5;4] = 2 *)
-let num_occurs (n:int) (nums:int list) : int =
-  failwith "Not implemented"
-;;
+let num_occurs (n:int) (nums:int list) : int = sum_all (map (const 1) (filter (matches n) nums))
 
 
 (*>* Problem 1.1.d *>*)
 
 (*  super_sum : Sums all of the numbers in a list of int lists
  *    Example : super_sum [[1;2;3];[];[5]] = 11 *)
-let super_sum (nlists:int list list) : int =
-  failwith "Not implemented"
-;;
+let super_sum (nlists:int list list) : int = sum_all (map sum_all nlists)
 
 
 (****************************************************)
@@ -149,8 +148,14 @@ let super_sum (nlists:int list list) : int =
  * 
 *)
 
+let insertl_if_not_eq (eq:'a -> 'a -> bool) (x:'a) (acc:'a list) =
+  match acc with
+    | [] -> [x]
+    | hd :: tl -> if (eq hd x) then acc else x :: acc
+;;
+
 let consec_dedupe (eq:'a -> 'a -> bool) (xs:'a list) : 'a list =
-  failwith "Not implemented"
+  foldr (insertl_if_not_eq eq) xs []
 ;;
 
 (*>* Problem 1.2.b *>*)
@@ -179,6 +184,8 @@ let prefixes (xs: 'a list) : 'a list list =
  * do it without explicit recursion.
 *)
 
-let flatten (xss:'a list list) : 'a list =
-  failwith "Not implemented"
-;;
+let insertl (x:'a) (xs:'a list) : 'a list = x :: xs
+
+let concatr (xs:'a list) (ys:'a list) : 'a list = foldr insertl xs ys
+
+let flatten (xss:'a list list) : 'a list = foldr concatr xss []
