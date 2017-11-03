@@ -40,8 +40,12 @@ let suite =
       );
 
     "prefixes" >:: (fun _ -> 
-        skip_if true "skip";
-        assert_equal (Mapreduce.prefixes [1;2;3;4]) [[1]; [1;2]; [1;2;3]; [1;2;3;4]]
+        assert_equal (Mapreduce.length [1;2;3;4;5]) 5;
+        assert_equal (Mapreduce.indexes [10;20;30;40]) [0;1;2;3];
+        assert_equal (Mapreduce.zip [0;1;2;3] [10;20;30;40]) [(0,10);(1,20);(2,30);(3,40)];
+        assert_equal (Mapreduce.indexed [10;20;30;40]) [(0,10);(1,20);(2,30);(3,40)];
+        assert_equal (Mapreduce.take [1;2;3;4] 0) [];
+        assert_equal (Mapreduce.prefixes [1;2;3;4]) [[1]; [1;2]; [1;2;3]; [1;2;3;4]];
       );
 
     "flatten" >:: (fun _ -> 

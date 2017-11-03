@@ -154,9 +154,7 @@ let insertl_if_not_eq (eq:'a -> 'a -> bool) (x:'a) (acc:'a list) =
     | hd :: tl -> if (eq hd x) then acc else x :: acc
 ;;
 
-let consec_dedupe (eq:'a -> 'a -> bool) (xs:'a list) : 'a list =
-  foldr (insertl_if_not_eq eq) xs []
-;;
+let consec_dedupe (eq:'a -> 'a -> bool) (xs:'a list) : 'a list = foldr (insertl_if_not_eq eq) xs []
 
 (*>* Problem 1.2.b *>*)
 
@@ -168,10 +166,23 @@ let consec_dedupe (eq:'a -> 'a -> bool) (xs:'a list) : 'a list =
  * There are no non-empty prefixes of an empty list.
 *)
 
-let prefixes (xs: 'a list) : 'a list list =
-  failwith "Not implemented"
-;;
+let insertl (x:'a) (xs:'a list) : 'a list = x :: xs
+let concatr (xs:'a list) (ys:'a list) : 'a list = foldr insertl xs ys
 
+let zip' (x:'b) (f:'a list -> ('a * 'b) list) (xs:'a list) = match xs with
+  | [] -> []
+  | hd :: tl -> (x,hd) :: f tl
+let zip (xs:'a list) (ys:'b list) : ('a * 'b) list = (foldr zip' xs (const [])) ys
+
+let length (xs:'a list) : int = foldl (fun acc _ -> acc + 1) 0 xs
+let indexes (xs:'a list) : int list = foldl (fun acc x -> concatr acc [length acc]) [] xs
+let indexed (xs:'a list) : (int * 'a) list = zip (indexes xs) xs
+let fst (p:'a * 'b) = match p with (f,_) -> f
+let snd (p:'a * 'b) = match p with (_,s) -> s
+let inc (x:int) = x + 1
+let take (xs:'a list) (n:int) : 'a list = map snd (filter (fun p -> fst p < n) (indexed xs))
+
+let prefixes (xs:'a list) : 'a list list = map (take xs) (map inc (indexes xs))
 
 (*>* Problem 1.2.c *>*)
 (* flatten : write a function that flattens a list of lists in to a single
@@ -183,9 +194,5 @@ let prefixes (xs: 'a list) : 'a list list =
  * In the last assignment you wrote this function with recursion. Now, 
  * do it without explicit recursion.
 *)
-
-let insertl (x:'a) (xs:'a list) : 'a list = x :: xs
-
-let concatr (xs:'a list) (ys:'a list) : 'a list = foldr insertl xs ys
 
 let flatten (xss:'a list list) : 'a list = foldr concatr xss []
