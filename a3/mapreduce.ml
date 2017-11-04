@@ -33,6 +33,39 @@ let rec reduce (f:'a -> 'b -> 'b) (u:'b) (xs:'a list) : 'b =
   | hd::tl -> f hd (reduce f u tl) ;;
 
 (***********************************************)
+(******            UTILITIES              ******)
+(***********************************************)
+
+let negate (x:int) : int = x * -1
+
+let sum_all (nums:int list) : int = foldl (fun acc x -> acc + x) 0 nums
+
+let const (r:'a) _ : 'a = r
+let matches (n:'a) (x:'a) : bool = x == n
+
+let insertl (x:'a) (xs:'a list) : 'a list = x :: xs
+let concatr (xs:'a list) (ys:'a list) : 'a list = foldr insertl xs ys
+
+let zip' (x:'b) (f:'a list -> ('a * 'b) list) (xs:'a list) = match xs with
+  | [] -> []
+  | hd :: tl -> (x,hd) :: f tl
+let zip (xs:'a list) (ys:'b list) : ('a * 'b) list = (foldr zip' xs (const [])) ys
+
+let length (xs:'a list) : int = foldl (fun acc _ -> acc + 1) 0 xs
+let indexes (xs:'a list) : int list = foldl (fun acc x -> concatr acc [length acc]) [] xs
+let indexed (xs:'a list) : (int * 'a) list = zip (indexes xs) xs
+let fst (p:'a * 'b) = match p with (f,_) -> f
+let snd (p:'a * 'b) = match p with (_,s) -> s
+let inc (x:int) = x + 1
+let take (xs:'a list) (n:int) : 'a list = map snd (filter (fun p -> fst p < n) (indexed xs))
+
+let insertl_if_not_eq (eq:'a -> 'a -> bool) (x:'a) (acc:'a list) =
+  match acc with
+    | [] -> [x]
+    | hd :: tl -> if (eq hd x) then acc else x :: acc
+;;
+
+(***********************************************)
 (******            1.1 WARM UP            ******)
 (***********************************************)
 
@@ -72,8 +105,6 @@ let rec reduce (f:'a -> 'b -> 'b) (u:'b) (xs:'a list) : 'b =
 
 (*>* Problem 1.1.a *>*)
 
-let negate (x:int) : int = x * -1
-
 (*  negate_all : Flips the sign of each element in a list *)
 let negate_all (nums:int list) : int list = map negate nums
 
@@ -83,8 +114,6 @@ let negate_all (nums:int list) : int list = map negate nums
 
 (*>* Problem 1.1.b *>*)
 
-let sum_all (nums:int list) : int = foldl (fun acc x -> acc + x) 0 nums
-
 (*  sum_rows : Takes a list of int lists (call an internal list a "row").
  *             Returns a one-dimensional list of ints, each int equal to the
  *             sum of the corresponding row in the input.
@@ -93,9 +122,6 @@ let sum_rows (rows:int list list) : int list = map sum_all rows
 
 
 (*>* Problem 1.1.c *>*)
-
-let const (r:'a) _ : 'a = r
-let matches (n:'a) (x:'a) : bool = x == n
 
 (*  num_occurs : Returns the number of times a given number appears in a list.
  *     Example : num_occurs 4 [1;3;4;5;4] = 2 *)
@@ -148,12 +174,6 @@ let super_sum (nlists:int list list) : int = sum_all (map sum_all nlists)
  * 
 *)
 
-let insertl_if_not_eq (eq:'a -> 'a -> bool) (x:'a) (acc:'a list) =
-  match acc with
-    | [] -> [x]
-    | hd :: tl -> if (eq hd x) then acc else x :: acc
-;;
-
 let consec_dedupe (eq:'a -> 'a -> bool) (xs:'a list) : 'a list = foldr (insertl_if_not_eq eq) xs []
 
 (*>* Problem 1.2.b *>*)
@@ -165,22 +185,6 @@ let consec_dedupe (eq:'a -> 'a -> bool) (xs:'a list) : 'a list = foldr (insertl_
  * 
  * There are no non-empty prefixes of an empty list.
 *)
-
-let insertl (x:'a) (xs:'a list) : 'a list = x :: xs
-let concatr (xs:'a list) (ys:'a list) : 'a list = foldr insertl xs ys
-
-let zip' (x:'b) (f:'a list -> ('a * 'b) list) (xs:'a list) = match xs with
-  | [] -> []
-  | hd :: tl -> (x,hd) :: f tl
-let zip (xs:'a list) (ys:'b list) : ('a * 'b) list = (foldr zip' xs (const [])) ys
-
-let length (xs:'a list) : int = foldl (fun acc _ -> acc + 1) 0 xs
-let indexes (xs:'a list) : int list = foldl (fun acc x -> concatr acc [length acc]) [] xs
-let indexed (xs:'a list) : (int * 'a) list = zip (indexes xs) xs
-let fst (p:'a * 'b) = match p with (f,_) -> f
-let snd (p:'a * 'b) = match p with (_,s) -> s
-let inc (x:int) = x + 1
-let take (xs:'a list) (n:int) : 'a list = map snd (filter (fun p -> fst p < n) (indexed xs))
 
 let prefixes (xs:'a list) : 'a list list = map (take xs) (map inc (indexes xs))
 

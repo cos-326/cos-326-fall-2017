@@ -53,17 +53,14 @@ let suite =
       );
 
     "evaluate: simple" >:: (fun _ -> 
-        skip_if true "skip";
         assert_equal (Expression.evaluate (ExpressionLibrary.parse "x*x + 3") 2.) 7.
       );
 
     "evaluate: complex" >:: (fun _ -> 
-        skip_if true "skip";
         assert_equal (Expression.evaluate (ExpressionLibrary.parse "x*x + (3 + x + (x * 2))") 2.) 13.
       );
 
     "derivative: simple" >:: (fun _ -> 
-        skip_if true "skip";
         let f = (ExpressionLibrary.parse "x * x - 1") in
         let f' = Expression.derivative f in
 
@@ -73,7 +70,6 @@ let suite =
       );
 
     "find_zero: simple" >:: (fun _ -> 
-        skip_if true "skip";
         let f = (ExpressionLibrary.parse "x * x - 1") in
 
         match Expression.find_zero f 2. 0.01 50 with
@@ -84,7 +80,6 @@ let suite =
       );
 
     "find_zero: no zero" >:: (fun _ -> 
-        skip_if true "skip";
         let f = (ExpressionLibrary.parse "x * x + 1") in
         let output = Expression.find_zero f 2. 0.01 50 in
 
