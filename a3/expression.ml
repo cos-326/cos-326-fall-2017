@@ -50,10 +50,13 @@ let rec derivative (e:expression) : expression =
   match e with
     | Num n -> Num 0.0
     | Var -> Num 1.0
-    | Binop (b,o1,o2) -> match b with
-                           | Add -> Binop (Add,(derivative o1),(derivative o2))
-                           | Sub -> Binop (Sub,(derivative o1),(derivative o2))
-                           | Mul -> Binop (Add,(Binop (Mul,(derivative o1), o2)),(Binop (Mul,o1,(derivative o2))))
+    | Binop (b, o1, o2) -> 
+        let o1' = derivative o1 in
+        let o2' = derivative o2 in
+        match b with
+          | Add -> Binop (Add, o1', o2')
+          | Sub -> Binop (Sub, o1', o2')
+          | Mul -> Binop (Add, (Binop (Mul, o1', o2)), (Binop (Mul, o1, o2')))
 
 
 
