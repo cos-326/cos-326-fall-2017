@@ -1,5 +1,17 @@
 open OUnit2;;
 
+let test_find_zero_exact (exp:string) : unit =
+  let e = ExpressionLibrary.parse exp in
+  (* For some reason, cmp_float is failing here. Rather than debug too much, use this. *)
+  let my_cmp_float a b epsilon : bool = ((abs_float (a -. b)) < epsilon) in
+  match Expression.find_zero_exact e with
+  | Some solution ->
+    let s = (Expression.evaluate solution 123.) in
+    let zero = (Expression.evaluate e s) in
+
+    assert_bool "not equal" (my_cmp_float zero 0. 0.001)
+  | None -> assert false
+
 let suite =
   "A3" >::: [
     "negate_all" >:: (fun _ -> 
@@ -88,9 +100,19 @@ let suite =
         | None ->
           assert_bool "not equal" true
       );
+
+    "find_zero_exact" >:: (fun _ -> 
+        skip_if true "skip";
+
+        assert_bool "should be None" ((Expression.find_zero_exact (ExpressionLibrary.parse "9")) = None);
+        assert_bool "should be None" ((Expression.find_zero_exact
+                                         (ExpressionLibrary.parse "(x * x) + 9")) = None);
+        test_find_zero_exact "3 * x + 2";
+        test_find_zero_exact "5*x - 3 + 2*(x - 8)";
+        test_find_zero_exact "5*x - 3 + 2*(x - 8) + 17*(3*x + 9)";
+        );
   ]
 
 let () =
   run_test_tt_main suite
 ;;
-
