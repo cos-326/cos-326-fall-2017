@@ -94,8 +94,6 @@ let suite =
       );
 
     "find_zero_exact" >:: (fun _ -> 
-        skip_if true "skip";
-
         assert_bool "should be None" ((Expression.find_zero_exact (ExpressionLibrary.parse "9")) = None);
         assert_bool "should be None" ((Expression.find_zero_exact (ExpressionLibrary.parse "x * 0")) = None);
         assert_bool "should be None" ((Expression.find_zero_exact
