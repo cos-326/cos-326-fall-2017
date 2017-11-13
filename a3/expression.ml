@@ -93,36 +93,24 @@ type standard =
 let combine_numbers op n1 n2: float =
   ((operator_of_binop op) n1 n2)
 
-let rec zip_with' (f: 'a -> 'a -> 'a) (xs1: 'a list) (xs2: 'a list) (acc: 'a list): 'a list =
-  match xs1 with
-  | [] -> List.rev acc
-  | hd1::tl1 ->
-    match xs2 with
-    | [] -> zip_with' f tl1 [] (hd1::acc)
-    | hd2::tl2 -> zip_with' f tl1 tl2 ((f hd1 hd2)::acc)
+let rec zip_with' (f: 'a -> 'a -> 'a) (xs: 'a list) (ys: 'a list) (acc: 'a list): 'a list =
+  match (xs, ys) with
+  | ([], _) ->
+    List.rev acc
+  | (xhd::xtl, []) ->
+    zip_with' f xtl [] (xhd::acc)
+  | (xhd::xtl, yhd::ytl) ->
+    zip_with' f xtl ytl ((f xhd yhd)::acc)
 
 let zip_with (f: 'a -> 'a -> 'a) (xs: 'a list) (ys: 'a list): 'a list =
   if (List.length xs) > (List.length ys) then
-    zip_with' f ys xs []
-  else
     zip_with' f xs ys []
+  else
+    zip_with' f ys xs []
 
 let rec add_to_head (n: int) (pad: 'a) (xs: 'a list): 'a list =
   if n <= 0 then xs
   else add_to_head (n - 1) pad (pad::xs)
-
-let rec pad_head (n: int) (pad: 'a) (xs: 'a list): 'a list =
-  add_to_head (n - (List.length xs)) pad xs
-
-let pad_tail (n: int) (pad: 'a) (xs: 'a list): 'a list =
-  if List.length xs > n then xs
-  else List.rev (pad_head n pad (List.rev xs))
-
-let pad_to_length pad xs ys =
-  (pad_tail (List.length ys) pad xs)
-
-let pad_pair pad xs ys =
-  (pad_to_length pad xs ys, pad_to_length pad ys xs)
 
 let a_mult (n: float) (xs: float list): float list =
   List.map (( *. ) n) xs
@@ -132,8 +120,10 @@ let x_mult (a: float) (exponent: int) (xs: float list): float list =
   add_to_head exponent 0. xs
 
 let poly_add (xs: float list) (ys: float list): float list =
-  let (xs, ys) = pad_pair 0. xs ys in
   zip_with (+.) xs ys
+
+let poly_sub (xs: float list) (ys: float list): float list =
+  zip_with (-.) xs ys
 
 let rec poly_mul' (xs: float list) (ys: float list) (acc: float list list): float list =
   (* The current exponent is the number of exponents processed so far *)
@@ -148,10 +138,6 @@ let rec poly_mul' (xs: float list) (ys: float list) (acc: float list list): floa
 
 let poly_mul (xs: float list) (ys: float list): float list =
   poly_mul' xs ys []
-
-let poly_sub (xs: float list) (ys: float list): float list =
-  (* Subtraction is addition, with -1 * the ys *)
-  poly_add xs (poly_mul [-1.] ys)
 
 let poly_op: (Ast.binop) -> (float list -> float list -> float list) = function
   | Add -> poly_add
