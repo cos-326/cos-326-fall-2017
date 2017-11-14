@@ -1,3 +1,4 @@
+open Ast;;
 open OUnit2;;
 
 let test_find_zero_exact (exp:string) : unit =
@@ -89,6 +90,32 @@ let suite =
           assert_failure "find_zero should not have found a 0"
         | None ->
           assert_bool "not equal" true
+      );
+
+    "scratch" >:: (fun _ -> 
+        (*let f = ExpressionLibrary.parse "2*x+10+12" in*)
+        (*let f = ExpressionLibrary.parse "2*x-10-12" in*)
+        (*let f = ExpressionLibrary.parse "17*(3*x)" in*)
+        (*let f = ExpressionLibrary.parse "2*x+12-10" in*)
+        (*let f = ExpressionLibrary.parse "3*2*x-12+10" in*)
+        (*let f = Expression.distribute (ExpressionLibrary.parse "5*x + 2*(x+8)") in*)
+        (*let f = Expression.distribute (ExpressionLibrary.parse "5*x + 2*(x+8) + 17*(3*x + 9)") in*)
+        (*let f = Expression.standard_form (Expression.distribute (ExpressionLibrary.parse "2*(x+8) + 17*(3*x + 9)")) in*)
+        (*let f = Expression.standard_form (ExpressionLibrary.parse "(5*x) + ((2*x) + 16)") in*)
+        (*let f = Expression.normalize (Expression.distribute (ExpressionLibrary.parse "2 - 3 + 5 - 10 + 2*(x - 8) + 17*(3*x + 9)")) in*)
+        (*let f = ExpressionLibrary.parse "3*x + 5 - 10*x*x + 2*x - 4" in
+        let d = Expression.distribute f in
+        let n = Expression.normalize d in
+        let o = Expression.simplify n in*)
+        let t1 = ExpressionLibrary.parse "x+3" in
+        let t2 = ExpressionLibrary.parse "x" in
+        let t3 = ExpressionLibrary.parse "x+4" in
+        let t4 = ExpressionLibrary.parse "x" in
+        let t5 = ExpressionLibrary.parse "5*x*x" in
+        let o = Expression.insert (Expression.insert (Expression.insert (Expression.insert (Expression.insert (Num 0.) t1) t2) t3) t4) t5 in
+
+        Printf.printf "\n%s" (expression_to_string t4);
+        Printf.printf "\n%s" (expression_to_string o);
       );
 
     "find_zero_exact" >:: (fun _ -> 
