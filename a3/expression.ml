@@ -103,7 +103,7 @@ let rec zip_with' (f: 'a -> 'a -> 'a) (xs: 'a list) (ys: 'a list) (acc: 'a list)
     zip_with' f xtl ytl ((f xhd yhd)::acc)
 
 let zip_with (f: 'a -> 'a -> 'a) (xs: 'a list) (ys: 'a list): 'a list =
-  if (List.length xs) > (List.length ys) then
+  if (List.length xs) >= (List.length ys) then
     zip_with' f xs ys []
   else
     zip_with' f ys xs []
@@ -151,7 +151,7 @@ let rec standardize: expression -> float list = function
 
 let rec find_zero_exact (e:expression) : expression option =
   match standardize e with
-  | [b; a] -> Some (Num (((-1.) *. b) /. a))
+  | [b; a] when a > 0. -> Some (Num (((-1.) *. b) /. a))
   | _ -> None
 
 (*>* Problem 2.5 *>*)
