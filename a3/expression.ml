@@ -149,8 +149,16 @@ let rec standardize: expression -> float list = function
   | Var -> [0.; 1.]
   | Binop (op, e1, e2) -> (poly_op op) (standardize e1) (standardize e2)
 
+let rec trim_head (empty: 'a) (xs: 'a list): 'a list =
+  match xs with
+  | hd::tl when hd = empty -> trim_head empty tl
+  | _ -> xs
+
+let trim_tail (empty: 'a) (xs: 'a list): 'a list =
+  List.rev (trim_head empty (List.rev xs))
+
 let rec find_zero_exact (e:expression) : expression option =
-  match standardize e with
+  match e |> standardize |> trim_tail 0. with
   | [b; a] when a > 0. -> Some (Num (((-1.) *. b) /. a))
   | _ -> None
 
