@@ -105,11 +105,15 @@ let suite =
         skip_if true "skip";
 
         assert_bool "should be None" ((Expression.find_zero_exact (ExpressionLibrary.parse "9")) = None);
+        assert_bool "should be None" ((Expression.find_zero_exact (ExpressionLibrary.parse "x * 0")) = None);
+        assert_bool "should be None" ((Expression.find_zero_exact
+                                         (ExpressionLibrary.parse "(x * 2) + (x * (0-2)) + 7")) = None);
         assert_bool "should be None" ((Expression.find_zero_exact
                                          (ExpressionLibrary.parse "(x * x) + 9")) = None);
         test_find_zero_exact "3 * x + 2";
         test_find_zero_exact "5*x - 3 + 2*(x - 8)";
         test_find_zero_exact "5*x - 3 + 2*(x - 8) + 17*(3*x + 9)";
+        test_find_zero_exact "(x * x * 0) + (x * 0.2) + 3";
         );
   ]
 
