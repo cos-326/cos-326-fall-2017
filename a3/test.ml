@@ -3,13 +3,13 @@ open OUnit2;;
 let test_find_zero_exact (exp:string) : unit =
   let e = ExpressionLibrary.parse exp in
   (* For some reason, cmp_float is failing here. Rather than debug too much, use this. *)
-  let my_cmp_float a b epsilon : bool = ((abs_float (a -. b)) < epsilon) in
+  let my_cmp_float epsilon a b : bool = ((abs_float (a -. b)) < epsilon) in
   match Expression.find_zero_exact e with
   | Some solution ->
     let s = (Expression.evaluate solution 123.) in
     let zero = (Expression.evaluate e s) in
 
-    assert_bool "not equal" (my_cmp_float zero 0. 0.001)
+    assert_equal ~cmp:(my_cmp_float 0.001) ~printer:string_of_float 0. zero
   | None -> assert false
 
 let suite =
@@ -71,19 +71,16 @@ let suite =
 
         let output = Expression.evaluate f' 2. in
 
-        Printf.printf "\nderivative: %f" output;
-        assert_equal output 4.
+        assert_equal ~printer:string_of_float 4. output
       );
 
     "find_zero: simple" >:: (fun _ -> 
         skip_if true "skip";
         let f = (ExpressionLibrary.parse "x * x - 1") in
-        let output = Expression.find_zero f 2. 0.01 50 in
 
-        match output with
+        match Expression.find_zero f 2. 0.01 50 with
         | Some x ->
-          (Printf.printf "\nfind_zero: Some %f" x);
-          assert_bool "not equal" (cmp_float ~epsilon:0.001 x 1.)
+          assert_equal ~cmp:(cmp_float ~epsilon:0.001) ~printer:string_of_float 1. x
         | None ->
           assert_failure "find_zero: None"
       );
@@ -114,7 +111,7 @@ let suite =
         test_find_zero_exact "5*x - 3 + 2*(x - 8)";
         test_find_zero_exact "5*x - 3 + 2*(x - 8) + 17*(3*x + 9)";
         test_find_zero_exact "(x * x * 0) + (x * 0.2) + 3";
-        );
+      );
   ]
 
 let () =
