@@ -1,0 +1,109 @@
+Partner 1's name: 
+Partner 1's login:
+
+(Leave blank if you are working alone)
+Partner 2's name: 
+Partner 2's login:
+
+Questions on Queues:
+
+These questions refer to code in theory.ml.
+
+(1) In theory.ml, define the OCaml function abstract that will
+transform any queue produced by module M1 in to the equivalent queue
+produced by module M2.  Your abstraction function should have the
+property that if you execute any sequence of M1 operations, and then
+use abstract on the result, you should wind up with the same data
+structure as if you applied the corresponding operations in M2.  In
+other words:
+
+   abstract (M1.op1 (M1.op2 (M1.op3 (M1.emp)))) 
+== M2.op1 (M2.op2 (M2.op3 (M2.emp)))
+
+There are a series of assertions at the bottom of theory.ml.
+When you have defined your abstraction function properly, all
+of those assertions should succeed.  (Note, the assertions do not
+cover all the (infinitely many) cases -- that is what proof is for.)
+
+Your abstraction function should use @ and/or List.rev in its simplest
+form.  If the body of your abstraction function is more than 2 lines
+long, you have probably at least phrased your abstraction function in
+a more complex way than is necessary, and potentially have made it
+incorrect.
+
+Show your abstraction function from theory.ml here:
+let abstract (q : int list * int list) : int list = 
+
+
+********************************************************************
+In the following questions, you may use the following lemmas about @ 
+and List.rev whenever you need to.  (Please cite the use of each lemma 
+when you use it.)
+
+Lemma 1: for all l:int list, [] @ l == l
+
+Lemma 2: for all l1, l2, l3:int list, l1 @ (l2 @ l3) == (l1 @ l2) @ l3
+
+Lemma 3: List.rev [] == []
+
+Lemma 4: List.rev (hd::tail) == (List.rev tail) @ [hd]
+
+If you find that you need some other property of @ and List.rev that
+is not mentioned, please write down the property that you need and
+continue.
+********************************************************************
+
+
+(2) What do you have to prove to show that
+M1.emp is properly related to M2.emp?
+
+Theorem:  ...
+
+
+
+(3) Prove what you claimed you needed to prove in step (2):
+
+Proof by ...:
+
+
+
+
+QED!
+
+(4) Here is what you have to prove to show that M1.ins is properly 
+related to M2.ins:
+
+Theorem:  
+for all integers i, 
+for all q1:int list * int list,
+for all q2:int list, 
+if   q1 == (f,b)
+and  abstract q1 == q2 
+then abstract (M1.ins (i,q1)) == M2.ins (i,q2)
+
+
+(5) Prove the theorem stated in step (4) using equational reasoning:
+
+Proof:
+
+Consider any i:int, q1:int list * int list, and q2:int list.
+Now assume the the "if" component of the theorem holds:
+
+(1) q1 == (f, b)          (for some f, b : int list)
+(2) abstract q1 == q2
+
+Now using those assumptions, prove the "then" part of the theorem:
+
+   abstract (M1.ins (i,q1))                 (LHS)
+==
+...
+== M2.ins (i,q2)                            (RHS)
+
+QED!
+
+(6) What do you have to prove to show that
+M1.rem is properly related to M2.rem?
+
+Theorem: ...
+
+(You don't have to prove this theorem -- just state it.)
