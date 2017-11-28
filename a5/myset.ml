@@ -49,7 +49,7 @@ end
 (* parameter to Set modules -- we must pass in some 
  * type for the elements of a set, a comparison
  * function, and a way to stringify it.
- *)
+*)
 module type COMPARABLE = 
 sig
   type t
@@ -110,49 +110,49 @@ struct
   let empty = []
   let is_empty xs = 
     match xs with 
-      | [] -> true
-      | _ -> false
+    | [] -> true
+    | _ -> false
   let singleton x = [x]
   let rec insert x xs = 
     match xs with 
-      | [] -> [x]
-      | y::ys -> (match C.compare x y with 
-          | Greater -> y::(insert x ys)
-          | Eq -> xs
-          | Less -> x::xs)
+    | [] -> [x]
+    | y::ys -> (match C.compare x y with 
+        | Greater -> y::(insert x ys)
+        | Eq -> xs
+        | Less -> x::xs)
 
   let union xs ys = List.fold_right insert xs ys
   let rec remove y xs = 
     match xs with 
-      | [] -> []
-      | x::xs1 -> (match C.compare y x with 
-          | Eq -> xs1
-          | Less -> xs
-          | Greater -> x::(remove y xs1))
+    | [] -> []
+    | x::xs1 -> (match C.compare y x with 
+        | Eq -> xs1
+        | Less -> xs
+        | Greater -> x::(remove y xs1))
 
   let rec intersect xs ys = 
     match xs, ys with 
-      | [], _ -> []
-      | _, [] -> []
-      | xh::xt, yh::yt -> (match C.compare xh yh with 
-          | Eq -> xh::(intersect xt yt)
-          | Less -> intersect xt ys
-          | Greater -> intersect xs yt)
+    | [], _ -> []
+    | _, [] -> []
+    | xh::xt, yh::yt -> (match C.compare xh yh with 
+        | Eq -> xh::(intersect xt yt)
+        | Less -> intersect xt ys
+        | Greater -> intersect xs yt)
 
   let rec member xs x = 
     match xs with 
-      | [] -> false
-      | y::ys -> (match C.compare x y with
-          | Eq -> true
-          | Greater -> member ys x
-          | Less -> false)
+    | [] -> false
+    | y::ys -> (match C.compare x y with
+        | Eq -> true
+        | Greater -> member ys x
+        | Less -> false)
 
   let choose xs = 
     match xs with 
-      | [] -> None
-      | x::rest -> Some (x,rest)
+    | [] -> None
+    | x::rest -> Some (x,rest)
   let fold f e = List.fold_left (fun a x -> f x a) e 
-    
+
   let string_of_elt = C.string_of_t
   let string_of_set (s: set) : string = 
     let f = (fun y e -> y ^ "; " ^ C.string_of_t e) in
@@ -283,5 +283,5 @@ module Make(C : COMPARABLE) : (SET with type elt = C.t) =
   (* Change this line to use our dictionary implementation when your are 
    * finished. *)
   ListSet (C)
-  (* DictSet (C) *)
+(* DictSet (C) *)
 

@@ -13,14 +13,14 @@
  *
  * ocamlc -o queue unix.cma ...
  * ocamlbuild -libs unix ...
- *)
+*)
 
 let time_fun f = 
   fun x -> 
     let t0 = Unix.gettimeofday() in 
     let _ = f x in 
     let t1 = Unix.gettimeofday() in 
-      (t1 -. t0)
+    (t1 -. t0)
 
 
 (* iterate is like reduce or fold_left for numbers -- we have
@@ -37,7 +37,7 @@ let gen = iterate (fun i rest -> i::rest) []
 
 let iter_time_fun f arg n = 
   let t = time_fun (iterate (fun i _ -> f arg; ()) ()) n in
-    t /. (float_of_int n)
+  t /. (float_of_int n)
 
 
 (* TESTING *)
@@ -53,8 +53,8 @@ module InsertSort : SORT =
 struct
   let rec insert lt xs x = 
     match xs with 
-      | [] -> [x]
-      | h::t -> if lt x h then x::xs else h::(insert lt t x)
+    | [] -> [x]
+    | h::t -> if lt x h then x::xs else h::(insert lt t x)
 
   let sort lt = List.fold_left (insert lt) []
 end
@@ -63,4 +63,4 @@ end
  * functions which return the total time taken for 
  * merge-sort and insertion-sort, given a list. *)
 let isort : int list -> float = time_fun (InsertSort.sort (<)) 
-  
+

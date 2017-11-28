@@ -11,7 +11,7 @@
  *
  * and you can read about the operations created when you use the functor
  *
- *)
+*)
 module type DICT = Map.S
 
 (********************************)
@@ -35,10 +35,10 @@ struct
     let f_memoed x =
       let history = ref (D.empty) in
       try D.find x (!history) with
-	  Not_found ->
-	    let result = f x in
-	    history := D.add x result (!history); 
-	    result
+        Not_found ->
+        let result = f x in
+        history := D.add x result (!history); 
+        result
     in
     f_memoed
 end

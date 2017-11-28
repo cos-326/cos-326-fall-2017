@@ -2,7 +2,7 @@
  * is used to associate a value with a key.  In our case, we will
  * be using a dictionary to build an index for the web, associating
  * a set of URLs with each word that we find as we crawl the web.
- *)
+*)
 exception TODO
 
 module type DICT = 
@@ -23,7 +23,7 @@ sig
    *      (k1,v1), (k2,v2), (k3,v3), ... (kn,vn)
    * then fold should return:
    *      f k1 v1 (f k2 v2 (f k3 v3 (f ... (f kn vn u))))
-   *)
+  *)
   val fold : (key -> value -> 'a -> 'a) -> 'a -> dict -> 'a
 
   (* Returns as an option the value associated with the provided key. If
@@ -115,8 +115,8 @@ struct
   (* returns the nth string in lst, or "cow" n > length of list *)
   let rec lst_n (lst: string list) (n: int) : string =
     match lst with
-      | [] -> "cow"
-      | hd::tl -> if n = 0 then hd else lst_n tl (n-1)
+    | [] -> "cow"
+    | hd::tl -> if n = 0 then hd else lst_n tl (n-1)
 
   (* list of possible values to generate *)
   let possible_values = ["a";"c";"d";"e";"f";"g";"h";"i";"j";"k";"m";"n";
@@ -138,7 +138,7 @@ end
 
 (* An association list implementation of our DICT signature. *)
 module AssocListDict(D:DICT_ARG) : (DICT with type key = D.key
-  with type value = D.value) = 
+                                    with type value = D.value) = 
 struct
   open Order;;
   type key = D.key;;
@@ -153,46 +153,46 @@ struct
 
   let rec lookup d k = 
     match d with 
-      | [] -> None
-      | (k1,v1)::d1 -> 
-        (match D.compare k k1 with
-          | Eq -> Some v1
-          | Greater -> lookup d1 k 
-          | _ -> None)
+    | [] -> None
+    | (k1,v1)::d1 -> 
+      (match D.compare k k1 with
+       | Eq -> Some v1
+       | Greater -> lookup d1 k 
+       | _ -> None)
 
   let member d k = 
     match lookup d k with 
-      | None -> false 
-      | Some _ -> true
+    | None -> false 
+    | Some _ -> true
 
   let rec insert d k v = 
     match d with 
-      | [] -> [(k,v)]
-      | (k1,v1)::d1 -> 
-        (match D.compare k k1 with 
-          | Less -> (k,v)::d
-          | Eq -> (k,v)::d1
-          | Greater -> (k1,v1)::(insert d1 k v))
+    | [] -> [(k,v)]
+    | (k1,v1)::d1 -> 
+      (match D.compare k k1 with 
+       | Less -> (k,v)::d
+       | Eq -> (k,v)::d1
+       | Greater -> (k1,v1)::(insert d1 k v))
 
   let rec remove d k = 
     match d with 
-      | [] -> []
-      | (k1,v1)::d1 ->
-	(match D.compare k k1 with 
-          | Eq -> d1
-          | Greater -> (k1,v1)::(remove d1 k)
-          | _ -> d)
-	  
+    | [] -> []
+    | (k1,v1)::d1 ->
+      (match D.compare k k1 with 
+       | Eq -> d1
+       | Greater -> (k1,v1)::(remove d1 k)
+       | _ -> d)
+
   let choose d = 
     match d with 
-      | [] -> None
-      | (k,v)::rest -> Some(k,v,rest)
+    | [] -> None
+    | (k,v)::rest -> Some(k,v,rest)
 
   let string_of_key = D.string_of_key
   let string_of_value = D.string_of_value
   let string_of_dict (d: dict) : string = 
     let f = (fun y (k,v) -> y ^ "\n key: " ^ D.string_of_key k ^ 
-      "; value: (" ^ D.string_of_value v ^ ")") in
+                            "; value: (" ^ D.string_of_value v ^ ")") in
     List.fold_left f "" d
 
   (****************************************************************)
@@ -236,12 +236,12 @@ struct
     let d1 = insert_list empty pairs1 in
     List.iter 
       (fun (k,v) -> 
-        let r = remove d1 k in
-        List.iter 
-          (fun (k2,v2) ->
-            if k = k2 then assert(lookup r k2 = None)
-            else assert(lookup r k2 = Some v2)
-          ) pairs1
+         let r = remove d1 k in
+         List.iter 
+           (fun (k2,v2) ->
+              if k = k2 then assert(lookup r k2 = None)
+              else assert(lookup r k2 = Some v2)
+           ) pairs1
       ) pairs1 ;
     ()
 
@@ -346,7 +346,7 @@ struct
     | Left3
     | Mid3
     | Right3
-        
+
   (* How do we represent an empty dictionary with 2-3 trees? *)
   let empty : dict = Leaf
 
@@ -360,7 +360,7 @@ struct
   let string_of_key = raise TODO
   let string_of_value = raise TODO
   let string_of_dict (d: dict) : string = raise TODO
-      
+
   (* Debugging function. This will print out the tree in text format.
    * Use this function to see the actual structure of your 2-3 tree. *
    *
@@ -813,9 +813,9 @@ IntStringBTDict.run_tests();;
 (* AssocListDict or BTDict functors                               *)
 (******************************************************************)
 module Make (D:DICT_ARG) : (DICT with type key = D.key
-  with type value = D.value) = 
+                            with type value = D.value) = 
   (* Change this line to the BTDict implementation when you are
    * done implementing your 2-3 trees. *)
   AssocListDict(D)
-  (* BTDict(D) *)
+(* BTDict(D) *)
 

@@ -75,10 +75,10 @@ let graph_of_pages (pages : PageSet.set) : PageGraph.graph =
         PageGraph.add_edge g page.url dst
       else g 
     in
-      List.fold_left add_link graph page.links
+    List.fold_left add_link graph page.links
   in
-    PageSet.fold add_links PageGraph.empty pages
-      
+  PageSet.fold add_links PageGraph.empty pages
+
 (* The rest of the world wants a RankDict, not a NodeScore. *)
 
 let dict_of_ns (ns : PageScore.node_score_map) : RankDict.dict =
@@ -106,11 +106,11 @@ struct
         | None -> []
         | Some xs -> xs
       in
-        List.fold_left (fun ns' neighbor -> NS.add_score ns' neighbor 1.0) 
-          ns neighbors 
+      List.fold_left (fun ns' neighbor -> NS.add_score ns' neighbor 1.0) 
+        ns neighbors 
     in
     let nodes = (G.nodes g) in
-      List.fold_left add_node_edges (NS.zero_node_score_map nodes) nodes
+    List.fold_left add_node_edges (NS.zero_node_score_map nodes) nodes
 end
 
 
@@ -149,13 +149,13 @@ struct
   module G = NamedGraph
   let g = G.add_edge G.empty "a" "b";;
   let g2 = G.add_edge g "a" "c";;
-  
+
   module NS = NodeScore (struct
-                           type node = string 
-                           let compare = string_compare
-                           let string_of_node = fun x -> x
-                           let gen () = ""
-                         end);;
+      type node = string 
+      let compare = string_compare
+      let string_of_node = fun x -> x
+      let gen () = ""
+    end);;
 
   module Ranker = InDegreeRanker (G) (NS);;
   let ns = Ranker.rank g2;;
@@ -184,7 +184,7 @@ struct
                         ("e","f") ;
                         ("a","g") ;
                         ("g","a")]
-  
+
   module NS = NodeScore (struct
                            type node = string 
                            let compare = string_compare

@@ -13,10 +13,10 @@ let from_char b =
 
 let compare (a:base) (b:base) : int =
   match (a,b) with
-      (A, A) | (T, T) | (C, C) | (G, G) -> 0
-    | (A, _) -> -1 | (_, A) -> 1
-    | (T, _) -> -1 | (_, T) -> 1
-    | (C, _) -> -1 | (_, C) -> 1
+    (A, A) | (T, T) | (C, C) | (G, G) -> 0
+  | (A, _) -> -1 | (_, A) -> 1
+  | (T, _) -> -1 | (_, T) -> 1
+  | (C, _) -> -1 | (_, C) -> 1
 
 
 let dna_from_string (s : string) : dna =
@@ -32,8 +32,8 @@ let dna_from_string (s : string) : dna =
 let iterator f xs =
   let rec aux f n xs =
     match xs with
-	[] -> ()
-      | hd::tail -> f n hd; aux f (n+1) tail
+      [] -> ()
+    | hd::tail -> f n hd; aux f (n+1) tail
   in
   aux f 0 xs
 

@@ -4,7 +4,7 @@ open Timing
 (* See http://caml.inria.fr/pub/docs/manual-ocaml-4.00/libref/Map.html 
  * http://caml.inria.fr/pub/docs/manual-ocaml-4.00/libref/Map.S.html
  * http://caml.inria.fr/pub/docs/manual-ocaml-4.00/libref/Map.OrderedType.html
- *)
+*)
 module type DICT = Map.S
 module type ORDERED = Map.OrderedType
 
@@ -30,9 +30,9 @@ struct
   let fib (n : int) : int =
     let rec aux i f1 f2 = 
       if i = n then
-	f1 + f2
+        f1 + f2
       else
-	aux (i+1) (f1+f2) f1
+        aux (i+1) (f1+f2) f1
     in
     if n > 1 then aux 2 1 0
     else n	
@@ -82,8 +82,8 @@ let print_row n slow fast manual automated =
   let float f = Printf.printf "%6.4f" f in
   let print_slow slow =
     match slow with
-	None -> print_string "   -  " 
-      | Some f -> float f
+      None -> print_string "   -  " 
+    | Some f -> float f
   in
   if n < 10 then print_string " ";
   if n < 100 then print_string " ";
@@ -117,7 +117,7 @@ let main () =
   (* change these numbers if you want depending on the speed of your machine *)
   (* on my machine slow_fib starts taking visible time at input 30 *)
   let trials = [0;1;2;10;20;30;36;37;38;39;40;
-		50;100;25000;50000;100000;200000] in
+                50;100;25000;50000;100000;200000] in
   print_header();
   List.iter experiment trials
 

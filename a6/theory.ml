@@ -20,9 +20,9 @@ module M1 = struct
       ([],[]) -> None
     | (hd::front, back) -> Some (hd, (front,back))
     | ([], back) -> 
-       (match List.rev back with
+      (match List.rev back with
          hd::tail -> Some (hd, (tail, []))
-        | _ -> failwith "impossible")       
+       | _ -> failwith "impossible")       
 end
 
 module M2 = struct
@@ -31,7 +31,7 @@ module M2 = struct
   let emp = []
 
   let ins (i,q) = q @ [i]
- 
+
   let rem q =
     match q with
       [] -> None
@@ -54,8 +54,8 @@ let client3 emp ins rem =
   let q1 = ins (5, ins (3, emp)) in
   let q2 = 
     match rem q1 with 
-	Some (hd,q2) -> q2
-      |_ -> failwith "impossible"
+      Some (hd,q2) -> q2
+    |_ -> failwith "impossible"
   in
   ins (7, q2)
 

@@ -10,7 +10,7 @@ sig
   type node_score_map
   val empty : node_score_map
   val scale : node_score_map -> float -> node_score_map
-    
+
   (* Scale the scores so that they add to 1.  If they originally add to zero,
    * leaves them unchanged *)
   val normalize : node_score_map -> node_score_map
@@ -22,7 +22,7 @@ sig
 
   (* Add to the old score.  (Use zero if no old score) *)
   val add_score : node_score_map -> node -> float -> node_score_map
-    
+
   (* Create a zero valued node_score_map *)
   val zero_node_score_map : node list -> node_score_map
 
@@ -63,7 +63,7 @@ struct
 
   let normalize ns =
     let s = sum ns in
-      if s = 0.0 then ns else scale ns (1.0 /. s)
+    if s = 0.0 then ns else scale ns (1.0 /. s)
 
   let nodes ns =
     D.fold (fun n s r -> n :: r) [] ns
@@ -76,14 +76,14 @@ struct
 
   let add_score ns n s =
     match get_score ns n with
-      | None -> set_score ns n s
-      | Some v -> set_score ns n (s +. v)
+    | None -> set_score ns n s
+    | Some v -> set_score ns n (s +. v)
 
   let string_of_node_score_map = D.string_of_dict
 
   let fold f u ns =
     D.fold f u ns
-      
+
   let fixed_node_score_map nodes v =
     List.fold_left (fun r node -> set_score r node v) empty nodes
 

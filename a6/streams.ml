@@ -31,7 +31,7 @@
  *  ( **/ ) power on nums
  *
  * See the documentation for more.
- *)
+*)
 
 open Num
 
@@ -97,7 +97,7 @@ let rec nth (n:num) (s:'a stream) : 'a =
  * library, as in the rest of this file.
 
  * Such a spreadsheet will need to support the following operations:
- *)
+*)
 
 type 'a spread_sheet = num (* change me! *)
 
@@ -113,7 +113,7 @@ let get ((i,j):coordinates) (ss:'a spread_sheet) : 'a =
 
 (* create a new spreadsheet where the (i,j) element of the spreadsheet
  * contains f i j xij  when xij was the (i,j) element of the input spreadsheet
- *)
+*)
 let map_all (f:num -> num -> 'a -> 'b) (ss:'a spread_sheet) : 'b spread_sheet = 
   raise unimplemented
 
