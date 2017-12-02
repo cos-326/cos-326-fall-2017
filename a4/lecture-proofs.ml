@@ -265,7 +265,12 @@ case t = Leaf:
 = flip Leaf                         (eval flip, 1st branch; RHS)
 
 case t = Node (a,b):
-  flip (flip (flip (Node (a,b)))          (LHS)
-= flip (flip (Node (flip b, flip a)))     (eval 
+  flip (flip (flip (Node (a,b)))                (LHS)
+= flip (flip (Node (flip b, flip a)))           (eval flip, 2nd branch)
+= flip (Node (flip (flip a), flip (flip b))     (eval flip, 2nd branch)
+= flip (Node (a, flip (flip b)))                (flip (flip t) = t)               
+= flip (Node (a, b))                            (flip (flip t) = t; RHS)
   
+QED
+
 *)

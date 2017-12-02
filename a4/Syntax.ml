@@ -1,3 +1,5 @@
+open List
+
 (*********************)
 (* Dynamic ML Syntax *)
 (*********************)
@@ -72,14 +74,17 @@ let empty_env : env = []
 (* lookup_env env x == Some v 
  *   where (x,v) is the most recently added pair (x,v) containing x
  * lookup_env env x == None 
- *   if x does not appear in env *)
+ *   if x does not appear in env
+ *)
+
 let rec lookup_env (env:env) (x:variable) : exp option =
-  failwith "unimplemented"
+  List.assoc_opt x env
 
 (* update env x v returns a new env containing the pair (x,v) 
  * The exact operation (replacing, overriding, etc.) is up to 
  * you, but clearly your other functions (notably lookup_env) 
  * must know the semantics of update_env
 *)
+
 let update_env (env:env) (x:variable) (v:exp) : env = 
-  failwith "unimplemented"
+  (x,v) :: (List.remove_assoc x env)

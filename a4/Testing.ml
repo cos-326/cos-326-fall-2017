@@ -108,11 +108,18 @@ let sl4 = App (sumlist, list4)
    the function map : ('a -> 'b) -> 'a list -> 'b list 
    Note: do not implement this as map: (('a -> 'b)*'a list) -> 'b list
 *)
-let map = one
+
+let map = Rec ("map", "f",
+            Rec ("loop", "l",
+              Match (Var "l",
+                     EmptyList,
+                     "hd", "tl", Cons (App (Var "f", Var "hd"), App (Var "loop", Var "tl")))
+            )
+          )
 
 (* Replace the constant "one" below with your implementation of 
    the function plus1 that adds one to an integer *)
-let plus1 = one
+let plus1 = Rec ("plus1", "n", (Op (Var "n", Plus, one)))
 
 (* Use plus1 and map, defined above, to implement the function 
    incr_all, which adds 1 to every element of a list. Examples:
@@ -120,7 +127,9 @@ let plus1 = one
    incr_all [] == []
    incr_all [1;2;3] == [2;3;4]
 *)
-let incr_all = one
+let incr_all = Rec ("incr_all", "l", (App (App (map, plus1), Var "l")))
+
+let test_incr_all = App (incr_all, list4)
 
 (* Replace the constant one below by implementing a function that 
  * takes a list of pairs of integers and returns a list of integers 
@@ -131,14 +140,54 @@ let incr_all = one
    sum_pairs [(1,2); (3,4)] == [3; 7]
 *)
 
-let sum_pairs = one
+let sum_pair = Rec ("sum_pair", "p", Op (Fst (Var "p"), Plus, Snd (Var "p")))
+let sum_pairs = Rec ("sum_pairs", "l", App (App (map, sum_pair), Var "l"))
+
+(*
+ * AUX TESTS
+ *)
+
+let simple_if : exp = If (Constant (Bool false), one, two)
+let simple_op : exp = Op (one, Plus, four)
+let simple_let : exp = Let ("x", three, Var "x")
+let simple_let_2 : exp = Let ("x", three, Op (two, Plus, Var "x"))
+let simple_pair : exp = Pair (one, two)
+let simple_pair_2 : exp = Pair (simple_let, two)
+
+let simple_match : exp = Match (EmptyList, one, "hd", "tl", two)
+let simple_match_2 : exp = Match (Cons (one, EmptyList), two, "hd", "tl", three)
+let simple_match_3 : exp = Match (Cons (one, EmptyList), two, "hd", "tl", (Var "tl"))
+
+let id = Rec ("id", "x", Var "x")
+let simple_f = App (id, Constant (Int 420))
+let simple_map = App (App (map, id), list4)
+let simple_sum_pairs = App (sum_pairs, Cons (Pair (one, two), Cons (Pair (three, four), EmptyList)))
 
 (*********)
 (* TESTS *)
 (*********)
 
 (* Feel free to add many more tests of your own to the list *)
-let tests = [zero; fact4; list4; sl4; clo; incr_all]
+let tests = [
+  zero;
+  simple_if;
+  simple_op;
+  simple_let;
+  simple_let_2;
+  simple_pair;
+  simple_pair_2;
+  simple_match;
+  simple_match_2;
+  simple_match_3;
+  simple_f;
+  fact4;
+  list4;
+  sl4;
+  clo;
+  simple_map;
+  test_incr_all;
+  simple_sum_pairs;
+]
 
 let run_test eval exp =
   Printf.printf "========\n";
@@ -149,7 +198,5 @@ let run_test eval exp =
 
 let run_tests eval tests =
   List.iter (run_test eval) tests
-
-
 
 
