@@ -28,7 +28,19 @@ let eval_body (env:env) (eval_loop:env -> exp -> exp) (e:exp) : exp =
     (match lookup_env env x with 
        None -> raise (UnboundVariable x)
      | Some v -> v)
-  | _ -> failwith "unimplemented"
+  | Constant c -> failwith "unimplemented"
+  | Op (x, op, y) -> failwith "unimplemented"
+  | If (condition, yes, no) -> failwith "unimplemented"
+  | Let (var, x, expression) -> failwith "unimplemented"
+  | Pair(x, y) -> failwith "unimplemented"
+  | Fst x -> failwith "unimplemented"
+  | Snd y -> failwith "unimplemented"
+  | EmptyList -> failwith "unimplemented"
+  | Cons (hd, tl)-> failwith "unimplemented"
+  | Match (matcher, if_empty, hd, tl, if_full)-> failwith "unimplemented"
+  | Rec(name, param, body)-> failwith "unimplemented"
+  | Closure(env, name, params, body)-> failwith "unimplemented"
+  | App(name, arg)-> failwith "unimplemented"
 
 (* evaluate closed, top-level expression e *)
 
