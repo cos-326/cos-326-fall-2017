@@ -112,12 +112,14 @@ let map =
   Rec ("map", "f",
        Rec ("map'", "xs",
             Match(
-              App(Var "f", Var "xs"),
+              Var "xs",
               EmptyList,
               "hd", "tl",
               Cons(
                 App(Var "f", Var "hd"),
-                App(Var "map", App (Var "f", Var "tl"))))))
+                App(
+                  App(Var "map", Var "f"),
+                  Var "tl")))))
 
 (* Replace the constant "one" below with your implementation of 
    the function plus1 that adds one to an integer *)
@@ -138,7 +140,7 @@ let incr_all = App(
       "incr_all", "xs", 
       App (App(map, plus1), Var "xs")
     ),
-    Cons(one, Cons (two, three)))
+    Cons(one, Cons (two, Cons (three, EmptyList))))
 
 (* Replace the constant one below by implementing a function that 
  * takes a list of pairs of integers and returns a list of integers 

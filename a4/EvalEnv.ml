@@ -21,6 +21,74 @@ let rec is_value (e:exp) : bool =
   | Closure _ -> true
   | _ -> false
 
+let rec contains xs x : bool =
+  match xs with
+  | [] -> false
+  | hd::_ when var_eq hd x -> true
+  | _::tl -> contains tl x
+
+let rec free_variables' (bound: variable list) (free: variable list) (e: exp) : variable list =
+  let unbound_free = free_variables' bound free in
+  match e with
+  (* Don't bother looking for vars in values *)
+  | _ when is_value e -> []
+  (* Expressions with vars *)
+  | Var x ->
+    if contains bound x
+    then free
+    else x::free
+  | Let (var, x, expression) ->
+    free_variables' (var::bound) free expression
+  | Rec(name, param, body)->
+    free_variables' (param::name::bound) free body 
+  | Match (matcher, if_empty, hd, tl, if_full)-> 
+    unbound_free matcher @
+    unbound_free if_empty @
+    free_variables' (hd::tl::bound) free if_full
+  (* Expressions without vars *)
+  | Constant _ -> []
+  | Op (x, op, y) ->
+    unbound_free x @
+    unbound_free y
+  | If (condition, yes, no) ->
+    unbound_free condition @
+    unbound_free yes @
+    unbound_free no
+  | Pair(x, y) ->
+    unbound_free x @
+    unbound_free y
+  | Fst p -> 
+    unbound_free p
+  | Snd p -> 
+    unbound_free p
+  | EmptyList -> []
+  | Cons (hd, tl)-> 
+    unbound_free hd @
+    unbound_free tl
+  | Closure _-> []
+  | App(f, arg)->
+    unbound_free f @
+    unbound_free arg 
+
+let free_variables (bound: variable list) (e: exp) : variable list =
+  free_variables' bound [] e
+
+let lookup_env_pair (env:env) (x:variable) : (variable * exp) =
+  match lookup_env env x with
+  | None -> raise (UnboundVariable x)
+  | Some value -> (x, value)
+
+let remove_dupe clean x =
+  if contains clean x then clean else x::clean
+
+let dedupe (xs: 'a list): 'a list =
+  xs
+  |> List.fold_left remove_dupe []
+  |> List.rev
+
+let prune_env (env: env) (free: variable list) : env =
+  List.map (fun var -> lookup_env_pair env var) free
+
 (* evaluation; use eval_loop to recursively evaluate subexpressions *)
 let eval_body (env:env) (eval_loop:env -> exp -> exp) (e:exp) : exp = 
   let eval_env = eval_loop env in
@@ -67,6 +135,12 @@ let eval_body (env:env) (eval_loop:env -> exp -> exp) (e:exp) : exp =
        eval_loop env if_full
      | _ -> raise (BadMatch matcher))
   | Rec(name, param, body)->
+    let env = 
+      body 
+      |> free_variables [param;name]
+      |> dedupe
+      |> prune_env env in
+
     Closure(env, name, param, body)
   | Closure _-> e
   | App(f, arg)->
