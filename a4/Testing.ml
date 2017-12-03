@@ -135,12 +135,10 @@ let plus1 = Rec (
    incr_all [] == []
    incr_all [1;2;3] == [2;3;4]
 *)
-let incr_all = App(
-    Rec(
-      "incr_all", "xs", 
-      App (App(map, plus1), Var "xs")
-    ),
-    Cons(one, Cons (two, Cons (three, EmptyList))))
+let incr_all = Rec(
+    "incr_all", "xs", 
+    App (App(map, plus1), Var "xs")
+  )
 
 (* Replace the constant one below by implementing a function that 
  * takes a list of pairs of integers and returns a list of integers 
@@ -151,7 +149,20 @@ let incr_all = App(
    sum_pairs [(1,2); (3,4)] == [3; 7]
 *)
 
-let sum_pairs = one
+let sum_pair = Rec(
+    "sum_pair",
+    "pair",
+    Op(
+      (Fst (Var "pair")),
+      Plus,
+      (Snd (Var "pair"))
+    )
+  )
+
+let sum_pairs = Rec(
+    "sum_pairs", "xs", 
+    App (App(map, sum_pair), Var "xs")
+  )
 
 (*********)
 (* TESTS *)
