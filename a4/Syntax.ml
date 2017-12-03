@@ -74,7 +74,10 @@ let empty_env : env = []
  * lookup_env env x == None 
  *   if x does not appear in env *)
 let rec lookup_env (env:env) (x:variable) : exp option =
-  failwith "unimplemented"
+  match env with
+  | [] -> None
+  | (var, value)::_ when var = x -> Some value
+  | _::tl -> lookup_env tl x
 
 (* update env x v returns a new env containing the pair (x,v) 
  * The exact operation (replacing, overriding, etc.) is up to 
@@ -82,4 +85,4 @@ let rec lookup_env (env:env) (x:variable) : exp option =
  * must know the semantics of update_env
 *)
 let update_env (env:env) (x:variable) (v:exp) : env = 
-  failwith "unimplemented"
+  (x, v) :: env
