@@ -1,0 +1,67 @@
+open OUnit2;;
+
+open Syntax
+open Printing
+open Testing 
+
+let eval (e: exp) : string =
+  e
+  |> EvalEnv.eval
+  |> string_of_exp
+
+let identity x = x
+let assert_eq_string = assert_equal ~printer:identity
+
+let suite =
+  "A4" >::: [
+    "zero" >:: (fun _ -> 
+        assert_eq_string (eval Testing.zero) "0";
+      );
+
+    "fact4" >:: (fun _ -> 
+        assert_eq_string (eval Testing.fact4) "24";
+      );
+
+    "list4" >:: (fun _ -> 
+        assert_eq_string (eval Testing.list4) "1::2::3::4::[]";
+      );
+
+    "sl4" >:: (fun _ -> 
+        assert_eq_string (eval Testing.sl4) "10";
+      );
+
+    "clo" >:: (fun _ -> 
+        assert_eq_string (eval Testing.clo) "11";
+      );
+
+    "incr_all: empty" >:: (fun _ -> 
+        let exp = App(incr_all, EmptyList) in
+
+        assert_eq_string (eval exp) "[]";
+      );
+
+    "incr_all" >:: (fun _ -> 
+        let list3 = listify [one;two;three] in
+        let exp = App(incr_all, list3) in
+
+        assert_eq_string (eval exp) "2::3::4::[]";
+      );
+
+    "sum_pairs: empty" >:: (fun _ -> 
+        let exp = App(sum_pairs, EmptyList) in
+
+        assert_eq_string (eval exp) "[]";
+      );
+
+    "sum_pairs" >:: (fun _ -> 
+        let pairs = 
+          Cons (Pair (one, two), Cons( Pair (three, four), EmptyList)) in
+        let exp = App(sum_pairs, pairs) in
+
+        assert_eq_string (eval exp) "3::7::[]";
+      );
+  ]
+
+let () =
+  run_test_tt_main suite
+;;
