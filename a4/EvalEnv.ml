@@ -59,12 +59,12 @@ let eval_body (env:env) (eval_loop:env -> exp -> exp) (e:exp) : exp =
      | Cons(x,y) -> Cons(hd, Cons(x,y))
      | _ -> raise (BadMatch tl))
   | Match (matcher, if_empty, hd, tl, if_full)-> 
-    (match matcher with
+    (match eval_env matcher with
      | EmptyList -> eval_env if_empty
      | Cons(h, t) ->
        let env = update_env env hd h in
        let env = update_env env tl t in
-       eval_env if_full
+       eval_loop env if_full
      | _ -> raise (BadMatch matcher))
   | Rec(name, param, body)->
     Closure(env, name, param, body)
