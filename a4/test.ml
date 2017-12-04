@@ -19,6 +19,15 @@ let clo2 =
             Rec ("_closure", "x", Op(Var "z", Plus, (Var "x"))),
             App (Var "f", three)))
 
+(* let make-adder = (fun x -> (fun arg -> x + arg)) in (let add_three (make_adder 3) in add_three 4) *)
+let clo3 =
+  Let ("make_adder",
+       Rec ("_make_adder", "x",
+            Rec ("_adder", "arg",
+                 Op(Var "x", Plus, (Var "arg")))),
+       Let("add_three", App((Var "make_adder"), three),
+           App((Var "add_three"), four)))
+
 let suite =
   "A4" >::: [
     "zero" >:: (fun _ -> 
@@ -43,6 +52,9 @@ let suite =
 
     "clo2" >:: (fun _ ->
         assert_eq_string (eval clo2) "5");
+
+    "clo3" >:: (fun _ ->
+        assert_eq_string (eval clo3) "7");
 
     "incr_all: empty" >:: (fun _ -> 
         let exp = App(incr_all, EmptyList) in
