@@ -12,6 +12,13 @@ let eval (e: exp) : string =
 let identity x = x
 let assert_eq_string = assert_equal ~printer:identity
 
+(* let z = 2 in (let f = (fun x -> z + x) in f 3) *)
+let clo2 =
+  Let ("z", two,
+       Let ("f",
+            Rec ("_closure", "x", Op(Var "z", Plus, (Var "x"))),
+            App (Var "f", three)))
+
 let suite =
   "A4" >::: [
     "zero" >:: (fun _ -> 
@@ -33,6 +40,9 @@ let suite =
     "clo" >:: (fun _ -> 
         assert_eq_string (eval Testing.clo) "11";
       );
+
+    "clo2" >:: (fun _ ->
+        assert_eq_string (eval clo2) "5");
 
     "incr_all: empty" >:: (fun _ -> 
         let exp = App(incr_all, EmptyList) in
