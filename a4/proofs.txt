@@ -1,5 +1,5 @@
-NAME:
-LOGIN:
+NAME: Will
+LOGIN: 
 
 Part 2, Assignment #4, COS 326
 ------------------------------
@@ -15,11 +15,14 @@ cadd a (cadd b c) == cadd (cadd a b) c
 
 Proof:
 
-
-
-
-
-
+cadd a (cadd b c)
+cadd a (xb+xc, yb+yc)       (eval cadd)
+(xa+(xb+xc)), (ya+(yb+yc))  (eval cadd)
+(xa+xb+xc), (ya+yb+yc)      (associative)
+((xa+xb)+xc, (ya+yb)+yc)    (associativity)
+cadd (xa+xb, ya+yb) c       (eval cadd in reverse)
+cadd (cadd a b) c           (eval cadd in reverse)
+QED
 
 Part 2.2: 
 ---------
@@ -33,26 +36,32 @@ Proof:  By induction on the structure of the list xs.
 
 case xs == []:
 
-To show:
+  To show:
+    max (maxs []) (maxs zs) == (maxs (append [] zs))
 
-Proof:
-
-
-
-
+  Proof:
+    max (maxs []) (maxs zs)
+    max min_int (maxs zs)   (eval maxs)
+    (maxs zs)               (max_int)
+    (maxs (append [] zs))   (reverse eval append)
 
 
 case xs == hd::tail:
 
-IH:   
+  IH: 
+    max (maxs ys) (maxs zs) == (maxs (append ys zs))
 
-To show:   
+  To show:   
+    max (maxs (y::ys)) (maxs zs) == (maxs (append (y::ys) zs))
 
-Proof:
-
-
-
-QED!
+  Proof:
+    max (maxs (y::ys)) (maxs zs) 
+    max (max y (maxs ys)) (maxs zs) (eval)
+    max y (max (maxs ys) (maxs zs)) (associativity)
+    max y (maxs (append ys zs))     (IH)
+    maxs (y :: append ys zs)        (reverse eval maxs)
+    maxs (append (y::ys) zs)        (reverse eval append)
+QED
 
 Part 2.3: 
 ---------
