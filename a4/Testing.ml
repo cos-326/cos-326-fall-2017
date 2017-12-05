@@ -146,6 +146,7 @@ let sum_pairs = Rec ("sum_pairs", "l", App (App (map, sum_pair), Var "l"))
 (*
  * AUX TESTS
  *)
+let id = Rec ("id", "x", Var "x")
 
 let simple_if : exp = If (Constant (Bool false), one, two)
 let simple_op : exp = Op (one, Plus, four)
@@ -153,15 +154,14 @@ let simple_let : exp = Let ("x", three, Var "x")
 let simple_let_2 : exp = Let ("x", three, Op (two, Plus, Var "x"))
 let simple_pair : exp = Pair (one, two)
 let simple_pair_2 : exp = Pair (simple_let, two)
-
 let simple_match : exp = Match (EmptyList, one, "hd", "tl", two)
 let simple_match_2 : exp = Match (Cons (one, EmptyList), two, "hd", "tl", three)
 let simple_match_3 : exp = Match (Cons (one, EmptyList), two, "hd", "tl", (Var "tl"))
-
-let id = Rec ("id", "x", Var "x")
 let simple_f = App (id, Constant (Int 420))
 let simple_map = App (App (map, id), list4)
 let simple_sum_pairs = App (sum_pairs, Cons (Pair (one, two), Cons (Pair (three, four), EmptyList)))
+let simple_semantic_fail = Let ("x",four,(If (one, two, three)))
+let simple_semantic_fail_1 = Let ("x",four,(Op (one, Plus, Constant (Bool false))))
 
 (*********)
 (* TESTS *)
@@ -187,6 +187,8 @@ let tests = [
   simple_map;
   test_incr_all;
   simple_sum_pairs;
+  simple_semantic_fail_1;
+  simple_semantic_fail;
 ]
 
 let run_test eval exp =
@@ -199,4 +201,5 @@ let run_test eval exp =
 let run_tests eval tests =
   List.iter (run_test eval) tests
 
-
+let xPlus2 = Op (Var "x", Plus, two)
+let xIs3InXPlus2 = Let ("x", three, xPlus2)

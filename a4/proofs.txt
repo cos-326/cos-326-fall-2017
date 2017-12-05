@@ -9,20 +9,43 @@ Part 2, Assignment #4, COS 326
 Part 2.1:
 --------
 
+>     type complex = int * int
+>     
+>     let cadd (c1:complex) (c2:complex) = 
+>       let (x1,y1) = c1 in
+>       let (x2,y2) = c2 in
+>       (x1+x2, y1+y2)
+
 Prove that for all a, b, c : complex,
 
 cadd a (cadd b c) == cadd (cadd a b) c
 
 Proof:
 
+  cadd a (cadd b c)               (LHS)
+= cadd a (bx+cx,by+cy)            (eval inner cadd)
+= (ax+(bx+cx),ay+(by+cy))         (eval cadd)
+= ((ax+bx)+cx,(ay+by)+cy)         (math)
+= cadd (ax+bx,ay+by) c            (reverse eval cadd)
+= cadd (cadd a b) c               (reverse eval cadd; RHS)
 
-
-
-
-
+QED
 
 Part 2.2: 
 ---------
+
+>   let max (x:int) (y:int) = 
+>     if x >= y then x else y
+>   
+>   let rec maxs (xs:int list) =
+>     match xs with
+>     | [] -> min_int
+>     | hd::tl -> max hd (maxs tl)
+>   
+>   let rec append (l1:'a list) (l2:'a list) : 'a list =
+>     match l1 with 
+>     | [] -> l2
+>     | hd::tl -> hd :: append tl l2
 
 Prove that for all integer lists xs and ys,
 max (maxs xs) (maxs ys) == (maxs (append xs ys)).
@@ -33,70 +56,141 @@ Proof:  By induction on the structure of the list xs.
 
 case xs == []:
 
-To show:
+To show: max (maxs []) (maxs ys) == (maxs (append [] ys))
 
 Proof:
 
+  max (maxs []) (maxs ys)             (LHS)
+= max (maxs []) (max hd (maxs tl))    (eval maxs)
+= max min_int (max hd (maxs tl))      (eval maxs)
+= max hd (maxs tl)                    (min_int)
+= maxs ys                             (reverse eval maxs)
+= maxs (append [] ys)                 (reverse eval append; RHS)
 
 
+case xs == hd::tl:
 
+To show: max (maxs (hd::tl)) (maxs ys) == (maxs (append (hd::tl) ys))
 
-
-case xs == hd::tail:
-
-IH:   
-
-To show:   
+IH: max (maxs tl) (maxs ys) == maxs (append tl ys)
 
 Proof:
 
-
+  max (maxs (hd::tl)) (maxs ys)       (LHS)
+= max (max hd (maxs tl)) (maxs ys)    (eval maxs)
+= max hd (max (maxs tl) (maxs ys))    (associativity)
+= max hd (maxs append tl ys)          (inductive hypothesis)
+= maxs (hd::append tl ys)             (reverse eval maxs)
+= maxs (append (hd::tl) ys)           (reverse eval append; RHS)
 
 QED!
 
 Part 2.3: 
 ---------
 
+>   let rec map (f:'a -> 'b) (xs:'a list) : 'b list =
+>     match xs with
+>     | [] -> []
+>     | hd::tl -> f hd :: map f tl
+>               
+>   let bump1 (xs:int list) : int list = 
+>     map (fun x -> x+1) xs
+>   
+>   let bump2 (xs:int list) : int list =
+>     match xs with
+>     | [] -> []
+>     | hd::tl -> (hd+1) :: map (fun x -> x+1) tl
+>                         
+>   let rec bump3 (xs:int list) : int list =
+>     match xs with
+>     | [] -> []
+>     | hd::tl -> (hd+1) :: bump3 tl)
+
 (a) Prove that for all integer lists l, bump1 l == bump2 l.
 
-Proof: 
+Proof:
 
+  bump1 l                                           (LHS)
+= map (fun x -> x+1) l                              (eval bump1)
+= (fun x -> x+1) hd :: map (fun x -> x+1) tl        (eval map)
+= (hd+1) :: map (fun x -> x+1) tl                   (eval lambda)
+= bump2 (hd::tl)                                    (reverse eval bump2)
+= bump2 l                                           (reverse cons; RHS)
 
-
-
-
+QED
 
 
 (b) Prove that for all integer lists l, bump1 l == bump3 l.
 
-Proof:
+Proof: By induction on the structure of list l
 
+case l = []:
 
+  bump1 []                      (LHS)
+= map (fun x -> x+1) []         (eval bump1)
+= []                            (eval map)
+= bump3 []                      (reverse eval bump3; RHS)
 
+case l = (hd::tl):
 
+IH: bump1 tl = bump3 tl
 
+  bump1 (hd::tl)                                    (LHS)
+= map (fun x -> x+1) (hd::tl)                       (eval bump1)
+= (fun x -> x+1) hd :: map (fun x -> x+1) tl        (eval map)
+= (hd+1) :: map (fun x -> x+1) tl                   (eval lambda)
+= (hd+1) :: bump1 tl                                (reverse eval bump1)
+= (hd+1) :: bump3 tl                                (inductive hypothesis)
+= bump3 (hd::tl)                                    (reverse eval bump3; RHS)
 
+QED
 
 
 (c) In one sentence, what's the big difference between parts (a) and (b)?
 
-
+b is recursive and so needs to be proved inductively
 
 
 
 Part 2.4:
 ---------
 
+>   let rec zip (ls:'a list * 'b list) : ('a * 'b) list =
+>     match ls with
+>       | ([],_) -> []
+>       | (_,[]) -> []
+>       | (x::xrest, y::yrest) -> (x,y)::zip (xrest,yrest) 
+>   
+>   let rec unzip (xs:('a * 'b) list) : 'a list * 'b list =
+>     match xs with
+>       | [] -> ([],[])
+>       | (x,y)::tail -> 
+>         let (xs,ys) = unzip tail in
+>         (x::xs, y::ys) 
+
 Either prove or disprove each of the following. You will do any proofs using
 induction on lists and you will disprove any false statement by providing a
 counter-example to the claim.  When you do a proof, be sure to use the 
 standard template for list proofs.
 
-(a) For all l : ('a * 'b) list, zip(unzip l) == l.
+(pair-pattern)      let (x,y) = e1 in e2 == let x = fst e1 in let y = snd e1 in e2
+(eta-pair)          e == (fst e, snd e)
+(eta-function)      e == fun x -> e x
 
+(a) For all l : ('a * 'b) list, zip (unzip l) == l.
 
+case l = []:
 
+  zip (unzip [])                  (LHS)
+= zip (([],[]))                   (eval unzip)
+= []                              (eval zip; RHS)
 
+case l = (hd::tl):
+
+IH: zip (unzip tl) == tl
+
+  zip (unzip (hd::tl))                                  (LHS)
+= zip (let (xs,ys) = unzip tl in (x::xs, y::ys))        (eval unzip)
 
 
 
